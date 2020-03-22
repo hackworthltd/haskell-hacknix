@@ -10,6 +10,12 @@ let
     inherit (self) config lib stdenv pkgs haskell-nix localLib;
   };
 
+  exeOnly = name: super.haskell-nix.haskellPackages.${name}.components.exes.${name};
+
+  hlint = exeOnly "hlint";
+  brittany = exeOnly "brittany";
+  ghcid = exeOnly "ghcid";
+
 in
 {
   haskell-hacknix = (super.haskell-hacknix or {}) // super.recurseIntoAttrs {
@@ -23,6 +29,6 @@ in
     };
 
     inherit (super.haskell-nix) cabal-install;
-    inherit (super.haskell-nix.haskellPackages) hlint brittany ghcid;
+    inherit hlint brittany ghcid;
   };
 }
