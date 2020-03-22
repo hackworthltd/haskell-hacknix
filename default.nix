@@ -11,9 +11,7 @@ let
 
 in
 {
-  # Special Haskell packages. These have attributes for each GHC
-  # version we support.
-  inherit (pkgs.haskell-hacknix) ghcide hie;
+  inherit (pkgs) haskell-hacknix;
 
   # Help with IFD caching.
   inherit (pkgs.haskell-nix) haskellNixRoots;
