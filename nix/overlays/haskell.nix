@@ -101,6 +101,10 @@ let
     shellFor = shellFor "ghc883";
   };
 
+
+  # An alias for `withInputs` that describes what we use it for.
+  cache = super.haskell-nix.withInputs;
+
 in
 {
   haskell-hacknix = (super.haskell-hacknix or {}) // super.recurseIntoAttrs {
@@ -112,5 +116,7 @@ in
     inherit cabalProject cabalProject865 cabalProject883;
 
     inherit shellFor;
+
+    inherit cache;
   };
 }
