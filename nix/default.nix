@@ -33,7 +33,7 @@ let
   ]
   ++ (map import [
     ./overlays/lib.nix
-    ./overlays/haskell-packages.nix
+    ./overlays/haskell.nix
   ]);
 
   pkgs = nixpkgs {
