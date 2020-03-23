@@ -8,6 +8,14 @@ let
     super.recurseIntoAttrs (super.lib.mapAttrs (_: pkg: pkg.checks) (super.lib.filterAttrs filter hp));
 
 
+  # Filters for collectTests and collectChecks.
+  filterByPrefix = prefix:
+    name: pkg: (pkg.isHaskell or false) && super.lib.hasPrefix prefix name;
+
+  filterByName = pkgName:
+    name: pkg: (pkg.isHaskell or false) && name == pkgName;
+
+
   # A useful source cleaner for Haskell projects.
   #
   # The advantage of this over haskell-nix.cleanGit is that the latter
@@ -35,6 +43,8 @@ in
     hacknix = (super.lib.hacknix or {}) // {
       haskellLib = (super.lib.hacknix.haskellLib or {}) // {
         inherit collectTests collectChecks;
+        inherit filterByPrefix filterByName;
+
         inherit cleanSource;
       };
     };
