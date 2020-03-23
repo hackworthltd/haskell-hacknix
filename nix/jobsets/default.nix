@@ -32,15 +32,16 @@ let
 
   # These run less frequently, so that they don't interfere with
   # checkins on the master branch.
-  mkAlternate = haskellHacknixBranch: {
-    checkinterval = 60 * 5;
+  mkHaskellNix = haskellNixBranch: {
+    checkinterval = 60 * 60 * 24;
     inputs = {
-      haskell-hacknix = mkFetchGithub "${haskellHacknixUri} ${haskellHacknixBranch}";
+      haskell-nix = mkFetchGithub "https://github.com/input-output-hk/haskell.nix.git ${haskellNixBranch}";
     };
   };
 
   mainJobsets = with pkgs.lib; mapAttrs (name: settings: defaultSettings // settings) (rec {
     master = {};
+    haskell-nix = mkHaskellNix "master";
   });
 
   jobsetsAttrs = mainJobsets;
