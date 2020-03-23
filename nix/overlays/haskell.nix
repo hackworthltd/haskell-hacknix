@@ -17,18 +17,6 @@ let
   ghcid = exeOnly "ghcid";
 
 
-  ## GHC version-specific tools.
-  ghc865 = super.recurseIntoAttrs {
-    inherit (ghcide.ghc865.ghcide.components.exes) ghcide;
-    inherit (hie.ghc865.haskell-ide-engine.components.exes) hie hie-wrapper;
-  };
-
-  ghc883 = super.recurseIntoAttrs {
-    inherit (ghcide.ghc883.ghcide.components.exes) ghcide;
-    inherit (hie.ghc883.haskell-ide-engine.components.exes) hie hie-wrapper;
-  };
-
-
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
   #
   # These include any fixes needed for various haskell.nix issues.
@@ -76,6 +64,43 @@ let
       ghc = super.haskell-nix.compiler.ghc883;
     };
 
+
+  # Add some useful tools to a `shellFor`, and make it buildable on a
+  # Hydra.
+  shellFor = compiler:
+    { haskellPackages
+    , baseName
+    , packages
+    }:
+    haskellPackages.${compiler}.shellFor {
+      inherit packages;
+      name = "${baseName}-shell-${compiler}";
+      buildInputs = [
+        super.haskell-nix.cabal-install
+        hlint
+        brittany
+        ghcid
+        ghcide.${compiler}.ghcide.components.exes.ghcide
+        hie.${compiler}.haskell-ide-engine.components.exes.hie
+        hie.${compiler}.haskell-ide-engine.components.exes.hie-wrapper
+      ];
+      meta.platforms = super.lib.platforms.unix;
+    };
+
+
+  ## GHC version-specific tools.
+  ghc865 = super.recurseIntoAttrs {
+    inherit (ghcide.ghc865.ghcide.components.exes) ghcide;
+    inherit (hie.ghc865.haskell-ide-engine.components.exes) hie hie-wrapper;
+    shellFor = shellFor "ghc865";
+  };
+
+  ghc883 = super.recurseIntoAttrs {
+    inherit (ghcide.ghc883.ghcide.components.exes) ghcide;
+    inherit (hie.ghc883.haskell-ide-engine.components.exes) hie hie-wrapper;
+    shellFor = shellFor "ghc883";
+  };
+
 in
 {
   haskell-hacknix = (super.haskell-hacknix or {}) // super.recurseIntoAttrs {
@@ -85,5 +110,7 @@ in
     inherit hlint brittany ghcid;
 
     inherit cabalProject cabalProject865 cabalProject883;
+
+    inherit shellFor;
   };
 }
