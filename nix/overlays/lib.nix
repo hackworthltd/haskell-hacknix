@@ -15,7 +15,7 @@ let
   # attributes.
 
   hacknixShell = compilerTools: shell: shell.overrideAttrs (oldAttrs: {
-    buildInputs = [
+    buildInputs = oldAttrs.buildInputs ++ [
       super.haskell-nix.cabal-install
       super.haskell-hacknix.hlint
       super.haskell-hacknix.brittany
@@ -25,7 +25,9 @@ let
       hie
       hie-wrapper
     ]);
-    meta.platforms = super.lib.platforms.unix;
+    meta = (oldAttrs.meta or {}) // {
+      platforms = super.lib.platforms.unix;
+    };
   });
 
   hacknixShell865 = hacknixShell super.haskell-hacknix.ghc865;
