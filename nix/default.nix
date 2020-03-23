@@ -26,7 +26,7 @@ let
   fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" sources.nixpkgs-unstable;
   nixpkgs = import fixedNixpkgs;
 
-  fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell-nix" sources.haskell-nix;
+  fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell_nix" sources.haskell-nix;
   haskellNix = import fixedHaskellNix;
 
   overlays = lib.singleton hacknix.overlays.all
