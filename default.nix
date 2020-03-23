@@ -10,6 +10,8 @@
 
 let
 
+  hhp = pkgs.recurseIntoAttrs (import ./hhp { inherit pkgs; });
+
 in
 {
   # These attributes are useful for downstream projects that use this
@@ -24,4 +26,7 @@ in
 
   # Help with IFD caching.
   inherit (pkgs.haskell-nix) haskellNixRoots;
+
+  # Build some packages that we commonly use.
+  inherit hhp;
 }
