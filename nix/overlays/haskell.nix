@@ -3,11 +3,11 @@ self: super:
 let
 
   ghcide = import ../pkgs/ghcide.nix {
-    inherit (self) config lib stdenv pkgs haskell-nix localLib;
+    inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
 
   hie = import ../pkgs/hie.nix {
-    inherit (self) config lib stdenv pkgs haskell-nix localLib;
+    inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
 
   exeOnly = name: super.haskell-nix.haskellPackages.${name}.components.exes.${name};

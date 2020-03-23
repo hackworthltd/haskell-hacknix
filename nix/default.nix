@@ -18,8 +18,13 @@ let
 
   hacknix = fixedHacknix {};
   inherit (hacknix) lib;
-  inherit (lib.fetchers) fixedNixpkgs fixedNixOps;
-  inherit (lib.hacknix) nixpkgs;
+
+  # Override hacknix's nixpkgs for now, until this is resolved:
+  # https://github.com/input-output-hk/haskell.nix/issues/467
+  #inherit (lib.fetchers) fixedNixpkgs fixedNixOps;
+  #inherit (lib.hacknix) nixpkgs;
+  fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" sources.nixpkgs-unstable;
+  nixpkgs = import fixedNixpkgs;
 
   fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell-nix" sources.haskell-nix;
   haskellNix = import fixedHaskellNix;
@@ -32,14 +37,16 @@ let
     })
   ]
   ++ (map import [
-    ./overlays/lib.nix
     ./overlays/haskell.nix
+    ./overlays/lib.nix
   ]);
+
+  nixpkgsConfig = haskellNix.config // config;
 
   pkgs = nixpkgs {
     inherit overlays;
     inherit system crossSystem;
-    config = haskellNix.config // config;
+    config = nixpkgsConfig;
   };
 
   self = {
@@ -50,6 +57,7 @@ let
     inherit haskellNix;
     inherit overlays;
     inherit pkgs;
+    inherit nixpkgsConfig;
   };
 
 
