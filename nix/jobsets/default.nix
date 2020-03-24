@@ -4,7 +4,7 @@
 
 let
 
-  haskellHacknixUri = "git@github.com:hackworthltd/haskell-hacknix.git";
+  haskellHacknixUri = "https://github.com/hackworthltd/haskell-hacknix.git";
 
   mkFetchGithub = value: {
     inherit value;
