@@ -92,5 +92,13 @@ test-suite hhp-test
                      , hspec-megaparsec ^>=2.1.0
                      , hedgehog ^>=1.0.2
                      , hedgehog-classes ^>=0.2.4.1
-                     , hlint ^>=2.2.11
                      , hw-hspec-hedgehog ^>=0.1.0.9
+
+test-suite hlint
+  import:              test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             hlint.hs
+  build-depends:       base
+                     , hlint ^>=2.2.11
+                     , protolude
