@@ -83,6 +83,10 @@ let
         ghcide.${compiler}.ghcide.components.exes.ghcide
         hie.${compiler}.haskell-ide-engine.components.exes.hie
         hie.${compiler}.haskell-ide-engine.components.exes.hie-wrapper
+
+        # We could build this with haskell.nix, but it's not really
+        # updated anymore, so why bother?
+        (super.haskell.lib.justStaticExecutables super.haskellPackages.structured-haskell-mode)
       ];
       meta.platforms = super.lib.platforms.unix;
     };
