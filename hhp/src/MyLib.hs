@@ -1,4 +1,12 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module MyLib (someFunc) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+import Data.Text (Text)
+
+-- | Dummy function with doctests.
+--
+-- >>> someFunc
+-- someFunc
+someFunc :: Text
+someFunc = "someFunc"

@@ -103,3 +103,12 @@ test-suite hlint
   build-depends:       base
                      , hlint ^>=2.2.11
                      , protolude
+
+test-suite doctest
+  import:              test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             doctest.hs
+  build-depends:       base
+                     , doctest ^>=0.16.2
+                     , doctest-driver-gen ^>=0.3.0.2
