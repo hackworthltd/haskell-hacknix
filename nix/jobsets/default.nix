@@ -35,7 +35,7 @@ let
   mkHaskellNix = haskellNixBranch: {
     checkinterval = 60 * 60 * 24;
     inputs = {
-      haskell_nix = mkFetchGithub "https://github.com/input-output-hk/haskell.nix.git ${haskellNixBranch}";
+      haskell-nix = mkFetchGithub "https://github.com/input-output-hk/haskell.nix.git ${haskellNixBranch}";
     };
   };
 
