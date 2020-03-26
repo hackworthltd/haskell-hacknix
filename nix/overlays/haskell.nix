@@ -31,10 +31,23 @@ let
     super.haskell-nix.cabalProject {
       inherit ghc src pkg-def-extras;
       modules = [
-        # Workaround for doctest. See:
-        # https://github.com/input-output-hk/haskell.nix/issues/221
-        { reinstallableLibGhc = true; }
         { enableLibraryProfiling = profiling; }
+        {
+          packages.cabal-doctests-test.components.tests.doctests.isDoctest = true;
+          nonReinstallablePkgs =
+             [ "rts" "ghc-heap" "ghc-prim" "integer-gmp" "integer-simple" "base"
+               "deepseq" "array" "ghc-boot-th" "pretty" "template-haskell"
+               "ghc-boot"
+               "ghc" "Cabal" "Win32" "array" "binary" "bytestring" "containers"
+               "directory" "filepath" "ghc-boot" "ghc-compact" "ghc-prim"
+               "ghci" "haskeline"
+               "hpc"
+               "mtl" "parsec" "process" "text" "time" "transformers"
+               "unix" "xhtml"
+               "stm" "terminfo"
+             ];
+        }
+
       ] ++ extraModules;
     };
 

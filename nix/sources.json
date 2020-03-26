@@ -47,6 +47,18 @@
         "url": "https://github.com/input-output-hk/haskell.nix/archive/350b594b3c24a0d4c482d581ba9b7d2b0e7d8ef7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "haskell-nix-doctest": {
+        "branch": "support-cabal-doctest",
+        "description": "Alternative Haskell Infrastructure for Nixpkgs",
+        "homepage": "https://input-output-hk.github.io/haskell.nix",
+        "owner": "cdepillabout",
+        "repo": "haskell.nix",
+        "rev": "fa9597f0a74a4a19ccd008ec6d613c537584556e",
+        "sha256": "1796wgvip0kdj2043gasinjfn3skcf1jk09xawn32dndbb254xpy",
+        "type": "tarball",
+        "url": "https://github.com/cdepillabout/haskell.nix/archive/fa9597f0a74a4a19ccd008ec6d613c537584556e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
