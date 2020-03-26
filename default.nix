@@ -2,7 +2,7 @@
 , crossSystem ? null
 , config ? { allowBroken = true; allowUnfree = true; }
 , sourcesOverride ? {}
-, localLib ? (import ./nix { inherit system crossSystem config sourcesOverride; })
+, localLib ? (import ./nix/default.nix { inherit system crossSystem config sourcesOverride; })
 , pkgs ? localLib.pkgs
 , gitrev ? pkgs.lib.commitIdFromGitRepo ./.
 
@@ -10,7 +10,7 @@
 
 let
 
-  hhp = pkgs.recurseIntoAttrs (import ./hhp { inherit pkgs; });
+  hhp = pkgs.recurseIntoAttrs (import ./hhp/default.nix { inherit pkgs; });
 
 in
 {

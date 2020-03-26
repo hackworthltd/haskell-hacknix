@@ -7,7 +7,7 @@
 
 let
 
-  localLib = import ../. { inherit sourcesOverride; };
+  localLib = import ../default.nix { inherit sourcesOverride; };
 
 in
 
