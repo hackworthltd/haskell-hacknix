@@ -80,6 +80,7 @@ library
   import:              defaults
   hs-source-dirs:      src
   exposed-modules:     MyLib
+  other-modules:       Paths_hhp
 
 executable hhp
   import:              exe
@@ -111,12 +112,12 @@ test-suite hlint
                      , hlint ^>=2.2.11
                      , protolude
 
-test-suite doctest
+test-suite doctests
   import:              test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
                      , src
-  main-is:             doctest.hs
+  main-is:             doctests.hs
   build-depends:       hhp
                      , base
                      , doctest ^>=0.16.2
