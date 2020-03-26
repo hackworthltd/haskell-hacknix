@@ -5,6 +5,7 @@ version:               1.0.0.0
 synopsis:              A test haskell-hacknix project
 category:              Example
 stability:             stable
+build-type:            Custom
 license:               BSD-3-Clause
 license-file:          LICENSE
 copyright:             © 2020 Hackworth Ltd
@@ -69,6 +70,12 @@ common test
                        -rtsopts
                        -with-rtsopts=-N
 
+-- For cabal-doctest.
+custom-setup
+  setup-depends:       base
+                     , Cabal
+                     , cabal-doctest ^>=1.0.8
+
 library
   import:              defaults
   hs-source-dirs:      src
@@ -110,6 +117,8 @@ test-suite doctest
   hs-source-dirs:      test
                      , src
   main-is:             doctest.hs
-  build-depends:       base
+  build-depends:       hhp
+                     , base
                      , doctest ^>=0.16.2
-                     , doctest-driver-gen ^>=0.3.0.2
+                     , hedgehog
+                     , template-haskell
