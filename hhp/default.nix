@@ -11,7 +11,29 @@ let
   };
 
   hhpPackages = pkgs.recurseIntoAttrs {
-    ghc865 = cabalProject865 { src = hhpSrc; };
+    ghc865 = pkgs.haskell-nix.cabalProject {
+      src = pkgs.haskell-nix.haskellLib.cleanGit { src = ./.; };
+      ghc = pkgs.haskell-nix.compiler.ghc865;
+      modules = [
+        {
+          nonReinstallablePkgs =
+             [ "rts" "ghc-heap" "ghc-prim" "integer-gmp" "integer-simple" "base"
+               "deepseq" "array" "ghc-boot-th" "pretty" "template-haskell"
+               "ghc-boot"
+               "ghc" "Cabal" "Win32" "array" "binary" "bytestring" "containers"
+               "directory" "filepath" "ghc-boot" "ghc-compact" "ghc-prim"
+               "ghci" "haskeline"
+               "hpc"
+               "mtl" "parsec" "process" "text" "time" "transformers"
+               "unix" "xhtml"
+               "stm" "terminfo"
+             ];
+
+          packages.hhp.components.tests.doctests.isDoctest = true;
+        }
+      ];
+    };
+
     ghc883 = cabalProject883 { src = hhpSrc; };
   };
 
