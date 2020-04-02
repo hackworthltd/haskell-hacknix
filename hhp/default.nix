@@ -12,7 +12,14 @@ let
 
   hhpPackages = pkgs.recurseIntoAttrs {
     ghc865 = cabalProject865 { src = hhpSrc; };
-    ghc883 = cabalProject883 { src = hhpSrc; };
+    ghc883 = cabalProject883 {
+      src = hhpSrc;
+      pkg-def-extras = [
+        (hackage: {
+          alex = hackage.alex."3.2.5".revisions.default;
+        })
+      ];
+    };
   };
 
   hhpShell = {
@@ -45,25 +52,13 @@ let
 
 
     ## GHC 8.8.3.
-    #
-    # Disabled until
-    #
-    # https://github.com/input-output-hk/haskell.nix/issues/440
-    #
-    # is fixed, or we switch to a Stack-based project.
-
-    #inherit haskellPackages883 shell883;
-
-    #tests883 = collectTests testPackage haskellPackages883;
-
-    # The results of executing the tests.
-    #checks883 = collectChecks testPackage haskellPackages883;
-
-
+    inherit haskellPackages883 shell883;
+    tests883 = collectTests hhpPackage haskellPackages883;
+    checks883 = collectChecks hhpPackage haskellPackages883;
 
     # Help with IFD caching.
     inherit cachedShell;
-    #inherit cachedShell883;
+    inherit cachedShell883;
   };
 
 in
