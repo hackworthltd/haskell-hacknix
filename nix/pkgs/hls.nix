@@ -44,12 +44,10 @@ let
           compiler.version = pkgs.lib.mkForce ghc.version;
           enableLibraryProfiling = profiling;
 
-          # Workaround for doctest. See:
-          # https://github.com/input-output-hk/haskell.nix/issues/221
+          packages.ghc.flags.ghci = pkgs.lib.mkForce true;
+          packages.ghci.flags.ghci = pkgs.lib.mkForce true;
           reinstallableLibGhc = true;
-
-          # Haddock on haddock-api is broken :\
-          packages.haddock-api.components.library.doHaddock = lib.mkForce false;
+          packages.ghcide.configureFlags = [ "--enable-executable-dynamic" ];
     }];
   };
 

@@ -37,9 +37,6 @@ let
 
           packages.ghc.flags.ghci = pkgs.lib.mkForce true;
           packages.ghci.flags.ghci = pkgs.lib.mkForce true;
-
-          # Workaround for doctest. See:
-          # https://github.com/input-output-hk/haskell.nix/issues/221
           reinstallableLibGhc = true;
 
           # This fixes a performance issue, probably https://gitlab.haskell.org/ghc/ghc/issues/15524
