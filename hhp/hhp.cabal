@@ -53,6 +53,7 @@ common opts
                        -Widentities
                        -Wredundant-constraints
                        -fhide-source-paths
+                       -fexternal-interpreter
 
 common defaults
   import:              deps, exts, opts

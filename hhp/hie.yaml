@@ -1,0 +1,7 @@
+cradle:
+  cabal:
+    - path: ./src
+      component: "lib:hhp"
+
+    - path: ./exe
+      component: "exe:hhp"
