@@ -24,7 +24,7 @@ let
 
       stackYaml =
         if compiler == "ghc865" then "stack-8.6.5.yaml"
-        else if compiler == "ghc883" then "stack-8.8.3.yaml"
+        else if compiler == "ghc883" then "stack-8.8.2.yaml"
         else abort "ghcide: unsupported compiler ${compiler}";
     in
       haskell-nix.stackProject {
