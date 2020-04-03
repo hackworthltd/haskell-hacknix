@@ -48,6 +48,9 @@ let
           packages.ghci.flags.ghci = pkgs.lib.mkForce true;
           reinstallableLibGhc = true;
           packages.ghcide.configureFlags = [ "--enable-executable-dynamic" ];
+
+          # Haddock on haddock-api is broken :\
+          packages.haddock-api.components.library.doHaddock = lib.mkForce false;
     }];
   };
 

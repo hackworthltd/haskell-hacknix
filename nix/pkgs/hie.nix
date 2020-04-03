@@ -38,6 +38,9 @@ let
           packages.ghc.flags.ghci = pkgs.lib.mkForce true;
           packages.ghci.flags.ghci = pkgs.lib.mkForce true;
           reinstallableLibGhc = true;
+
+          # Haddock on haddock-api is broken :\
+          packages.haddock-api.components.library.doHaddock = lib.mkForce false;
     }];
   };
 
