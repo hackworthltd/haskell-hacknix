@@ -4,8 +4,6 @@
 , sourcesOverride ? {}
 , localLib ? (import ./nix/default.nix { inherit system crossSystem config sourcesOverride; })
 , pkgs ? localLib.pkgs
-, gitrev ? pkgs.lib.commitIdFromGitRepo ./.
-
 }:
 
 let

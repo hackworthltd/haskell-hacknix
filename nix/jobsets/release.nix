@@ -1,4 +1,4 @@
-{ projectSrc ? { outPath = ../../.; rev = "abcdef"; }
+{ projectSrc ? { outPath = ../../.; }
 , config ? { allowUnfree = true; allowBroken = true; inHydra = true; }
 , supportedSystems ? [ "x86_64-darwin" "x86_64-linux" ]
 , scrubJobs ? true
@@ -16,7 +16,6 @@ with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
   packageSet = import projectSrc;
   nixpkgsArgs = {
     inherit config;
-    gitrev = projectSrc.rev;
 
     # Do not pass overlays here; if you do, release-lib.nix will try
     # to pass them to our project's default.nix, which doesn't take an
