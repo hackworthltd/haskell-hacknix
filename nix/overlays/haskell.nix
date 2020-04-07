@@ -2,6 +2,12 @@ self: super:
 
 let
 
+  # Build cabal-fmt from nixpkgs.haskellPackages for now.
+  cabalFmtPackages = super.haskell.lib.properExtend super.haskellPackages (self: super: {
+    Cabal = super.Cabal_3_0_0_0;
+  });
+  cabal-fmt = super.haskell.lib.justStaticExecutables cabalFmtPackages.cabal-fmt;
+
   ghcide = import ../pkgs/ghcide.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
@@ -89,6 +95,7 @@ let
       name = "${baseName}-shell-${compiler}";
       buildInputs = [
         super.haskell-nix.cabal-install
+        cabal-fmt
         hlint
         brittany
         ghcid
