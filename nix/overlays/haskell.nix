@@ -14,6 +14,14 @@ let
     inherit (super) config lib stdenv pkgs haskell-nix localLib fetchFromGitHub;
   };
 
+  # Needs a filename case fix on macOS.
+  # ref:
+  # https://github.com/tweag/ormolu/issues/470
+  # https://github.com/srid/nix-config/commit/c53ee6cf632936bfb8db7f41f50fc9c79a747eb8
+  macOSCaseNameFix = drv:
+    super.haskell.lib.appendConfigureFlag drv "--ghc-option=-optP-Wno-nonportable-include-path";
+  ormolu = macOSCaseNameFix (import super.localLib.sources.ormolu {}).ormolu;
+
   exeOnly = name: super.haskell-nix.haskellPackages.${name}.components.exes.${name};
 
   hlint = exeOnly "hlint";
@@ -84,6 +92,7 @@ let
         hlint
         brittany
         ghcid
+        ormolu
         hie.${compiler}.haskell-ide-engine.components.exes.hie
         hie.${compiler}.haskell-ide-engine.components.exes.hie-wrapper
         hls.${compiler}.haskell-language-server.components.exes.haskell-language-server
@@ -120,7 +129,7 @@ in
     inherit ghc865 ghc883;
 
     inherit (super.haskell-nix) cabal-install;
-    inherit hlint brittany ghcid;
+    inherit hlint brittany ghcid ormolu;
 
     inherit cabalProject cabalProject865 cabalProject883;
 
