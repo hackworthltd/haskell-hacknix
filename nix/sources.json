@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "58014bbeee2d518155e47d7e15f9188e5f64318e",
-        "sha256": "00h9aam27sxys71vxlrg8qg105k5axpqixqhwhwram9dm7kxpiwa",
+        "rev": "8834c314e415730ace216d3491c4b9ddd4f2de5c",
+        "sha256": "0nfkdaihmsqvq68w5psxn8xrq59x5sixp39v68nvgz1s3rj1fvhm",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/58014bbeee2d518155e47d7e15f9188e5f64318e.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/8834c314e415730ace216d3491c4b9ddd4f2de5c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
