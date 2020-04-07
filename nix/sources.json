@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hacknix": {
-        "branch": "e8f64c291a076b48569463af32b5ca6fd18e18a3",
+        "branch": "master",
         "description": "Hackworth Ltd's nix overlays and modules.",
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "e8f64c291a076b48569463af32b5ca6fd18e18a3",
-        "sha256": "0kdcdcscax7z31hdj8wcwi5w93i2jljvcajd7mj1qvpqlvn5w8nq",
+        "rev": "e8c91f0031c2f4bbef8d7d8155ec0f042a5322b5",
+        "sha256": "1lc0j87cdkgvp09khwl1bp7q3rr9iq4cr4zyxkj3mz11a2g7qa2w",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/e8f64c291a076b48569463af32b5ca6fd18e18a3.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/e8c91f0031c2f4bbef8d7d8155ec0f042a5322b5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
