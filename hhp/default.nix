@@ -6,7 +6,7 @@ let
   inherit (pkgs.lib.hacknix.haskellLib) cleanSource collectTests collectChecks filterByPrefix;
   inherit (pkgs.haskell-hacknix) ghc865 ghc883 cache cabalProject865 cabalProject883;
 
-  hhpSrc = pkgs.nix-gitignore.gitignoreSource [] ../.;
+  hhpSrc = pkgs.gitignoreSource ../.;
 
   hhpPackages = pkgs.recurseIntoAttrs {
     ghc865 = cabalProject865 {
