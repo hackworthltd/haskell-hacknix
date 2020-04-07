@@ -6,14 +6,18 @@ let
   inherit (pkgs.lib.hacknix.haskellLib) cleanSource collectTests collectChecks filterByPrefix;
   inherit (pkgs.haskell-hacknix) ghc865 ghc883 cache cabalProject865 cabalProject883;
 
-  hhpSrc = cleanSource {
-    src = ./.;
-  };
+  hhpSrc = pkgs.nix-gitignore.gitignoreSource [] ../.;
 
   hhpPackages = pkgs.recurseIntoAttrs {
-    ghc865 = cabalProject865 { src = hhpSrc; };
+    ghc865 = cabalProject865 {
+      src = hhpSrc;
+      subdir = "hhp";
+      name = "hhp";
+    };
     ghc883 = cabalProject883 {
       src = hhpSrc;
+      subdir = "hhp";
+      name = "hhp";
       pkg-def-extras = [
         (hackage: {
           alex = hackage.alex."3.2.5".revisions.default;

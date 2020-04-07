@@ -41,13 +41,15 @@ let
 
   cabalProject =
     { ghc
+    , name
     , src
+    , subdir ? null
     , extraModules ? []
     , pkg-def-extras ? []
     , profiling ? false
     }:
     super.haskell-nix.cabalProject {
-      inherit ghc src pkg-def-extras;
+      inherit ghc src name subdir pkg-def-extras;
       modules = [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
@@ -57,28 +59,30 @@ let
     };
 
   cabalProject865 =
-    {
-      src
+    { src
+    , name
+    , subdir ? null
     , extraModules ? []
     , pkg-def-extras ? []
     , profiling ? false
     ,
     }:
     cabalProject {
-      inherit src extraModules pkg-def-extras profiling;
+      inherit src name subdir extraModules pkg-def-extras profiling;
       ghc = super.haskell-nix.compiler.ghc865;
     };
 
   cabalProject883 =
-    {
-      src
+    { src
+    , name
+    , subdir ? null
     , extraModules ? []
     , pkg-def-extras ? []
     , profiling ? false
     ,
     }:
     cabalProject {
-      inherit src extraModules pkg-def-extras profiling;
+      inherit src name subdir extraModules pkg-def-extras profiling;
       ghc = super.haskell-nix.compiler.ghc883;
     };
 
