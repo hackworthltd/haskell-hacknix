@@ -113,6 +113,12 @@ let
         # updated anymore, so why bother?
         (super.haskell.lib.justStaticExecutables super.haskellPackages.structured-haskell-mode)
       ];
+
+      # Help haskell-ide-engine find our Hoogle database. See:
+      # https://github.com/input-output-hk/haskell.nix/issues/529
+      shellHook = ''
+        export HIE_HOOGLE_DATABASE="$(cat $(${super.which}/bin/which hoogle) | sed -n -e 's|.*--database \(.*\.hoo\).*|\1|p')"
+      '';
       meta.platforms = super.lib.platforms.unix;
     };
 
