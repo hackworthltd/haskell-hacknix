@@ -11,10 +11,10 @@
 let
 
   src = fetchFromGitHub {
-    owner = "hackworthltd";
+    owner = "haskell";
     repo = "haskell-language-server";
-    rev = "25f3047bf8d08fbdfaeb3911d807b3d59b70a669";
-    sha256 = "05gby75n63njd097a67nkhviw3d962hfch6j4v9820anan84zgkk";
+    rev = "86fe4eb1d523446a279c0e1b29f6e39d66e4b39d";
+    sha256 = "0sk471lzhk179vckaby12ls5vvq3srhwy8bkbywsxlk00y8nm33n";
     fetchSubmodules = true;
   };
 
