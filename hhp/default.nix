@@ -1,10 +1,11 @@
-{ pkgs
-}:
+{ pkgs }:
 
 let
 
-  inherit (pkgs.lib.hacknix.haskellLib) cleanSource collectTests collectChecks filterByPrefix;
-  inherit (pkgs.haskell-hacknix) ghc865 ghc883 cache cabalProject865 cabalProject883;
+  inherit (pkgs.lib.hacknix.haskellLib)
+    cleanSource collectTests collectChecks filterByPrefix;
+  inherit (pkgs.haskell-hacknix)
+    ghc865 ghc883 cache cabalProject865 cabalProject883;
 
   hhpSrc = pkgs.gitignoreSource ../.;
 
@@ -18,20 +19,15 @@ let
       src = hhpSrc;
       subdir = "hhp";
       name = "hhp";
-      pkg-def-extras = [
-        (hackage: {
-          alex = hackage.alex."3.2.5".revisions.default;
-        })
-      ];
+      pkg-def-extras =
+        [ (hackage: { alex = hackage.alex."3.2.5".revisions.default; }) ];
     };
   };
 
   hhpShell = {
     haskellPackages = hhpPackages;
     baseName = "hhp";
-    packages = ps: with ps; [
-      hhp
-    ];
+    packages = ps: with ps; [ hhp ];
   };
 
   hhpPackage = filterByPrefix "hhp";
@@ -54,7 +50,6 @@ let
     # The results of executing the tests.
     checks = collectChecks hhpPackage haskellPackages;
 
-
     ## GHC 8.8.3.
     inherit haskellPackages883 shell883;
     tests883 = collectTests hhpPackage haskellPackages883;
@@ -65,5 +60,4 @@ let
     inherit cachedShell883;
   };
 
-in
-self
+in self

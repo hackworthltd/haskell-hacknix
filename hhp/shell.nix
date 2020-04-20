@@ -1,1 +1,1 @@
-(import ../default.nix {}).hhp.shell
+(import ../default.nix { }).hhp.shell

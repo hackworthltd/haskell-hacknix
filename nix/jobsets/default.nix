@@ -1,6 +1,4 @@
-{ nixpkgs ? <nixpkgs>
-, declInput ? {}
-}:
+{ nixpkgs ? <nixpkgs>, declInput ? { } }:
 
 let
 
@@ -12,7 +10,7 @@ let
     emailresponsible = false;
   };
 
-  pkgs = import nixpkgs {};
+  pkgs = import nixpkgs { };
 
   defaultSettings = {
     enabled = 1;
@@ -25,9 +23,7 @@ let
     nixexprpath = "nix/jobsets/release.nix";
     nixexprinput = "haskell-hacknix";
     description = "Hackworth Ltd's haskell.nix helpers";
-    inputs = {
-      haskell-hacknix = mkFetchGithub "${haskellHacknixUri} master";
-    };
+    inputs = { haskell-hacknix = mkFetchGithub "${haskellHacknixUri} master"; };
   };
 
   # These run less frequently, so that they don't interfere with
@@ -36,24 +32,27 @@ let
     checkinterval = 60 * 60 * 24;
     inputs = {
       haskell-hacknix = mkFetchGithub "${haskellHacknixUri} master";
-      haskell-nix = mkFetchGithub "https://github.com/input-output-hk/haskell.nix.git ${haskellNixBranch}";
+      haskell-nix = mkFetchGithub
+        "https://github.com/input-output-hk/haskell.nix.git ${haskellNixBranch}";
     };
   };
 
-  mainJobsets = with pkgs.lib; mapAttrs (name: settings: defaultSettings // settings) (rec {
-    master = {};
-    haskell-nix = mkHaskellNix "master";
-  });
+  mainJobsets = with pkgs.lib;
+    mapAttrs (name: settings: defaultSettings // settings) (rec {
+      master = { };
+      haskell-nix = mkHaskellNix "master";
+    });
 
   jobsetsAttrs = mainJobsets;
 
   jobsetJson = pkgs.writeText "spec.json" (builtins.toJSON jobsetsAttrs);
 
 in {
-  jobsets = with pkgs.lib; pkgs.runCommand "spec.json" {} ''
-    cat <<EOF
-    ${builtins.toJSON declInput}
-    EOF
-    cp ${jobsetJson} $out
-  '';
+  jobsets = with pkgs.lib;
+    pkgs.runCommand "spec.json" { } ''
+      cat <<EOF
+      ${builtins.toJSON declInput}
+      EOF
+      cp ${jobsetJson} $out
+    '';
 }

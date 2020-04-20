@@ -1,17 +1,15 @@
-{ projectSrc ? { outPath = ../../.; }
-, config ? { allowUnfree = true; allowBroken = true; inHydra = true; }
-, supportedSystems ? [ "x86_64-darwin" "x86_64-linux" ]
-, scrubJobs ? true
-, sourcesOverride ? {}
-}:
+{ projectSrc ? { outPath = ../../.; }, config ? {
+  allowUnfree = true;
+  allowBroken = true;
+  inHydra = true;
+}, supportedSystems ? [ "x86_64-darwin" "x86_64-linux" ], scrubJobs ? true
+, sourcesOverride ? { } }:
 
 let
 
   localLib = import ../default.nix { inherit sourcesOverride; };
 
-in
-
-with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
+in with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
   inherit supportedSystems scrubJobs;
   packageSet = import projectSrc;
   nixpkgsArgs = {
@@ -35,9 +33,6 @@ let
   x86_64_linux = [ "x86_64-linux" ];
   linux = [ "x86_64-linux" ];
 
-  jobs = {
-    native = mapTestOn (packagePlatforms pkgs);
-  };
+  jobs = { native = mapTestOn (packagePlatforms pkgs); };
 
-in
-jobs
+in jobs
