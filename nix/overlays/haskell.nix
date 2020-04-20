@@ -93,6 +93,7 @@ let
     { haskellPackages
     , baseName
     , packages
+    , buildInputs ? []
     }:
     haskellPackages.${compiler}.shellFor {
       inherit packages;
@@ -112,7 +113,7 @@ let
         # We could build this with haskell.nix, but it's not really
         # updated anymore, so why bother?
         (super.haskell.lib.justStaticExecutables super.haskellPackages.structured-haskell-mode)
-      ];
+      ] ++ buildInputs;
 
       # Help haskell-ide-engine find our Hoogle database. See:
       # https://github.com/input-output-hk/haskell.nix/issues/529
