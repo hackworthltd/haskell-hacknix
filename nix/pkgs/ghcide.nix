@@ -1,5 +1,5 @@
 { lib, localLib, stdenv, pkgs, haskell-nix, config ? { }
-, profiling ? config.haskellNix.profiling or false }:
+, enableLibraryProfiling ? false, enableExecutableProfiling ? false }:
 
 let
 
@@ -28,7 +28,7 @@ let
       modules = [{
         ghc.package = ghc;
         compiler.version = pkgs.lib.mkForce ghc.version;
-        enableLibraryProfiling = profiling;
+        inherit enableLibraryProfiling enableExecutableProfiling;
 
         packages.ghc.flags.ghci = pkgs.lib.mkForce true;
         packages.ghci.flags.ghci = pkgs.lib.mkForce true;

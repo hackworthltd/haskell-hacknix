@@ -41,28 +41,33 @@ let
   # These include any fixes needed for various haskell.nix issues.
 
   cabalProject = { ghc, name, src, subdir ? null, extraModules ? [ ]
-    , pkg-def-extras ? [ ], profiling ? false }:
+    , pkg-def-extras ? [ ], enableLibraryProfiling ? false
+    , enableExecutableProfiling ? false }:
     super.haskell-nix.cabalProject {
       inherit ghc src name subdir pkg-def-extras;
       modules = [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
         { reinstallableLibGhc = true; }
-        { enableLibraryProfiling = profiling; }
+        { inherit enableLibraryProfiling enableExecutableProfiling; }
       ] ++ extraModules;
     };
 
   cabalProject865 = { src, name, subdir ? null, extraModules ? [ ]
-    , pkg-def-extras ? [ ], profiling ? false, }:
+    , pkg-def-extras ? [ ], enableLibraryProfiling ? false
+    , enableExecutableProfiling ? false }:
     cabalProject {
-      inherit src name subdir extraModules pkg-def-extras profiling;
+      inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
+        enableExecutableProfiling;
       ghc = super.haskell-nix.compiler.ghc865;
     };
 
   cabalProject883 = { src, name, subdir ? null, extraModules ? [ ]
-    , pkg-def-extras ? [ ], profiling ? false, }:
+    , pkg-def-extras ? [ ], enableLibraryProfiling ? false
+    , enableExecutableProfiling ? false }:
     cabalProject {
-      inherit src name subdir extraModules pkg-def-extras profiling;
+      inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
+        enableExecutableProfiling;
       ghc = super.haskell-nix.compiler.ghc883;
     };
 
