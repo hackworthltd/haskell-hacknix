@@ -40,7 +40,7 @@ let
   #
   # These include any fixes needed for various haskell.nix issues.
 
-  cabalProject = { ghc, name, src, subdir ? null, extraModules ? [ ]
+  cabalProject = { ghc, src, name ? null, subdir ? null, extraModules ? [ ]
     , pkg-def-extras ? [ ], enableLibraryProfiling ? false
     , enableExecutableProfiling ? false }:
     super.haskell-nix.cabalProject {
@@ -53,7 +53,7 @@ let
       ] ++ extraModules;
     };
 
-  cabalProject865 = { src, name, subdir ? null, extraModules ? [ ]
+  cabalProject865 = { src, name ? null, subdir ? null, extraModules ? [ ]
     , pkg-def-extras ? [ ], enableLibraryProfiling ? false
     , enableExecutableProfiling ? false }:
     cabalProject {
@@ -62,7 +62,7 @@ let
       ghc = super.haskell-nix.compiler.ghc865;
     };
 
-  cabalProject883 = { src, name, subdir ? null, extraModules ? [ ]
+  cabalProject883 = { src, name ? null, subdir ? null, extraModules ? [ ]
     , pkg-def-extras ? [ ], enableLibraryProfiling ? false
     , enableExecutableProfiling ? false }:
     cabalProject {

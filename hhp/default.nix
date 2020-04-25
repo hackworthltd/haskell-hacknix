@@ -13,14 +13,12 @@ let
     ghc865 = cabalProject865 {
       src = hhpSrc;
       subdir = "hhp";
-      name = "hhp";
       enableLibraryProfiling = profiling;
       enableExecutableProfiling = profiling;
     };
     ghc883 = cabalProject883 {
       src = hhpSrc;
       subdir = "hhp";
-      name = "hhp";
       enableLibraryProfiling = profiling;
       enableExecutableProfiling = profiling;
       pkg-def-extras =
