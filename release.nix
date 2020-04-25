@@ -1,4 +1,4 @@
-{ projectSrc ? { outPath = ../../.; }, config ? {
+{ projectSrc ? { outPath = ./.; }, config ? {
   allowUnfree = true;
   allowBroken = true;
   inHydra = true;
@@ -7,7 +7,7 @@
 
 let
 
-  localLib = import ../default.nix { inherit sourcesOverride; };
+  localLib = import nix/default.nix { inherit sourcesOverride; };
 
 in with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
   inherit supportedSystems scrubJobs;
