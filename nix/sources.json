@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "digital-asset",
         "repo": "ghcide",
-        "rev": "39605333c34039241768a1809024c739df3fb2bd",
-        "sha256": "1iysrmj50w3w4ykv70ps6yr21x39mka80zpr9c8airzxb4930ar0",
+        "rev": "78d4031f7cf119bf2a0d1fae6157d52d1fbd2063",
+        "sha256": "0hhh0q4wv62g98a3c4l0d57jdmk4k1ilmzm2skr3b1w1y02ify24",
         "type": "tarball",
-        "url": "https://github.com/digital-asset/ghcide/archive/39605333c34039241768a1809024c739df3fb2bd.tar.gz",
+        "url": "https://github.com/digital-asset/ghcide/archive/78d4031f7cf119bf2a0d1fae6157d52d1fbd2063.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hacknix": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "0fb8e7760a296c0cec5eea6a8c77d78ca50b0806",
-        "sha256": "0blh55r322inq22kaq2b82z67x16qwkbdpvhamas7qwm0cciiisi",
+        "rev": "1f92cc15ca3621ba242d214c1d749e22f060a03b",
+        "sha256": "07zrcjxyvixvqjhbrl7ynpkbdwdkr07rq6imldf4hphvlaj9k4br",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/0fb8e7760a296c0cec5eea6a8c77d78ca50b0806.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/1f92cc15ca3621ba242d214c1d749e22f060a03b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
@@ -41,10 +41,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "d77ac3032d6f66d2bec28e2540f3d3b3321c80fa",
-        "sha256": "1h2d4z7j3frkxn961ill263kf6c1572dzfgvazpvvn6dciqairjm",
+        "rev": "701c83fb43179d303c06a3f60003ae68597ccebc",
+        "sha256": "0afpvi2av0y6fk97kd9mx8bprvfyiizxp22qrgar2ph9mfvaixdm",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/d77ac3032d6f66d2bec28e2540f3d3b3321c80fa.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/701c83fb43179d303c06a3f60003ae68597ccebc.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -59,28 +59,16 @@
         "url": "https://github.com/nmattia/niv/archive/f73bf8d584148677b01859677a63191c31911eae.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs-unstable": {
-        "branch": "cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d",
-        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
-        "homepage": "https://github.com/NixOS/nixpkgs",
-        "owner": "NixOS",
-        "repo": "nixpkgs-channels",
-        "rev": "cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d",
-        "sha256": "0zjafww05h50ncapw51b5qxgbv9prjyag0j22jnfc3kcs5xr4ap0",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "ormolu": {
         "branch": "master",
         "description": "A formatter for Haskell source code",
         "homepage": null,
         "owner": "tweag",
         "repo": "ormolu",
-        "rev": "d579a48f48cf732730fd958a2903c8a045dff146",
-        "sha256": "0hpzvmvf08hbzc1pzv8iy7lzx6dzv2908722a70j5wriaxvabdd5",
+        "rev": "3fbc130a0962ab236d87711beae1895d84a68362",
+        "sha256": "1gfdc5rc9jgwkx4y7gfqasl95nxkpmkgwj3489s3n9ws88dfragw",
         "type": "tarball",
-        "url": "https://github.com/tweag/ormolu/archive/d579a48f48cf732730fd958a2903c8a045dff146.tar.gz",
+        "url": "https://github.com/tweag/ormolu/archive/3fbc130a0962ab236d87711beae1895d84a68362.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

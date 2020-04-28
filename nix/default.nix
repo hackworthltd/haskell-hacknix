@@ -9,18 +9,13 @@ let
   in if try.success then
     builtins.trace "Using <hacknix>" try.value
   else
-    (import sources.hacknix);
+    sources.hacknix;
 
-  hacknix = fixedHacknix { };
+  hacknix = import fixedHacknix { };
   inherit (hacknix) lib;
 
-  # Override hacknix's nixpkgs for now, until this is resolved:
-  # https://github.com/input-output-hk/haskell.nix/issues/467
-  #inherit (lib.fetchers) fixedNixpkgs fixedNixOps;
-  #inherit (lib.hacknix) nixpkgs;
-  fixedNixpkgs =
-    lib.fetchers.fixedNixSrc "nixpkgs_override" sources.nixpkgs-unstable;
-  nixpkgs = import fixedNixpkgs;
+  inherit (lib.fetchers) fixedNixpkgs;
+  inherit (lib.hacknix) nixpkgs;
 
   fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell-nix" sources.haskell-nix;
   haskellNix = import fixedHaskellNix;
