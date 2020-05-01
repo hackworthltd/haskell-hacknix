@@ -1,4 +1,16 @@
 {
+    "cabal-fmt": {
+        "branch": "master",
+        "description": "An experiment of formatting .cabal files",
+        "homepage": null,
+        "owner": "phadej",
+        "repo": "cabal-fmt",
+        "rev": "2016b8fea5f65a67fc0f30e14cf76058614a1707",
+        "sha256": "1hycvih9cjb6cra1ss2n2scq8b2m50bgpndyijvvzibhf082x2yx",
+        "type": "tarball",
+        "url": "https://github.com/phadej/cabal-fmt/archive/2016b8fea5f65a67fc0f30e14cf76058614a1707.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "ghcide": {
         "branch": "master",
         "description": "A library for building Haskell IDE tooling",
