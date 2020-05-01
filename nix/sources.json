@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "1f92cc15ca3621ba242d214c1d749e22f060a03b",
-        "sha256": "07zrcjxyvixvqjhbrl7ynpkbdwdkr07rq6imldf4hphvlaj9k4br",
+        "rev": "c691370f8ea73d3428b4e7cd409e2ce8792d4f3a",
+        "sha256": "15pcxfhlf3f9mpcljnvhmv79ggi9bc3w59npmwb9zzrsfc246hc8",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/1f92cc15ca3621ba242d214c1d749e22f060a03b.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/c691370f8ea73d3428b4e7cd409e2ce8792d4f3a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
@@ -41,10 +41,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "701c83fb43179d303c06a3f60003ae68597ccebc",
-        "sha256": "0afpvi2av0y6fk97kd9mx8bprvfyiizxp22qrgar2ph9mfvaixdm",
+        "rev": "5813be54db841df0e756e5cfb436e7f9abbddbaf",
+        "sha256": "1396a7s7n1yhw6411mp1m7kmqsyp4a91yzy9449nfbrvn8s22qn7",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/701c83fb43179d303c06a3f60003ae68597ccebc.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/5813be54db841df0e756e5cfb436e7f9abbddbaf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -65,10 +65,10 @@
         "homepage": null,
         "owner": "tweag",
         "repo": "ormolu",
-        "rev": "3fbc130a0962ab236d87711beae1895d84a68362",
-        "sha256": "1gfdc5rc9jgwkx4y7gfqasl95nxkpmkgwj3489s3n9ws88dfragw",
+        "rev": "22839ed74c9964578ae3b2af5c693f605ac8a687",
+        "sha256": "055z8p8kl80fr50crcvy2djk3qg2x34p8pa7kihxlcj9wrhsijyy",
         "type": "tarball",
-        "url": "https://github.com/tweag/ormolu/archive/3fbc130a0962ab236d87711beae1895d84a68362.tar.gz",
+        "url": "https://github.com/tweag/ormolu/archive/22839ed74c9964578ae3b2af5c693f605ac8a687.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
