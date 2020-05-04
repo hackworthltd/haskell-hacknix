@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "digital-asset",
         "repo": "ghcide",
-        "rev": "78d4031f7cf119bf2a0d1fae6157d52d1fbd2063",
-        "sha256": "0hhh0q4wv62g98a3c4l0d57jdmk4k1ilmzm2skr3b1w1y02ify24",
+        "rev": "6a650be7e32b221505bdad0548e8b570a03c8eb7",
+        "sha256": "1vzd81i2gpn2q2p1ah2bb57k014mb76rc84xrw3i39l49dda9rhn",
         "type": "tarball",
-        "url": "https://github.com/digital-asset/ghcide/archive/78d4031f7cf119bf2a0d1fae6157d52d1fbd2063.tar.gz",
+        "url": "https://github.com/digital-asset/ghcide/archive/6a650be7e32b221505bdad0548e8b570a03c8eb7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hacknix": {
@@ -29,10 +29,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "c691370f8ea73d3428b4e7cd409e2ce8792d4f3a",
-        "sha256": "15pcxfhlf3f9mpcljnvhmv79ggi9bc3w59npmwb9zzrsfc246hc8",
+        "rev": "aa58eaa9aa0a3e8c922a8171d22db2037fd25d3d",
+        "sha256": "0wf4x89zfhlm70rkfjd4lcmv8k6zqm25pnmp3qpp5c9dbidgfqkw",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/c691370f8ea73d3428b4e7cd409e2ce8792d4f3a.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/aa58eaa9aa0a3e8c922a8171d22db2037fd25d3d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-ide-engine",
-        "rev": "6dc7d4302b3dd644163a318d66a2cebd29e37b0b",
-        "sha256": "04flivbh9wbzigaswpy6j13d186658yznmdjlm18xsfmxmjipg8k",
+        "rev": "d9d21fb0675280e20e837dbeb5715dab65e9c6be",
+        "sha256": "15i01h6c5j2dvdyfajbcby0q0mjaiqb9q2kg9wfjzzjm50khb7rg",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-ide-engine/archive/6dc7d4302b3dd644163a318d66a2cebd29e37b0b.tar.gz",
+        "url": "https://github.com/haskell/haskell-ide-engine/archive/d9d21fb0675280e20e837dbeb5715dab65e9c6be.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
@@ -53,10 +53,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "5813be54db841df0e756e5cfb436e7f9abbddbaf",
-        "sha256": "1396a7s7n1yhw6411mp1m7kmqsyp4a91yzy9449nfbrvn8s22qn7",
+        "rev": "ec3a9dad2a86fc3be07b85df4c0f4061d06b63a9",
+        "sha256": "0bijwhx0my20gk24h76j2wmqynry5m8890vz3qc5vpjr91dr7zlb",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/5813be54db841df0e756e5cfb436e7f9abbddbaf.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/ec3a9dad2a86fc3be07b85df4c0f4061d06b63a9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -77,10 +77,10 @@
         "homepage": null,
         "owner": "tweag",
         "repo": "ormolu",
-        "rev": "22839ed74c9964578ae3b2af5c693f605ac8a687",
-        "sha256": "055z8p8kl80fr50crcvy2djk3qg2x34p8pa7kihxlcj9wrhsijyy",
+        "rev": "991bf8e24d9adf17a8461521ff62a6d4bd0709d5",
+        "sha256": "1c8g6i7plj5cpvbmn688dixy0n612vd140kriml6v1a832hckxdx",
         "type": "tarball",
-        "url": "https://github.com/tweag/ormolu/archive/22839ed74c9964578ae3b2af5c693f605ac8a687.tar.gz",
+        "url": "https://github.com/tweag/ormolu/archive/991bf8e24d9adf17a8461521ff62a6d4bd0709d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
