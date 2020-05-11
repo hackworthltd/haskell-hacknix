@@ -4,7 +4,7 @@
 , fetchFromGitHub
 , pkgs
 , haskell-nix
-, config ? {}
+, config ? { }
 , enableLibraryProfiling ? false
 , enableExecutableProfiling ? false
 }:
@@ -16,18 +16,18 @@ let
     sha256 = "1b0zlnmd43gzpz6dibpgczwq82vqj4yk3wb4q64dwkpyp3v7hi1x";
     fetchSubmodules = true;
   };
-
   pkgSet = compiler:
     let
       ghc = haskell-nix.compiler.${compiler};
-
-      stackYaml = if compiler == "ghc865" then
-        "stack-8.6.5.yaml"
-      else if compiler == "ghc883" then
-        "stack-8.8.3.yaml"
-      else
-        abort "ghcide: unsupported compiler ${compiler}";
-    in haskell-nix.stackProject {
+      stackYaml =
+        if compiler == "ghc865" then
+          "stack-8.6.5.yaml"
+        else if compiler == "ghc883" then
+          "stack-8.8.3.yaml"
+        else
+          abort "ghcide: unsupported compiler ${compiler}";
+    in
+    haskell-nix.stackProject {
       inherit src;
       inherit stackYaml;
 

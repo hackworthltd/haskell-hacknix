@@ -3,15 +3,12 @@ let
   cabal-fmt = import ../pkgs/cabal-fmt.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
-
   ghcide = import ../pkgs/ghcide.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
-
   hie = import ../pkgs/hie.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
-
   hls = import ../pkgs/hls.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib fetchFromGitHub;
   };
@@ -23,11 +20,9 @@ let
   macOSCaseNameFix = drv:
     super.haskell.lib.appendConfigureFlag drv
       "--ghc-option=-optP-Wno-nonportable-include-path";
-  ormolu = macOSCaseNameFix (import super.localLib.sources.ormolu {}).ormolu;
-
+  ormolu = macOSCaseNameFix (import super.localLib.sources.ormolu { }).ormolu;
   exeOnly = name:
     super.haskell-nix.haskellPackages.${name}.components.exes.${name};
-
   brittany = exeOnly "brittany";
   ghcid = exeOnly "ghcid";
   hlint = exeOnly "hlint";
@@ -35,63 +30,60 @@ let
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
   #
   # These include any fixes needed for various haskell.nix issues.
-
   cabalProject =
     { ghc
     , src
     , name ? null
     , subdir ? null
-    , extraModules ? []
-    , pkg-def-extras ? []
+    , extraModules ? [ ]
+    , pkg-def-extras ? [ ]
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
     }:
-      super.haskell-nix.cabalProject {
-        inherit ghc src name subdir pkg-def-extras;
-        modules = [
-          # Workaround for doctest. See:
-          # https://github.com/input-output-hk/haskell.nix/issues/221
-          { reinstallableLibGhc = true; }
-          { inherit enableLibraryProfiling enableExecutableProfiling; }
-        ] ++ extraModules;
-      };
-
+    super.haskell-nix.cabalProject {
+      inherit ghc src name subdir pkg-def-extras;
+      modules = [
+        # Workaround for doctest. See:
+        # https://github.com/input-output-hk/haskell.nix/issues/221
+        { reinstallableLibGhc = true; }
+        { inherit enableLibraryProfiling enableExecutableProfiling; }
+      ] ++ extraModules;
+    };
   cabalProject865 =
     { src
     , name ? null
     , subdir ? null
-    , extraModules ? []
-    , pkg-def-extras ? []
+    , extraModules ? [ ]
+    , pkg-def-extras ? [ ]
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
     }:
-      cabalProject {
-        inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
-          enableExecutableProfiling
-          ;
-        ghc = super.haskell-nix.compiler.ghc865;
-      };
-
+    cabalProject {
+      inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
+        enableExecutableProfiling
+        ;
+      ghc = super.haskell-nix.compiler.ghc865;
+    };
   cabalProject883 =
     { src
     , name ? null
     , subdir ? null
-    , extraModules ? []
-    , pkg-def-extras ? []
+    , extraModules ? [ ]
+    , pkg-def-extras ? [ ]
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
     }:
-      cabalProject {
-        inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
-          enableExecutableProfiling
-          ;
-        ghc = super.haskell-nix.compiler.ghc883;
-      };
+    cabalProject {
+      inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
+        enableExecutableProfiling
+        ;
+      ghc = super.haskell-nix.compiler.ghc883;
+    };
 
   # Add some useful tools to a `shellFor`, and make it buildable on a
   # Hydra.
   shellFor = compiler:
-  { haskellPackages, baseName, packages, buildInputs ? [] }:
+    { haskellPackages, baseName, packages, buildInputs ? [ ] }:
     haskellPackages.${compiler}.shellFor {
       inherit packages;
       name = "${baseName}-shell-${compiler}";
@@ -131,7 +123,6 @@ let
       ;
     shellFor = shellFor "ghc865";
   };
-
   ghc883 = super.recurseIntoAttrs {
     inherit (hie.ghc883.haskell-ide-engine.components.exes) hie hie-wrapper;
     inherit (hls.ghc883.haskell-language-server.components.exes)
@@ -144,7 +135,7 @@ let
   cache = super.haskell-nix.withInputs;
 in
 {
-  haskell-hacknix = (super.haskell-hacknix or {}) // super.recurseIntoAttrs {
+  haskell-hacknix = (super.haskell-hacknix or { }) // super.recurseIntoAttrs {
     inherit ghc865 ghc883;
 
     inherit (super.haskell-nix) cabal-install;

@@ -1,19 +1,26 @@
-{ lib, localLib, stdenv, pkgs, haskell-nix, config ? { }
-, enableLibraryProfiling ? false, enableExecutableProfiling ? false }:
-
+{ lib
+, localLib
+, stdenv
+, pkgs
+, haskell-nix
+, config ? { }
+, enableLibraryProfiling ? false
+, enableExecutableProfiling ? false
+}:
 let
 
   pkgSet = compiler:
     let
       ghc = haskell-nix.compiler.${compiler};
-
-      stackYaml = if compiler == "ghc865" then
-        "stack-8.6.5.yaml"
-      else if compiler == "ghc883" then
-        "stack.yaml"
-      else
-        abort "ghcide: unsupported compiler ${compiler}";
-    in haskell-nix.stackProject {
+      stackYaml =
+        if compiler == "ghc865" then
+          "stack-8.6.5.yaml"
+        else if compiler == "ghc883" then
+          "stack.yaml"
+        else
+          abort "ghcide: unsupported compiler ${compiler}";
+    in
+    haskell-nix.stackProject {
       src = localLib.sources.haskell-ide-engine;
       inherit stackYaml;
 
@@ -39,7 +46,8 @@ let
       }];
     };
 
-in {
+in
+{
   ghc865 = pkgSet "ghc865";
   ghc883 = pkgSet "ghc883";
 }

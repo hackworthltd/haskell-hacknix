@@ -3,7 +3,7 @@
 , stdenv
 , pkgs
 , haskell-nix
-, config ? {}
+, config ? { }
 , enableLibraryProfiling ? false
 , enableExecutableProfiling ? false
 }:
@@ -11,7 +11,8 @@ let
   pkgSet = compiler:
     let
       ghc = haskell-nix.compiler.${compiler};
-    in haskell-nix.cabalProject {
+    in
+    haskell-nix.cabalProject {
       src = localLib.sources.cabal-fmt;
 
       pkg-def-extras = [
