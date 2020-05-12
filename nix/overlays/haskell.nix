@@ -16,24 +16,12 @@ let
   exeOnly = name:
     super.haskell-nix.haskellPackages.${name}.components.exes.${name};
   brittany = exeOnly "brittany";
-  ghcid = exeOnly "ghcid";
-  hlint = exeOnly "hlint";
 
   # Helper executables that are GHC-independent, but not included in
   # the haskell.nix package set.
   cabal-fmt = import ../pkgs/cabal-fmt.nix {
     inherit (super) pkgs haskell-nix localLib;
   };
-
-  # Ormolu needs a filename case fix on macOS.
-  # ref:
-  # https://github.com/tweag/ormolu/issues/470
-  # https://github.com/srid/nix-config/commit/c53ee6cf632936bfb8db7f41f50fc9c79a747eb8
-  macOSCaseNameFix = drv:
-    super.haskell.lib.appendConfigureFlag
-      drv
-      "--ghc-option=-optP-Wno-nonportable-include-path";
-  ormolu = macOSCaseNameFix (import super.localLib.sources.ormolu { }).ormolu;
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
   #
@@ -67,13 +55,15 @@ let
     haskellPackages.${compiler}.shellFor {
       inherit packages;
       name = "${baseName}-shell-${compiler}";
+      tools = {
+        cabal = "3.2.0.0";
+        hlint = "3.0.1";
+        ghcid = "0.8.6";
+        ormolu = "0.0.5.0";
+      };
       buildInputs = [
-        super.haskell-nix.cabal-install
         cabal-fmt
-        hlint
         brittany
-        ghcid
-        ormolu
         hie.${compiler}.haskell-ide-engine.components.exes.hie
         hie.${compiler}.haskell-ide-engine.components.exes.hie-wrapper
         hls.${compiler}.haskell-language-server.components.exes.haskell-language-server
@@ -118,8 +108,7 @@ in
   haskell-hacknix = (super.haskell-hacknix or { }) // super.recurseIntoAttrs {
     inherit ghc865 ghc883;
 
-    inherit (super.haskell-nix) cabal-install;
-    inherit hlint brittany ghcid ormolu;
+    inherit brittany;
 
     inherit cabalProject cabalProject865 cabalProject883;
 
