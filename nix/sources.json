@@ -17,14 +17,14 @@
         "homepage": "",
         "owner": "digital-asset",
         "repo": "ghcide",
-        "rev": "6a650be7e32b221505bdad0548e8b570a03c8eb7",
-        "sha256": "1vzd81i2gpn2q2p1ah2bb57k014mb76rc84xrw3i39l49dda9rhn",
+        "rev": "d7c2bb6ff3c4de2de29c7e9da52ad37a7ec7638f",
+        "sha256": "0cz0wnb63cj045kij7mjw0y60byd7laf79n7h1is0lmlb1cjx08f",
         "type": "tarball",
-        "url": "https://github.com/digital-asset/ghcide/archive/6a650be7e32b221505bdad0548e8b570a03c8eb7.tar.gz",
+        "url": "https://github.com/digital-asset/ghcide/archive/d7c2bb6ff3c4de2de29c7e9da52ad37a7ec7638f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hacknix": {
-        "branch": "master",
+        "branch": "aa58eaa9aa0a3e8c922a8171d22db2037fd25d3d",
         "description": "Hackworth Ltd's nix overlays and modules.",
         "homepage": "",
         "owner": "hackworthltd",
@@ -36,7 +36,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
-        "branch": "master",
+        "branch": "d9d21fb0675280e20e837dbeb5715dab65e9c6be",
         "description": "The engine for haskell ide-integration. Not an IDE",
         "homepage": "",
         "owner": "haskell",
@@ -53,10 +53,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "0b1381b88d3eeb9652d9b998a3d979184e34c9aa",
-        "sha256": "1sk8aqx94ww5nrbhdq74byi794lwk98hxa5pwax853qqnygb0fkh",
+        "rev": "71f31cef4afd36c74d80d7527c7fd6549d1ad9f5",
+        "sha256": "00pwrbqlhy349jdnnjqn2d1577kvy00y70q5b34nk1wspbqyb2mp",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/0b1381b88d3eeb9652d9b998a3d979184e34c9aa.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/71f31cef4afd36c74d80d7527c7fd6549d1ad9f5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -77,10 +77,10 @@
         "homepage": null,
         "owner": "tweag",
         "repo": "ormolu",
-        "rev": "194da3a19f501247fc76af842b6aa5794d82c2eb",
-        "sha256": "0h86ihsddzap30iivm1fyy5l16ab99hlljb9wl7157ia598af06j",
+        "rev": "6ecae369225725b1cf5b0ad818db9365d2f0ad49",
+        "sha256": "120qc1wwis1jyp069g3n8dh3yqi6sqdx31m0xfxd0484xw3q54d5",
         "type": "tarball",
-        "url": "https://github.com/tweag/ormolu/archive/194da3a19f501247fc76af842b6aa5794d82c2eb.tar.gz",
+        "url": "https://github.com/tweag/ormolu/archive/6ecae369225725b1cf5b0ad818db9365d2f0ad49.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
