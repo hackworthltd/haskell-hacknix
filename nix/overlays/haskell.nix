@@ -1,8 +1,10 @@
 self: super:
 let
-  cabal-fmt = import ../pkgs/cabal-fmt.nix {
-    inherit (super) config lib stdenv pkgs haskell-nix localLib;
-  };
+  # Helper executables that need to be compiled with the same version
+  # of GHC as the project where they're used.
+  #
+  # These are all bleeding-edge, so we compile them from their GitHub
+  # repos for now.
   ghcide = import ../pkgs/ghcide.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
@@ -13,7 +15,20 @@ let
     inherit (super) config lib stdenv pkgs haskell-nix localLib fetchFromGitHub;
   };
 
-  # Needs a filename case fix on macOS.
+  # Helper executables that are GHC-independent.
+  exeOnly = name:
+    super.haskell-nix.haskellPackages.${name}.components.exes.${name};
+  brittany = exeOnly "brittany";
+  ghcid = exeOnly "ghcid";
+  hlint = exeOnly "hlint";
+
+  # Helper executables that are GHC-independent, but not included in
+  # the haskell.nix package set.
+  cabal-fmt = import ../pkgs/cabal-fmt.nix {
+    inherit (super) pkgs haskell-nix localLib;
+  };
+
+  # Ormolu needs a filename case fix on macOS.
   # ref:
   # https://github.com/tweag/ormolu/issues/470
   # https://github.com/srid/nix-config/commit/c53ee6cf632936bfb8db7f41f50fc9c79a747eb8
@@ -22,11 +37,6 @@ let
       drv
       "--ghc-option=-optP-Wno-nonportable-include-path";
   ormolu = macOSCaseNameFix (import super.localLib.sources.ormolu { }).ormolu;
-  exeOnly = name:
-    super.haskell-nix.haskellPackages.${name}.components.exes.${name};
-  brittany = exeOnly "brittany";
-  ghcid = exeOnly "ghcid";
-  hlint = exeOnly "hlint";
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
   #
@@ -62,7 +72,7 @@ let
       name = "${baseName}-shell-${compiler}";
       buildInputs = [
         super.haskell-nix.cabal-install
-        cabal-fmt.${compiler}.cabal-fmt.components.exes.cabal-fmt
+        cabal-fmt
         hlint
         brittany
         ghcid
