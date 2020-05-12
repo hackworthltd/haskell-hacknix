@@ -18,7 +18,8 @@ let
   # https://github.com/tweag/ormolu/issues/470
   # https://github.com/srid/nix-config/commit/c53ee6cf632936bfb8db7f41f50fc9c79a747eb8
   macOSCaseNameFix = drv:
-    super.haskell.lib.appendConfigureFlag drv
+    super.haskell.lib.appendConfigureFlag
+      drv
       "--ghc-option=-optP-Wno-nonportable-include-path";
   ormolu = macOSCaseNameFix (import super.localLib.sources.ormolu { }).ormolu;
   exeOnly = name:
@@ -31,54 +32,26 @@ let
   #
   # These include any fixes needed for various haskell.nix issues.
   cabalProject =
-    { ghc
-    , src
-    , name ? null
-    , subdir ? null
-    , extraModules ? [ ]
-    , pkg-def-extras ? [ ]
-    , enableLibraryProfiling ? false
+    { enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
-    }:
-    super.haskell-nix.cabalProject {
-      inherit ghc src name subdir pkg-def-extras;
-      modules = [
+    , ...
+    }@args:
+    super.haskell-nix.cabalProject (args // {
+      modules = (args.modules or [ ]) ++ [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
         { reinstallableLibGhc = true; }
         { inherit enableLibraryProfiling enableExecutableProfiling; }
-      ] ++ extraModules;
-    };
-  cabalProject865 =
-    { src
-    , name ? null
-    , subdir ? null
-    , extraModules ? [ ]
-    , pkg-def-extras ? [ ]
-    , enableLibraryProfiling ? false
-    , enableExecutableProfiling ? false
-    }:
-    cabalProject {
-      inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
-        enableExecutableProfiling
-        ;
+      ];
+    });
+  cabalProject865 = { ... }@args:
+    cabalProject (args // {
       ghc = super.haskell-nix.compiler.ghc865;
-    };
-  cabalProject883 =
-    { src
-    , name ? null
-    , subdir ? null
-    , extraModules ? [ ]
-    , pkg-def-extras ? [ ]
-    , enableLibraryProfiling ? false
-    , enableExecutableProfiling ? false
-    }:
-    cabalProject {
-      inherit src name subdir extraModules pkg-def-extras enableLibraryProfiling
-        enableExecutableProfiling
-        ;
+    });
+  cabalProject883 = { ... }@args:
+    cabalProject (args // {
       ghc = super.haskell-nix.compiler.ghc883;
-    };
+    });
 
   # Add some useful tools to a `shellFor`, and make it buildable on a
   # Hydra.
