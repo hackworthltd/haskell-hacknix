@@ -11,18 +11,6 @@
         "url": "https://github.com/phadej/cabal-fmt/archive/2016b8fea5f65a67fc0f30e14cf76058614a1707.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "ghcide": {
-        "branch": "master",
-        "description": "A library for building Haskell IDE tooling",
-        "homepage": "",
-        "owner": "digital-asset",
-        "repo": "ghcide",
-        "rev": "d7c2bb6ff3c4de2de29c7e9da52ad37a7ec7638f",
-        "sha256": "0cz0wnb63cj045kij7mjw0y60byd7laf79n7h1is0lmlb1cjx08f",
-        "type": "tarball",
-        "url": "https://github.com/digital-asset/ghcide/archive/d7c2bb6ff3c4de2de29c7e9da52ad37a7ec7638f.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "hacknix": {
         "branch": "aa58eaa9aa0a3e8c922a8171d22db2037fd25d3d",
         "description": "Hackworth Ltd's nix overlays and modules.",

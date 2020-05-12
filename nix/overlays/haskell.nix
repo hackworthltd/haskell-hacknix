@@ -5,9 +5,6 @@ let
   #
   # These are all bleeding-edge, so we compile them from their GitHub
   # repos for now.
-  ghcide = import ../pkgs/ghcide.nix {
-    inherit (super) config lib stdenv pkgs haskell-nix localLib;
-  };
   hie = import ../pkgs/hie.nix {
     inherit (super) config lib stdenv pkgs haskell-nix localLib;
   };
