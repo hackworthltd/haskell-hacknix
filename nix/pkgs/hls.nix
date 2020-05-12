@@ -1,10 +1,7 @@
-{ lib
-, localLib
-, stdenv
+{ localLib
 , fetchFromGitHub
 , pkgs
 , haskell-nix
-, config ? { }
 , enableLibraryProfiling ? false
 , enableExecutableProfiling ? false
 }:
@@ -53,7 +50,7 @@ let
           packages.ghcide.configureFlags = [ "--enable-executable-dynamic" ];
 
           # Haddock on haddock-api is broken :\
-          packages.haddock-api.components.library.doHaddock = lib.mkForce false;
+          packages.haddock-api.components.library.doHaddock = pkgs.lib.mkForce false;
         }
       ];
     };

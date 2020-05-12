@@ -6,10 +6,10 @@ let
   # These are all bleeding-edge, so we compile them from their GitHub
   # repos for now.
   hie = import ../pkgs/hie.nix {
-    inherit (super) config lib stdenv pkgs haskell-nix localLib;
+    inherit (super) pkgs haskell-nix localLib;
   };
   hls = import ../pkgs/hls.nix {
-    inherit (super) config lib stdenv pkgs haskell-nix localLib fetchFromGitHub;
+    inherit (super) pkgs haskell-nix localLib fetchFromGitHub;
   };
 
   # Helper executables that are GHC-independent.

@@ -1,9 +1,6 @@
-{ lib
-, localLib
-, stdenv
+{ localLib
 , pkgs
 , haskell-nix
-, config ? { }
 , enableLibraryProfiling ? false
 , enableExecutableProfiling ? false
 }:
@@ -42,7 +39,7 @@ let
         reinstallableLibGhc = true;
 
         # Haddock on haddock-api is broken :\
-        packages.haddock-api.components.library.doHaddock = lib.mkForce false;
+        packages.haddock-api.components.library.doHaddock = pkgs.lib.mkForce false;
       }];
     };
 
