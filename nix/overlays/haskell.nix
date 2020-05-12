@@ -70,7 +70,10 @@ let
         hls.${compiler}.haskell-language-server.components.exes.haskell-language-server-wrapper
 
         # We could build this with haskell.nix, but it's not really
-        # updated anymore, so why bother?
+        # updated anymore, so why bother? Also, doesn't work with
+        # `tools` because it needs haskell-src-exts 1.19 and it's not
+        # possible to override dependency versions with tools, as far
+        # as I know.
         (
           super.haskell.lib.justStaticExecutables
             super.haskellPackages.structured-haskell-mode
