@@ -51,14 +51,14 @@ let
   # Add some useful tools to a `shellFor`, and make it buildable on a
   # Hydra.
   shellFor = compiler: hp:
-    { buildInputs ? [ ] }:
-    hp.shellFor {
+    { ... }@args:
+    hp.shellFor (args // {
       tools = {
         cabal = "3.2.0.0";
         hlint = "3.1";
         ghcid = "0.8.6";
         ormolu = "0.0.5.0";
-      };
+      } // (args.tools or { });
       buildInputs = [
         cabal-fmt
         brittany
@@ -76,15 +76,17 @@ let
           super.haskell.lib.justStaticExecutables
             super.haskellPackages.structured-haskell-mode
         )
-      ] ++ buildInputs;
+      ] ++ (args.buildInputs or [ ]);
 
       # Help haskell-ide-engine find our Hoogle database. See:
       # https://github.com/input-output-hk/haskell.nix/issues/529
       shellHook = ''
         export HIE_HOOGLE_DATABASE="$(cat $(${super.which}/bin/which hoogle) | sed -n -e 's|.*--database \(.*\.hoo\).*|\1|p')"
-      '';
+      '' + (args.shellHook or "");
+
+      # Make this buildable on Hydra.
       meta.platforms = super.lib.platforms.unix;
-    };
+    });
 
   ## GHC version-specific tools.
   ghc865 = super.recurseIntoAttrs {
