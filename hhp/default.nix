@@ -23,7 +23,6 @@ let
   };
   hhpShell = pkgs: {
     haskellPackages = pkgs;
-    baseName = "hhp";
     packages = ps: with ps; [ hhp ];
   };
   hhpPackage = filterByPrefix "hhp";
