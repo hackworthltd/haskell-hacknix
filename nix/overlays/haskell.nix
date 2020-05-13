@@ -57,7 +57,7 @@ let
       name = "${baseName}-shell-${compiler}";
       tools = {
         cabal = "3.2.0.0";
-        hlint = "3.0.1";
+        hlint = "3.1";
         ghcid = "0.8.6";
         ormolu = "0.0.5.0";
       };
