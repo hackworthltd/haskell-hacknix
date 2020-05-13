@@ -58,17 +58,5 @@
         "type": "tarball",
         "url": "https://github.com/nmattia/niv/archive/f73bf8d584148677b01859677a63191c31911eae.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "ormolu": {
-        "branch": "master",
-        "description": "A formatter for Haskell source code",
-        "homepage": null,
-        "owner": "tweag",
-        "repo": "ormolu",
-        "rev": "6ecae369225725b1cf5b0ad818db9365d2f0ad49",
-        "sha256": "120qc1wwis1jyp069g3n8dh3yqi6sqdx31m0xfxd0484xw3q54d5",
-        "type": "tarball",
-        "url": "https://github.com/tweag/ormolu/archive/6ecae369225725b1cf5b0ad818db9365d2f0ad49.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
