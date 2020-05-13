@@ -21,24 +21,20 @@ let
         [ (hackage: { alex = hackage.alex."3.2.5".revisions.default; }) ];
     };
   };
-  hhpShell = pkgs: {
-    haskellPackages = pkgs;
-    packages = ps: with ps; [ hhp ];
-  };
   hhpPackage = filterByPrefix "hhp";
   hhpPackages = mkHhpPackages { };
   hhpPackagesProfiled = mkHhpPackages { profiling = true; };
   haskellPackages = hhpPackages.ghc865;
-  shell = ghc865.shellFor (hhpShell hhpPackages);
+  shell = ghc865.shellFor haskellPackages { };
   cachedShell = cache shell;
   haskellPackagesProfiled = hhpPackagesProfiled.ghc865;
-  shellProfiled = ghc865.shellFor (hhpShell hhpPackagesProfiled);
+  shellProfiled = ghc865.shellFor haskellPackagesProfiled { };
   cachedShellProfiled = cache shellProfiled;
   haskellPackages883 = hhpPackages.ghc883;
-  shell883 = ghc883.shellFor (hhpShell hhpPackages);
+  shell883 = ghc883.shellFor haskellPackages883 { };
   cachedShell883 = cache shell883;
   haskellPackages883Profiled = hhpPackagesProfiled.ghc883;
-  shell883Profiled = ghc883.shellFor (hhpShell hhpPackagesProfiled);
+  shell883Profiled = ghc883.shellFor haskellPackages883Profiled { };
   cachedShell883Profiled = cache shell883Profiled;
   self = {
     ## GHC 8.6.5.

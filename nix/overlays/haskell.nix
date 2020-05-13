@@ -50,10 +50,9 @@ let
 
   # Add some useful tools to a `shellFor`, and make it buildable on a
   # Hydra.
-  shellFor = compiler:
-    { haskellPackages, packages, buildInputs ? [ ] }:
-    haskellPackages.${compiler}.shellFor {
-      inherit packages;
+  shellFor = compiler: hp:
+    { buildInputs ? [ ] }:
+    hp.shellFor {
       tools = {
         cabal = "3.2.0.0";
         hlint = "3.1";
