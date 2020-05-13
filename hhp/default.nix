@@ -1,7 +1,7 @@
 { pkgs }:
 let
   inherit (pkgs.lib.hacknix.haskellLib)
-    cleanSource collectTests collectChecks filterByPrefix;
+    collectTests collectChecks filterByPrefix;
 
   inherit (pkgs.haskell-hacknix)
     ghc865 ghc883 cache cabalProject865 cabalProject883;
