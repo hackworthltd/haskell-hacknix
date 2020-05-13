@@ -90,17 +90,9 @@ let
 
   ## GHC version-specific tools.
   ghc865 = super.recurseIntoAttrs {
-    inherit (hie.ghc865.haskell-ide-engine.components.exes) hie hie-wrapper;
-    inherit (hls.ghc865.haskell-language-server.components.exes)
-      haskell-language-server haskell-language-server-wrapper
-      ;
     shellFor = shellFor "ghc865";
   };
   ghc883 = super.recurseIntoAttrs {
-    inherit (hie.ghc883.haskell-ide-engine.components.exes) hie hie-wrapper;
-    inherit (hls.ghc883.haskell-language-server.components.exes)
-      haskell-language-server haskell-language-server-wrapper
-      ;
     shellFor = shellFor "ghc883";
   };
 
