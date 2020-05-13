@@ -39,14 +39,6 @@ let
         { inherit enableLibraryProfiling enableExecutableProfiling; }
       ];
     });
-  cabalProject865 = { ... }@args:
-    cabalProject (args // {
-      ghc = super.haskell-nix.compiler.ghc865;
-    });
-  cabalProject883 = { ... }@args:
-    cabalProject (args // {
-      ghc = super.haskell-nix.compiler.ghc883;
-    });
 
   # Add some useful tools to a `shellFor`, and make it buildable on a
   # Hydra.
@@ -90,9 +82,19 @@ let
 
   ## GHC version-specific tools.
   ghc865 = super.recurseIntoAttrs {
+    cabalProject = { ... }@args:
+      cabalProject (args // {
+        ghc = super.haskell-nix.compiler.ghc865;
+      });
+
     shellFor = shellFor "ghc865";
   };
   ghc883 = super.recurseIntoAttrs {
+    cabalProject = { ... }@args:
+      cabalProject (args // {
+        ghc = super.haskell-nix.compiler.ghc883;
+      });
+
     shellFor = shellFor "ghc883";
   };
 
@@ -105,7 +107,7 @@ in
 
     inherit brittany;
 
-    inherit cabalProject cabalProject865 cabalProject883;
+    inherit cabalProject;
 
     inherit shellFor;
 

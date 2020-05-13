@@ -4,18 +4,18 @@ let
     collectTests collectChecks filterByPrefix;
 
   inherit (pkgs.haskell-hacknix)
-    ghc865 ghc883 cache cabalProject865 cabalProject883;
+    ghc865 ghc883 cache;
 
   hhpSrc = pkgs.gitignoreSource ../.;
 
   mkHhpPackages = { profiling ? false }: pkgs.recurseIntoAttrs {
-    ghc865 = cabalProject865 {
+    ghc865 = ghc865.cabalProject {
       src = hhpSrc;
       subdir = "hhp";
       enableLibraryProfiling = profiling;
       enableExecutableProfiling = profiling;
     };
-    ghc883 = cabalProject883 {
+    ghc883 = ghc883.cabalProject {
       src = hhpSrc;
       subdir = "hhp";
       enableLibraryProfiling = profiling;
