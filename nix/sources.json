@@ -24,15 +24,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
-        "branch": "d9d21fb0675280e20e837dbeb5715dab65e9c6be",
+        "branch": "master",
         "description": "The engine for haskell ide-integration. Not an IDE",
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-ide-engine",
-        "rev": "d9d21fb0675280e20e837dbeb5715dab65e9c6be",
-        "sha256": "15i01h6c5j2dvdyfajbcby0q0mjaiqb9q2kg9wfjzzjm50khb7rg",
+        "rev": "e68018a652efa3d049614b303e452393d88253d6",
+        "sha256": "1v8hsmi6nyn1n8pcn6982gmf50yrgb402hj9xlc53x60a8d8sv1y",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-ide-engine/archive/d9d21fb0675280e20e837dbeb5715dab65e9c6be.tar.gz",
+        "url": "https://github.com/haskell/haskell-ide-engine/archive/e68018a652efa3d049614b303e452393d88253d6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
