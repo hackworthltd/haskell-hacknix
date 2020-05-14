@@ -11,18 +11,6 @@
         "url": "https://github.com/phadej/cabal-fmt/archive/2016b8fea5f65a67fc0f30e14cf76058614a1707.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "ghcide": {
-        "branch": "master",
-        "description": "A library for building Haskell IDE tooling",
-        "homepage": "",
-        "owner": "digital-asset",
-        "repo": "ghcide",
-        "rev": "d7c2bb6ff3c4de2de29c7e9da52ad37a7ec7638f",
-        "sha256": "0cz0wnb63cj045kij7mjw0y60byd7laf79n7h1is0lmlb1cjx08f",
-        "type": "tarball",
-        "url": "https://github.com/digital-asset/ghcide/archive/d7c2bb6ff3c4de2de29c7e9da52ad37a7ec7638f.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "hacknix": {
         "branch": "aa58eaa9aa0a3e8c922a8171d22db2037fd25d3d",
         "description": "Hackworth Ltd's nix overlays and modules.",
@@ -36,15 +24,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
-        "branch": "d9d21fb0675280e20e837dbeb5715dab65e9c6be",
+        "branch": "master",
         "description": "The engine for haskell ide-integration. Not an IDE",
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-ide-engine",
-        "rev": "d9d21fb0675280e20e837dbeb5715dab65e9c6be",
-        "sha256": "15i01h6c5j2dvdyfajbcby0q0mjaiqb9q2kg9wfjzzjm50khb7rg",
+        "rev": "e68018a652efa3d049614b303e452393d88253d6",
+        "sha256": "1v8hsmi6nyn1n8pcn6982gmf50yrgb402hj9xlc53x60a8d8sv1y",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-ide-engine/archive/d9d21fb0675280e20e837dbeb5715dab65e9c6be.tar.gz",
+        "url": "https://github.com/haskell/haskell-ide-engine/archive/e68018a652efa3d049614b303e452393d88253d6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
@@ -53,10 +41,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "71f31cef4afd36c74d80d7527c7fd6549d1ad9f5",
-        "sha256": "00pwrbqlhy349jdnnjqn2d1577kvy00y70q5b34nk1wspbqyb2mp",
+        "rev": "79b5458138b5411499191910fe77b789a4661239",
+        "sha256": "0v4zrwy0dqr6j7s08nbla570gf5x68xf6ncmwgghdp0ak5p2shdl",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/71f31cef4afd36c74d80d7527c7fd6549d1ad9f5.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/79b5458138b5411499191910fe77b789a4661239.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -69,18 +57,6 @@
         "sha256": "0jlmrx633jvqrqlyhlzpvdrnim128gc81q5psz2lpp2af8p8q9qs",
         "type": "tarball",
         "url": "https://github.com/nmattia/niv/archive/f73bf8d584148677b01859677a63191c31911eae.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "ormolu": {
-        "branch": "master",
-        "description": "A formatter for Haskell source code",
-        "homepage": null,
-        "owner": "tweag",
-        "repo": "ormolu",
-        "rev": "6ecae369225725b1cf5b0ad818db9365d2f0ad49",
-        "sha256": "120qc1wwis1jyp069g3n8dh3yqi6sqdx31m0xfxd0484xw3q54d5",
-        "type": "tarball",
-        "url": "https://github.com/tweag/ormolu/archive/6ecae369225725b1cf5b0ad818db9365d2f0ad49.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
