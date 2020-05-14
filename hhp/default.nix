@@ -4,7 +4,7 @@ let
     collectTests collectChecks filterByPrefix;
 
   inherit (pkgs.haskell-hacknix)
-    ghc865 ghc883 cache;
+    ghc865 ghc883 cache shellFor;
 
   hhpSrc = pkgs.gitignoreSource ../.;
 
@@ -30,19 +30,19 @@ let
   hhpPackagesProfiled = mkHhpPackages { profiling = true; };
 
   haskellPackages = hhpPackages.ghc865;
-  shell = ghc865.shellFor haskellPackages { };
+  shell = shellFor haskellPackages { };
   cachedShell = cache shell;
 
   haskellPackagesProfiled = hhpPackagesProfiled.ghc865;
-  shellProfiled = ghc865.shellFor haskellPackagesProfiled { };
+  shellProfiled = shellFor haskellPackagesProfiled { };
   cachedShellProfiled = cache shellProfiled;
 
   haskellPackages883 = hhpPackages.ghc883;
-  shell883 = ghc883.shellFor haskellPackages883 { };
+  shell883 = shellFor haskellPackages883 { };
   cachedShell883 = cache shell883;
 
   haskellPackages883Profiled = hhpPackagesProfiled.ghc883;
-  shell883Profiled = ghc883.shellFor haskellPackages883Profiled { };
+  shell883Profiled = shellFor haskellPackages883Profiled { };
   cachedShell883Profiled = cache shell883Profiled;
 
   self = {
