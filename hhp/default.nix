@@ -27,7 +27,8 @@ let
     };
   };
 
-  hhpPackage = filterByPrefix "hhp";
+  isHhpPackage = filterByPrefix "hhp";
+
   hhpPackages = mkHhpPackages { };
   hhpPackagesProfiled = mkHhpPackages { profiling = true; };
 
@@ -53,17 +54,17 @@ let
     inherit haskellPackagesProfiled shellProfiled;
 
     # The test suites of our packages.
-    tests = collectTests hhpPackage haskellPackages;
+    tests = collectTests isHhpPackage haskellPackages;
 
     # The results of executing the tests.
-    checks = collectChecks hhpPackage haskellPackages;
+    checks = collectChecks isHhpPackage haskellPackages;
 
     ## GHC 8.8.3.
     inherit haskellPackages883 shell883;
     inherit haskellPackages883Profiled shell883Profiled;
 
-    tests883 = collectTests hhpPackage haskellPackages883;
-    checks883 = collectChecks hhpPackage haskellPackages883;
+    tests883 = collectTests isHhpPackage haskellPackages883;
+    checks883 = collectChecks isHhpPackage haskellPackages883;
 
     # Help with IFD caching.
     inherit cachedShell cachedShellProfiled;
