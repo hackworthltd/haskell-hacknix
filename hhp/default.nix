@@ -1,4 +1,15 @@
-{ pkgs }:
+{ system ? builtins.currentSystem
+, crossSystem ? null
+, config ? {
+    allowBroken = true;
+    allowUnfree = true;
+  }
+, sourcesOverride ? { }
+, pkgs ? (import ../default.nix {
+    inherit system crossSystem config sourcesOverride;
+  }
+  ).pkgs
+}:
 let
   inherit (pkgs.lib.hacknix.haskellLib)
     collectTests collectChecks filterByPrefix;
