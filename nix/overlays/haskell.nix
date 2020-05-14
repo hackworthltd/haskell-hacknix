@@ -155,20 +155,6 @@ let
       meta.platforms = super.lib.platforms.unix;
     });
 
-  ## GHC version-specific tools.
-  ghc865 = super.recurseIntoAttrs {
-    cabalProject = { ... }@args:
-      cabalProject (args // {
-        ghc = super.haskell-nix.compiler.ghc865;
-      });
-  };
-  ghc883 = super.recurseIntoAttrs {
-    cabalProject = { ... }@args:
-      cabalProject (args // {
-        ghc = super.haskell-nix.compiler.ghc883;
-      });
-  };
-
   # An alias for `withInputs` that describes what we use it for.
   cache = super.haskell-nix.withInputs;
 in
@@ -178,14 +164,8 @@ in
   };
 
   haskell-hacknix = (super.haskell-hacknix or { }) // super.recurseIntoAttrs {
-    inherit ghc865 ghc883;
-
-    inherit brittany;
-
     inherit cabalProject;
-
     inherit shellFor;
-
     inherit cache;
   };
 }
