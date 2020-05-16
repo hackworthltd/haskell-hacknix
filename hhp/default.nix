@@ -56,8 +56,60 @@ let
   ghc883 = mkSet ghc883Args;
   ghc883-profiled = mkProfiledSet ghc883Args;
 
+  # For now, we use the bare upstream cabalProject function.
+  ghcjs865 = pkgs.pkgsCross.ghcjs.haskell-nix.cabalProject {
+    ghc = pkgs.pkgsCross.ghcjs.buildPackages.haskell-nix.compiler.ghc865;
+    inherit src;
+    subdir = "hhp";
+    configureArgs = "--ghcjs --with-ghcjs=js-unknown-ghcjs-ghc";
+    modules = [
+      {
+        bootPkgs = [ "ghcjs-prim" ];
+        nonReinstallablePkgs = [
+          "Cabal"
+          "array"
+          "base"
+          "binary"
+          "bytestring"
+          "containers"
+          "deepseq"
+          "directory"
+          "filepath"
+          "ghc"
+          "ghc-boot"
+          "ghc-boot-th"
+          "ghc-compact"
+          "ghc-heap"
+          "ghc-prim"
+          "ghci"
+          "ghcjs-prim"
+          "ghcjs-th"
+          "integer-gmp"
+          "mtl"
+          "parsec"
+          "pretty"
+          "process"
+          "rts"
+          "template-haskell"
+          "text"
+          "time"
+          "transformers"
+          "unix"
+
+          "hpc"
+
+          # we can't build this one, so let's pretend it pre-exists.
+          "terminfo"
+
+          # This one is just absolutely broken.
+          "cabal-doctest"
+        ];
+      }
+    ];
+  };
 in
 {
   inherit ghc865 ghc865-profiled;
   inherit ghc883 ghc883-profiled;
+  inherit ghcjs865;
 }
