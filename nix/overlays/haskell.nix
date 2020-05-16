@@ -102,7 +102,8 @@ let
   #
   # These include any fixes needed for various haskell.nix issues.
   cabalProject =
-    { enableLibraryProfiling ? false
+    { ghc
+    , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
     , ...
     }@args:
@@ -113,6 +114,14 @@ let
         { reinstallableLibGhc = true; }
         { inherit enableLibraryProfiling enableExecutableProfiling; }
       ];
+      pkg-def-extras = (args.pkg-def-extras or [ ]) ++
+        (
+          if ghc.version == "8.8.3" then [
+            (hackage: {
+              alex = hackage.alex."3.2.5".revisions.default;
+            })
+          ] else [ ]
+        );
     });
 
   # Add some useful tools to a `shellFor`, and make it buildable on a
