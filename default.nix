@@ -1,13 +1,11 @@
 { system ? builtins.currentSystem
 , crossSystem ? null
-, config ? {
-    allowBroken = true;
-    allowUnfree = true;
-  }
+, config ? { }
 , sourcesOverride ? { }
 , localLib ? (import ./nix/default.nix {
     inherit system crossSystem config sourcesOverride;
-  })
+  }
+  )
 , pkgs ? localLib.pkgs
 }:
 let
@@ -20,7 +18,6 @@ in
   # package as an overlay.
   inherit (localLib) sources fixedNixpkgs fixedHaskellNix;
   inherit (localLib) nixpkgs haskellNix overlays;
-  inherit (localLib) nixpkgsConfig;
   inherit pkgs;
 
   # Local packages we want to build in Hydra.
