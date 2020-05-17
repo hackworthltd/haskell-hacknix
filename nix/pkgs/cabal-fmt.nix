@@ -3,9 +3,9 @@
 , haskell-nix
 }:
 let
-  ghc = haskell-nix.compiler.ghc883;
   pkgSet =
     haskell-nix.cabalProject {
+      compiler-nix-name = "ghc883";
       src = localLib.sources.cabal-fmt;
 
       pkg-def-extras = [
@@ -21,9 +21,6 @@ let
 
       modules = [
         {
-          ghc.package = ghc;
-          compiler.version = pkgs.lib.mkForce ghc.version;
-
           packages.ghc.flags.ghci = pkgs.lib.mkForce true;
           packages.ghci.flags.ghci = pkgs.lib.mkForce true;
           reinstallableLibGhc = true;
