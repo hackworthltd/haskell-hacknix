@@ -2,13 +2,16 @@ self: super:
 let
   hie = args:
     let
+      compiler = args.compiler-nix-name or (
+        if args.ghc.version == "8.6.5" then "ghc865" else if args.ghc.version == "8.8.3" then "ghc883" else abort "haskell-ide-engine: unsupported GHC version ${args.ghc.version}"
+      );
       stackYaml =
-        if args.ghc.version == "8.6.5" then
+        if compiler == "ghc865" then
           "stack-8.6.5.yaml"
-        else if args.ghc.version == "8.8.3" then
+        else if compiler == "ghc883" then
           "stack.yaml"
         else
-          abort "haskell-ide-engine: unsupported GHC version ${args.ghs.version}";
+          abort "haskell-ide-engine: unsupported GHC version ${compiler}";
     in
     (super.haskell-nix.stackProject (args // {
       name = "haskell-ide-engine";
@@ -36,13 +39,16 @@ let
 
   hls = args:
     let
+      compiler = args.compiler-nix-name or (
+        if args.ghc.version == "8.6.5" then "ghc865" else if args.ghc.version == "8.8.3" then "ghc883" else abort "haskell-ide-engine: unsupported GHC version ${args.ghc.version}"
+      );
       stackYaml =
-        if args.ghc.version == "8.6.5" then
+        if compiler == "ghc865" then
           "stack-8.6.5.yaml"
-        else if args.ghc.version == "8.8.3" then
+        else if compiler == "ghc883" then
           "stack-8.8.3.yaml"
         else
-          abort "haskell-language-server: unsupported GHC version ${args.ghs.version}";
+          abort "haskell-language-server: unsupported GHC version ${compiler}";
     in
     (super.haskell-nix.stackProject (args // {
       name = "haskell-language-server";
@@ -102,7 +108,7 @@ let
   #
   # These include any fixes needed for various haskell.nix issues.
   cabalProject =
-    { ghc
+    { compiler-nix-name
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
     , ...
@@ -116,7 +122,7 @@ let
       ];
       pkg-def-extras = (args.pkg-def-extras or [ ]) ++
         (
-          if ghc.version == "8.8.3" then [
+          if compiler-nix-name == "ghc883" then [
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })

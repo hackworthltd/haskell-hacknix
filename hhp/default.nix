@@ -39,7 +39,7 @@ let
   });
 
   ghc865Args = {
-    ghc = pkgs.haskell-nix.compiler.ghc865;
+    compiler-nix-name = "ghc865";
     inherit src;
     subdir = "hhp";
   };
@@ -47,7 +47,7 @@ let
   ghc865-profiled = mkProfiledSet ghc865Args;
 
   ghc883Args = {
-    ghc = pkgs.haskell-nix.compiler.ghc865;
+    compiler-nix-name = "ghc883";
     inherit src;
     subdir = "hhp";
     pkg-def-extras =
