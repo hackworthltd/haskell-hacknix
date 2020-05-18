@@ -141,8 +141,6 @@ let
         ormolu = "0.0.5.0";
         hie = "latest";
         hie-wrapper = "latest";
-        hls = "latest";
-        hls-wrapper = "latest";
       } // (args.tools or { });
 
       buildInputs = [
