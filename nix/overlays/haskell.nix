@@ -172,6 +172,41 @@ let
 
   # An alias for `withInputs` that describes what we use it for.
   cache = super.haskell-nix.withInputs;
+
+  lib = super.recurseIntoAttrs {
+    collectTests = filter: hp:
+      super.haskell-nix.haskellLib.collectComponents' "tests"
+        (super.lib.filterAttrs filter hp);
+    collectChecks = filter: hp:
+      super.recurseIntoAttrs (super.lib.mapAttrs (_: pkg: pkg.checks) (super.lib.filterAttrs filter hp));
+
+    # Filters for collectTests and collectChecks.
+    filterByPrefix = prefix: name: pkg:
+      (pkg.isHaskell or false) && super.lib.hasPrefix prefix name;
+    filterByName = pkgName: name: pkg:
+      (pkg.isHaskell or false) && name == pkgName;
+
+    # A useful source cleaner for Haskell projects.
+    #
+    # The advantage of this over haskell-nix.cleanGit is that the latter
+    # requires that files are in the git index, which isn't helpful
+    # while developing a package.
+    cleanSource = { src, excludeDirs ? [ ], excludeFiles ? [ ] }:
+      let
+        filter = name: type:
+          let baseName = baseNameOf (toString name);
+          in
+            !((type != "directory" && builtins.elem name excludeFiles)
+              || (type == "directory" && builtins.elem name excludeDirs));
+        cleanSource' = src':
+          super.lib.sources.cleanSourceWith {
+            inherit filter;
+            src = src';
+          };
+      in
+      cleanSource' (super.lib.sources.cleanSourceAllExtraneous src);
+  };
+
 in
 {
   haskell-nix = super.haskell-nix // {
@@ -182,5 +217,6 @@ in
     inherit cabalProject;
     inherit shellFor;
     inherit cache;
+    inherit lib;
   };
 }

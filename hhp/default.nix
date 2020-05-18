@@ -11,7 +11,7 @@
   ).pkgs
 }:
 let
-  inherit (pkgs.lib.hacknix.haskellLib)
+  inherit (pkgs.haskell-hacknix.lib)
     collectTests collectChecks filterByPrefix;
 
   inherit (pkgs.haskell-hacknix)
