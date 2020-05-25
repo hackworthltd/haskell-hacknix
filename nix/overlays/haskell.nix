@@ -168,6 +168,105 @@ let
       meta.platforms = super.lib.platforms.unix;
     });
 
+
+  # Same as above, but for ghcjs projects.
+  ghcjsCabalProject =
+    { compiler-nix-name
+    , ...
+    }@args:
+    super.pkgsCross.ghcjs.haskell-nix.cabalProject (args // {
+      configureArgs = "--ghcjs --with-ghcjs=js-unknown-ghcjs-ghc";
+      modules = [
+        {
+          bootPkgs = [ "ghcjs-prim" ];
+          nonReinstallablePkgs = [
+            "Cabal"
+            "array"
+            "base"
+            "binary"
+            "bytestring"
+            "containers"
+            "deepseq"
+            "directory"
+            "filepath"
+            "ghc"
+            "ghc-boot"
+            "ghc-boot-th"
+            "ghc-compact"
+            "ghc-heap"
+            "ghc-prim"
+            "ghci"
+            "ghcjs-prim"
+            "ghcjs-th"
+            "integer-gmp"
+            "mtl"
+            "parsec"
+            "pretty"
+            "process"
+            "rts"
+            "template-haskell"
+            "text"
+            "time"
+            "transformers"
+            "unix"
+
+            "hpc"
+
+            # we can't build this one, so let's pretend it pre-exists.
+            "terminfo"
+
+            # This one is just absolutely broken.
+            "cabal-doctest"
+          ];
+        }
+      ];
+      pkg-def-extras = (args.pkg-def-extras or [ ]) ++
+        (
+          if compiler-nix-name == "ghc883" then [
+            (hackage: {
+              alex = hackage.alex."3.2.5".revisions.default;
+            })
+          ] else [ ]
+        );
+    });
+
+  ghcjsShellFor = hp: { ... }@args:
+    let
+      # Don't build the tools with ghcjs; use the equivalent GHC.
+      compiler =
+        if hp.compiler-nix-name == "ghc865" then super.haskell-nix.compiler.ghc865
+        else if hp.compiler-nix-name == "ghc883" then super.haskell-nix.compiler.ghc883
+        else abort "ghcjsShellFor: unsupported GHC version ${hp.compiler-nix-name}";
+    in
+    hp.shellFor (args // {
+      tools = {
+        cabal = { version = "3.2.0.0"; inherit compiler; };
+        hlint = { version = "3.1"; inherit compiler; };
+        ghcid = { version = "0.8.6"; inherit compiler; };
+        ormolu = { version = "0.0.5.0"; inherit compiler; };
+      } // (args.tools or { });
+
+      buildInputs = [
+        cabal-fmt
+        brittany
+
+        # We could build this with haskell.nix, but it's not really
+        # updated anymore, so why bother? Also, doesn't work with
+        # `tools` because it needs haskell-src-exts 1.19 and it's not
+        # possible to override dependency versions with tools, as far
+        # as I know.
+        (
+          super.haskell.lib.justStaticExecutables
+            super.haskellPackages.structured-haskell-mode
+        )
+      ] ++ (args.buildInputs or [ ]);
+
+      withHoogle = false;
+
+      # Make this buildable on Hydra.
+      meta.platforms = super.lib.platforms.unix;
+    });
+
   # An alias for `withInputs` that describes what we use it for.
   cache = super.haskell-nix.withInputs;
 
@@ -215,6 +314,10 @@ in
     inherit cabalProject;
     inherit shellFor;
     inherit cache;
+
+    inherit ghcjsCabalProject;
+    inherit ghcjsShellFor;
+
     inherit lib;
   };
 }

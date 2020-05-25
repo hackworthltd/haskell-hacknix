@@ -15,7 +15,7 @@ let
     collectTests collectChecks filterByPrefix;
 
   inherit (pkgs.haskell-hacknix)
-    cabalProject cache shellFor;
+    cabalProject cache shellFor ghcjsCabalProject ghcjsShellFor;
 
   src = pkgs.gitignoreSource ../.;
 
@@ -56,8 +56,28 @@ let
   ghc883 = mkSet ghc883Args;
   ghc883-profiled = mkProfiledSet ghc883Args;
 
+  ghcjs865 =
+    let
+      haskellPackages = ghcjsCabalProject ghc865Args;
+      shell = ghcjsShellFor haskellPackages { };
+      cachedShell = cache shell;
+    in
+    pkgs.recurseIntoAttrs {
+      inherit haskellPackages shell cachedShell;
+    };
+
+  ghcjs883 =
+    let
+      haskellPackages = ghcjsCabalProject ghc883Args;
+      shell = ghcjsShellFor haskellPackages { };
+      cachedShell = cache shell;
+    in
+    pkgs.recurseIntoAttrs {
+      inherit haskellPackages shell cachedShell;
+    };
 in
 {
   inherit ghc865 ghc865-profiled;
   inherit ghc883 ghc883-profiled;
+  inherit ghcjs865 ghcjs883;
 }

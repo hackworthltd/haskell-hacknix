@@ -36,15 +36,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
-        "branch": "master",
+        "branch": "hkm/bundled-ghcjs",
         "description": "Alternative Haskell Infrastructure for Nixpkgs",
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "d43f6fcdd6a75b0c1561e988117a227454c75acb",
-        "sha256": "0bh5jik0gag0dlyfsg5n0j1n5k0xivivkgij8pxlz07a9g7m5mn9",
+        "rev": "d13e0cc6317ab20234e0d4552201a9447a6e85ea",
+        "sha256": "0f340jkhnjggzc48avjz13i04bcz6dr2d2szpv9r94m8d8wxa2jd",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/d43f6fcdd6a75b0c1561e988117a227454c75acb.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/d13e0cc6317ab20234e0d4552201a9447a6e85ea.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
