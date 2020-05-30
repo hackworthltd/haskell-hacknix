@@ -200,12 +200,13 @@ let
         else abort "ghcjsShellFor: unsupported GHC version ${hp.compiler-nix-name}";
     in
     hp.shellFor (args // {
-      tools = {
-        cabal = { version = "3.2.0.0"; inherit compiler; };
-        hlint = { version = "3.1"; inherit compiler; };
-        ghcid = { version = "0.8.6"; inherit compiler; };
-        ormolu = { version = "0.0.5.0"; inherit compiler; };
-      } // (args.tools or { });
+      # Temporarily disable tools to get this to compile.
+      # tools = {
+      #   cabal = { version = "3.2.0.0"; inherit compiler; };
+      #   hlint = { version = "3.1"; inherit compiler; };
+      #   ghcid = { version = "0.8.6"; inherit compiler; };
+      #   ormolu = { version = "0.0.5.0"; inherit compiler; };
+      # } // (args.tools or { });
 
       buildInputs = [
         cabal-fmt
