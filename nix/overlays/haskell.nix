@@ -179,45 +179,6 @@ let
       modules = [
         {
           bootPkgs = [ "ghcjs-prim" ];
-          nonReinstallablePkgs = [
-            "Cabal"
-            "array"
-            "base"
-            "binary"
-            "bytestring"
-            "containers"
-            "deepseq"
-            "directory"
-            "filepath"
-            "ghc"
-            "ghc-boot"
-            "ghc-boot-th"
-            "ghc-compact"
-            "ghc-heap"
-            "ghc-prim"
-            "ghci"
-            "ghcjs-prim"
-            "ghcjs-th"
-            "integer-gmp"
-            "mtl"
-            "parsec"
-            "pretty"
-            "process"
-            "rts"
-            "template-haskell"
-            "text"
-            "time"
-            "transformers"
-            "unix"
-
-            "hpc"
-
-            # we can't build this one, so let's pretend it pre-exists.
-            "terminfo"
-
-            # This one is just absolutely broken.
-            "cabal-doctest"
-          ];
         }
       ];
       pkg-def-extras = (args.pkg-def-extras or [ ]) ++
