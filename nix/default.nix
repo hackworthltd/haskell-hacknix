@@ -17,7 +17,9 @@ let
       builtins.trace "Using <hacknix>" try.value
     else
       sources.hacknix;
-  hacknix = import fixedHacknix { };
+  hacknix = import fixedHacknix {
+    inherit system crossSystem config sourcesOverride;
+  };
   inherit (hacknix) lib;
 
   fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell-nix" sources.haskell-nix;
