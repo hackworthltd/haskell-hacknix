@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "phadej",
         "repo": "cabal-fmt",
-        "rev": "2016b8fea5f65a67fc0f30e14cf76058614a1707",
-        "sha256": "1hycvih9cjb6cra1ss2n2scq8b2m50bgpndyijvvzibhf082x2yx",
+        "rev": "6faaf9e6c898631f9050c23d50169fb6ced40522",
+        "sha256": "06lq9597bqphd59p8lfz1lnkn2yqzlqxk01in8wx9vddklq0hvxl",
         "type": "tarball",
-        "url": "https://github.com/phadej/cabal-fmt/archive/2016b8fea5f65a67fc0f30e14cf76058614a1707.tar.gz",
+        "url": "https://github.com/phadej/cabal-fmt/archive/6faaf9e6c898631f9050c23d50169fb6ced40522.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hacknix": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "072a95c29d056944ab0cc8aa4a3c92f4387a3844",
-        "sha256": "13hf8wkmh4p9pi9rqjn61y7ijli9abgja1d2r95000b5lf9ci7hr",
+        "rev": "366613539597cce9c4dd96c85a9d5601edf437de",
+        "sha256": "0v6jcxb3z541qya4a4kdpdkxd3qgkfzacvcg4948pfclwygzdasy",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/072a95c29d056944ab0cc8aa4a3c92f4387a3844.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/366613539597cce9c4dd96c85a9d5601edf437de.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-ide-engine": {
@@ -29,10 +29,10 @@
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-ide-engine",
-        "rev": "51b9739510b0ec013ff7c9959a67ac2d506838d5",
-        "sha256": "0y7fkim5hcwbmzwwlc2lv5rdalxwwg6xx8394ad65d2ahffm98qx",
+        "rev": "a9005b2ba2050bdfdd4438f1d471a3f7985492cd",
+        "sha256": "1gi512fvwb0imwwhs8l1b8vci84r08bpcwachyxcdlpdlyzlzacz",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-ide-engine/archive/51b9739510b0ec013ff7c9959a67ac2d506838d5.tar.gz",
+        "url": "https://github.com/haskell/haskell-ide-engine/archive/a9005b2ba2050bdfdd4438f1d471a3f7985492cd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
@@ -41,10 +41,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "d43f6fcdd6a75b0c1561e988117a227454c75acb",
-        "sha256": "0bh5jik0gag0dlyfsg5n0j1n5k0xivivkgij8pxlz07a9g7m5mn9",
+        "rev": "128dbef1334728d16d0013fe6b53e81e8d2f7312",
+        "sha256": "12qm46340z8wh9srblays1z3x7x0ajpxa9srnq0i736dvbg6ll66",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/d43f6fcdd6a75b0c1561e988117a227454c75acb.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/128dbef1334728d16d0013fe6b53e81e8d2f7312.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
