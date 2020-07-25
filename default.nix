@@ -9,8 +9,14 @@
 , pkgs ? localLib.pkgs
 }:
 let
-
   hhp = pkgs.recurseIntoAttrs (import ./hhp/default.nix { inherit pkgs; });
+
+  roots = pkgs.recurseIntoAttrs {
+    ghc865 = pkgs.haskell-nix.roots "ghc865";
+    ghc883 = pkgs.haskell-nix.roots "ghc883";
+    ghc884 = pkgs.haskell-nix.roots "ghc884";
+    ghc8101 = pkgs.haskell-nix.roots "ghc8101";
+  };
 
 in
 {
@@ -24,7 +30,7 @@ in
   inherit (pkgs) haskell-hacknix;
 
   # Help with IFD caching.
-  inherit (pkgs.haskell-nix) haskellNixRoots;
+  inherit roots;
 
   # Build some packages that we commonly use.
   inherit hhp;

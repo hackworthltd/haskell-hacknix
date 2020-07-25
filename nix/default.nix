@@ -29,7 +29,7 @@ let
   # really want to. Note that this will override the haskell.nix
   # nixpkgs pin and most likely invalidate most of the haskell.nix
   # cachix cache.
-  fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" haskellNix.sources.nixpkgs-default;
+  fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" haskellNix.sources.nixpkgs;
   nixpkgs = import fixedNixpkgs;
 
   # Take care that these don't interfere with haskell.nix's cachix cache!
