@@ -5,7 +5,7 @@
 let
   pkgSet =
     haskell-nix.cabalProject {
-      compiler-nix-name = "ghc883";
+      compiler-nix-name = "ghc884";
       src = localLib.sources.cabal-fmt;
 
       pkg-def-extras = [

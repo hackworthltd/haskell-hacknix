@@ -67,13 +67,8 @@ let
     hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
   };
 
-  # Helper executables that are GHC-independent.
-  exeOnly = name:
-    super.haskell-nix.haskellPackages.${name}.components.exes.${name};
-  brittany = exeOnly "brittany";
-
-  # Helper executables that are GHC-independent, but not included in
-  # the haskell.nix package set.
+  # cabal-fmt doesn't build properly with haskell.nix, so we override
+  # it with our own derivation.
   cabal-fmt = import ../pkgs/cabal-fmt.nix {
     inherit (super) pkgs haskell-nix localLib;
   };
@@ -116,11 +111,10 @@ let
   # Hydra.
   shellFor = hp: { ... }@args:
     hp.shellFor (args // {
+
+      # Tools that are GHC-specific.
       tools = {
-        cabal = "3.2.0.0";
-        hlint = "3.1";
-        ghcid = "0.8.6";
-        ormolu = "0.0.5.0";
+        ghcid = "0.8.7";
       } // (if args.compiler-nix-name == "ghc8101" then { } else {
         hie = "latest";
         hie-wrapper = "latest";
@@ -129,7 +123,13 @@ let
 
       buildInputs = [
         cabal-fmt
-        brittany
+
+        # These tools are GHC-independent, so we use GHC 8.8.4 to
+        # build them. (Using 8.8.4 is arbitrary.)
+        (super.haskell-nix.tool "ghc884" "brittany" "0.12.1.1")
+        (super.haskell-nix.tool "ghc884" "cabal" "3.2.0.0")
+        (super.haskell-nix.tool "ghc884" "hlint" "3.1.6")
+        (super.haskell-nix.tool "ghc884" "ormolu" "0.1.2.0")
 
         # We could build this with haskell.nix, but it's not really
         # updated anymore, so why bother? Also, doesn't work with
