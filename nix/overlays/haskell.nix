@@ -1,22 +1,9 @@
 self: super:
 let
   hie = args:
-    let
-      compiler = args.compiler-nix-name or (
-        if args.ghc.version == "8.6.5" then "ghc865" else if args.ghc.version == "8.8.3" then "ghc883" else abort "haskell-ide-engine: unsupported GHC version ${args.ghc.version}"
-      );
-      stackYaml =
-        if compiler == "ghc865" then
-          "stack-8.6.5.yaml"
-        else if compiler == "ghc883" then
-          "stack.yaml"
-        else
-          abort "haskell-ide-engine: unsupported GHC version ${compiler}";
-    in
-    (super.haskell-nix.stackProject (args // {
+    (super.haskell-nix.project (args // {
       name = "haskell-ide-engine";
       src = super.localLib.sources.haskell-ide-engine;
-      inherit stackYaml;
       pkg-def-extras = [
         (hackage: {
           packages = {
@@ -24,7 +11,7 @@ let
           };
         })
       ];
-
+      projectFileName = "cabal.project";
       modules = [
         ({ config, ... }: {
           packages.ghc.flags.ghci = super.lib.mkForce true;
@@ -38,19 +25,7 @@ let
     }));
 
   hls = args:
-    let
-      compiler = args.compiler-nix-name or (
-        if args.ghc.version == "8.6.5" then "ghc865" else if args.ghc.version == "8.8.3" then "ghc883" else abort "haskell-ide-engine: unsupported GHC version ${args.ghc.version}"
-      );
-      stackYaml =
-        if compiler == "ghc865" then
-          "stack-8.6.5.yaml"
-        else if compiler == "ghc883" then
-          "stack-8.8.3.yaml"
-        else
-          abort "haskell-language-server: unsupported GHC version ${compiler}";
-    in
-    (super.haskell-nix.stackProject (args // {
+    (super.haskell-nix.project (args // {
       name = "haskell-language-server";
 
       # We need this until niv supports fetching git submodules.
@@ -61,8 +36,7 @@ let
         sha256 = "1b0zlnmd43gzpz6dibpgczwq82vqj4yk3wb4q64dwkpyp3v7hi1x";
         fetchSubmodules = true;
       };
-      inherit stackYaml;
-
+      projectFileName = "cabal.project";
       pkg-def-extras = [
         (
           hackage: {

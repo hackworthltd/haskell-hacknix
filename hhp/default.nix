@@ -17,7 +17,7 @@ let
   inherit (pkgs.haskell-hacknix)
     cabalProject cache shellFor;
 
-  src = pkgs.gitignoreSource ../.;
+  src = ../.;
 
   isHhpPackage = filterByPrefix "hhp";
 
