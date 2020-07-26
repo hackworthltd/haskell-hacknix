@@ -24,7 +24,7 @@ let
   mkSet = args:
     let
       haskellPackages = cabalProject args;
-      shell = shellFor haskellPackages { };
+      shell = shellFor haskellPackages args;
       cachedShell = cache shell;
       tests = collectTests isHhpPackage haskellPackages;
       checks = collectChecks isHhpPackage haskellPackages;
@@ -50,14 +50,30 @@ let
     compiler-nix-name = "ghc883";
     inherit src;
     subdir = "hhp";
-    pkg-def-extras =
-      [ (hackage: { alex = hackage.alex."3.2.5".revisions.default; }) ];
   };
   ghc883 = mkSet ghc883Args;
   ghc883-profiled = mkProfiledSet ghc883Args;
+
+  ghc884Args = {
+    compiler-nix-name = "ghc884";
+    inherit src;
+    subdir = "hhp";
+  };
+  ghc884 = mkSet ghc884Args;
+  ghc884-profiled = mkProfiledSet ghc884Args;
+
+  ghc8101Args = {
+    compiler-nix-name = "ghc8101";
+    inherit src;
+    subdir = "hhp";
+  };
+  ghc8101 = mkSet ghc8101Args;
+  ghc8101-profiled = mkProfiledSet ghc8101Args;
 
 in
 {
   inherit ghc865 ghc865-profiled;
   inherit ghc883 ghc883-profiled;
+  inherit ghc884 ghc884-profiled;
+  inherit ghc8101 ghc8101-profiled;
 }

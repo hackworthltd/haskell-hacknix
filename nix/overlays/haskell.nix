@@ -100,6 +100,14 @@ let
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })
+          ] else if compiler-nix-name == "ghc884" then [
+            (hackage: {
+              alex = hackage.alex."3.2.5".revisions.default;
+            })
+          ] else if compiler-nix-name == "ghc8101" then [
+            (hackage: {
+              alex = hackage.alex."3.2.5".revisions.default;
+            })
           ] else [ ]
         );
     });
@@ -113,9 +121,11 @@ let
         hlint = "3.1";
         ghcid = "0.8.6";
         ormolu = "0.0.5.0";
+      } // (if args.compiler-nix-name == "ghc8101" then { } else {
         hie = "latest";
         hie-wrapper = "latest";
-      } // (args.tools or { });
+      }
+      ) // (args.tools or { });
 
       buildInputs = [
         cabal-fmt
