@@ -47,7 +47,6 @@ let
         ({ config, ... }: {
           packages.ghc.flags.ghci = super.lib.mkForce true;
           packages.ghci.flags.ghci = super.lib.mkForce true;
-          reinstallableLibGhc = true;
           packages.ghcide.configureFlags = [ "--enable-executable-dynamic" ];
 
           # Haddock on haddock-api is broken :\
