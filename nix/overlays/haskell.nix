@@ -28,25 +28,21 @@ let
     (super.haskell-nix.project (args // {
       name = "haskell-language-server";
 
-      # We need this until niv supports fetching git submodules.
+      # We need this until niv supports fetching git submodules, as
+      # hls has its own ghcide submodule.
       src = super.fetchFromGitHub {
         owner = "haskell";
         repo = "haskell-language-server";
-        rev = "019b02831595b6a3be6776bfc56060ab918876e7";
-        sha256 = "1b0zlnmd43gzpz6dibpgczwq82vqj4yk3wb4q64dwkpyp3v7hi1x";
+        rev = "f2384e14abb206b133811d2c1d8525536d01a320";
+        sha256 = "1fvy77i6gzzfqpsnyqkvz296aakjdjykh89xx5g7yy59d0kk4w2s";
         fetchSubmodules = true;
       };
-      projectFileName = "cabal.project";
-      pkg-def-extras = [
-        (
-          hackage: {
-            packages = {
-              "haskell-lsp" = hackage.haskell-lsp."0.21.0.0".revisions.default;
-            };
-          }
-        )
-      ];
-
+      projectFileName =
+        if (args.compiler-nix-name == "ghc865") then "stack-8.6.5.yaml"
+        else if (args.compiler-nix-name == "ghc883") then "stack-8.8.3.yaml"
+        else if (args.compiler-nix-name == "ghc884") then "stack-8.8.4.yaml"
+        else if (args.compiler-nix-name == "ghc8101") then "stack-8.10.1.yaml"
+        else abort "hls doesn't support this version of GHC yet";
       modules = [
         ({ config, ... }: {
           packages.ghc.flags.ghci = super.lib.mkForce true;
@@ -115,6 +111,8 @@ let
       # Tools that are GHC-specific.
       tools = {
         ghcid = "0.8.7";
+        hls = "latest";
+        hls-wrapper = "latest";
       } // (if args.compiler-nix-name == "ghc8101" then { } else {
         hie = "latest";
         hie-wrapper = "latest";
