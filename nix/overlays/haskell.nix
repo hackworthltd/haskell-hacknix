@@ -112,11 +112,7 @@ let
         ghcid = "0.8.7";
         hls = "latest";
         hls-wrapper = "latest";
-      } // (if args.compiler-nix-name == "ghc8101" then { } else {
-        hie = "latest";
-        hie-wrapper = "latest";
-      }
-      ) // (args.tools or { });
+      } // (args.tools or { });
 
       buildInputs = [
         cabal-fmt
