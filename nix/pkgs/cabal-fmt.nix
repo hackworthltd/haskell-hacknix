@@ -23,7 +23,6 @@ let
         {
           packages.ghc.flags.ghci = pkgs.lib.mkForce true;
           packages.ghci.flags.ghci = pkgs.lib.mkForce true;
-          reinstallableLibGhc = true;
         }
       ];
     };

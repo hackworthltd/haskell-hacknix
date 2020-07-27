@@ -16,7 +16,6 @@ let
         ({ config, ... }: {
           packages.ghc.flags.ghci = super.lib.mkForce true;
           packages.ghci.flags.ghci = super.lib.mkForce true;
-          reinstallableLibGhc = true;
 
           # Haddock on haddock-api is broken :\
           packages.haddock-api.components.library.doHaddock = super.lib.mkForce false;
@@ -79,9 +78,6 @@ let
     }@args:
     super.haskell-nix.cabalProject (args // {
       modules = (args.modules or [ ]) ++ [
-        # Workaround for doctest. See:
-        # https://github.com/input-output-hk/haskell.nix/issues/221
-        { reinstallableLibGhc = true; }
         { inherit enableLibraryProfiling enableExecutableProfiling; }
       ];
       pkg-def-extras = (args.pkg-def-extras or [ ]) ++
