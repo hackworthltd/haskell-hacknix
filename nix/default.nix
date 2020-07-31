@@ -32,6 +32,9 @@ let
   fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" haskellNix.sources.nixpkgs;
   nixpkgs = import fixedNixpkgs;
 
+  fixedGitignoreNix =
+    lib.fetchers.fixedNixSrc "gitignore.nix" sources."gitignore.nix";
+
   # Take care that these don't interfere with haskell.nix's cachix cache!
   overlays = haskellNix.overlays
     ++ [ (pkgs: _: { localLib = self; }) ]
@@ -46,6 +49,8 @@ let
     inherit overlays;
   });
 
+  gitignoreSrc = (import fixedGitignoreNix) { inherit (pkgs) lib; };
+
   self = lib // {
     inherit sources;
     inherit fixedHaskellNix haskellNix;
@@ -53,6 +58,8 @@ let
     inherit hacknix;
     inherit fixedNixpkgs nixpkgs;
     inherit pkgs;
+
+    inherit (gitignoreSrc) gitignoreSource gitignoreFilter;
   };
 in
 self

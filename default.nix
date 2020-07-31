@@ -7,9 +7,10 @@
   }
   )
 , pkgs ? localLib.pkgs
+, gitignoreSource ? localLib.gitignoreSource
 }:
 let
-  hhp = pkgs.recurseIntoAttrs (import ./hhp/default.nix { inherit pkgs; });
+  hhp = pkgs.recurseIntoAttrs (import ./hhp/default.nix { inherit pkgs gitignoreSource; });
 
   roots = pkgs.recurseIntoAttrs {
     ghc865 = pkgs.haskell-nix.roots "ghc865";

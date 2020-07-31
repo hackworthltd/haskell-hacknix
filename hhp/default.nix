@@ -9,6 +9,7 @@
     inherit system crossSystem config sourcesOverride;
   }
   ).pkgs
+, gitignoreSource
 }:
 let
   inherit (pkgs.haskell-hacknix.lib)
@@ -17,7 +18,7 @@ let
   inherit (pkgs.haskell-hacknix)
     cabalProject cache shellFor;
 
-  src = pkgs.gitignoreSource ../.;
+  src = gitignoreSource ../.;
 
   isHhpPackage = filterByPrefix "hhp";
 

@@ -11,6 +11,18 @@
         "url": "https://github.com/phadej/cabal-fmt/archive/a2b2365085057283b2511fd7f3b8e3bcda0c6899.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "gitignore.nix": {
+        "branch": "7415c4feb127845553943a3856cbc5cb967ee5e0",
+        "description": "Nix function for filtering local git sources",
+        "homepage": "",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "7415c4feb127845553943a3856cbc5cb967ee5e0",
+        "sha256": "1zd1ylgkndbb5szji32ivfhwh04mr1sbgrnvbrqpmfb67g2g3r9i",
+        "type": "tarball",
+        "url": "https://github.com/hercules-ci/gitignore.nix/archive/7415c4feb127845553943a3856cbc5cb967ee5e0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "hacknix": {
         "branch": "main",
         "description": "Hackworth Ltd's nix overlays and modules.",
