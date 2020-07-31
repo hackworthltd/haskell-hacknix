@@ -46,18 +46,7 @@ let
   ghc865 = mkSet ghc865Args;
   ghc865-profiled = mkProfiledSet ghc865Args;
 
-  ghc883Args = {
-    compiler-nix-name = "ghc883";
-    inherit src;
-    subdir = "hhp";
-    pkg-def-extras =
-      [ (hackage: { alex = hackage.alex."3.2.5".revisions.default; }) ];
-  };
-  ghc883 = mkSet ghc883Args;
-  ghc883-profiled = mkProfiledSet ghc883Args;
-
 in
 {
   inherit ghc865 ghc865-profiled;
-  inherit ghc883 ghc883-profiled;
 }
