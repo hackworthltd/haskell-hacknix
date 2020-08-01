@@ -23,18 +23,6 @@
         "url": "https://github.com/hackworthltd/hacknix/archive/0dc2ac80cbfe7db750d450128fe5d65fb205f99d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "haskell-ide-engine": {
-        "branch": "master",
-        "description": "The engine for haskell ide-integration. Not an IDE",
-        "homepage": "",
-        "owner": "haskell",
-        "repo": "haskell-ide-engine",
-        "rev": "a9005b2ba2050bdfdd4438f1d471a3f7985492cd",
-        "sha256": "1gi512fvwb0imwwhs8l1b8vci84r08bpcwachyxcdlpdlyzlzacz",
-        "type": "tarball",
-        "url": "https://github.com/haskell/haskell-ide-engine/archive/a9005b2ba2050bdfdd4438f1d471a3f7985492cd.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "haskell-nix": {
         "branch": "master",
         "description": "Alternative Haskell Infrastructure for Nixpkgs",

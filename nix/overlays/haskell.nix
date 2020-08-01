@@ -1,29 +1,5 @@
 self: super:
 let
-  hie = args:
-    (super.haskell-nix.project (args // {
-      name = "haskell-ide-engine";
-      src = super.localLib.sources.haskell-ide-engine;
-      pkg-def-extras = [
-        (hackage: {
-          packages = {
-            "haskell-lsp" = hackage.haskell-lsp."0.20.0.1".revisions.default;
-          };
-        })
-      ];
-      projectFileName = "cabal.project";
-      modules = [
-        ({ config, ... }: {
-          packages.ghc.flags.ghci = super.lib.mkForce true;
-          packages.ghci.flags.ghci = super.lib.mkForce true;
-          reinstallableLibGhc = true;
-
-          # Haddock on haddock-api is broken :\
-          packages.haddock-api.components.library.doHaddock = super.lib.mkForce false;
-        })
-      ];
-    }));
-
   hls = args:
     (super.haskell-nix.project (args // {
       name = "haskell-language-server";
@@ -56,8 +32,6 @@ let
     }));
 
   extra-custom-tools = {
-    hie.latest = args: (hie args).haskell-ide-engine.components.exes.hie;
-    hie-wrapper.latest = args: (hie args).haskell-ide-engine.components.exes.hie-wrapper;
     hls.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server;
     hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
   };
@@ -135,7 +109,7 @@ let
         )
       ] ++ (args.buildInputs or [ ]);
 
-      # Help haskell-ide-engine find our Hoogle database. See:
+      # Help haskell-language-server find our Hoogle database. See:
       # https://github.com/input-output-hk/haskell.nix/issues/529
       shellHook = ''
         export HIE_HOOGLE_DATABASE="$(cat $(${super.which}/bin/which hoogle) | sed -n -e 's|.*--database \(.*\.hoo\).*|\1|p')"
