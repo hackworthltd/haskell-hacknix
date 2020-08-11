@@ -9,8 +9,8 @@ let
       src = super.fetchFromGitHub {
         owner = "haskell";
         repo = "haskell-language-server";
-        rev = "a308151650097507627696cada20e9f7da8e8027";
-        sha256 = "0c1fh90c2ipwbnl4k786dwhsgy06820al1i17kfs4sz3z1dkkwf5";
+        rev = "37c7acdf2c8ebcf0b920983084744094071e1d1f";
+        sha256 = "1nkmw0147hl7310dmb8hvgfy1qk2q23wdrzin5qw9srg4bcslyk8";
         fetchSubmodules = true;
       };
       projectFileName =
@@ -18,6 +18,7 @@ let
         else if (args.compiler-nix-name == "ghc883") then "stack-8.8.3.yaml"
         else if (args.compiler-nix-name == "ghc884") then "stack-8.8.4.yaml"
         else if (args.compiler-nix-name == "ghc8101") then "stack-8.10.1.yaml"
+        else if (args.compiler-nix-name == "ghc8102") then "stack-8.10.2.yaml"
         else abort "hls doesn't support this version of GHC yet";
       modules = [
         ({ config, ... }: {
@@ -87,6 +88,10 @@ let
               alex = hackage.alex."3.2.5".revisions.default;
             })
           ] else if compiler-nix-name == "ghc8101" then [
+            (hackage: {
+              alex = hackage.alex."3.2.5".revisions.default;
+            })
+          ] else if compiler-nix-name == "ghc8102" then [
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })
