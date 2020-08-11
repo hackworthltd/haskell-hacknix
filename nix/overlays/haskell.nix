@@ -114,6 +114,7 @@ let
         (super.haskell-nix.tool "ghc8101" "cabal-fmt" "latest")
         (super.haskell-nix.tool "ghc884" "hlint" "3.1.6")
         (super.haskell-nix.tool "ghc884" "ormolu" "0.1.2.0")
+        (super.haskell-nix.tool "ghc8101" "cabal-edit" "0.1.0.0")
 
         # We could build this with haskell.nix, but it's not really
         # updated anymore, so why bother? Also, doesn't work with
