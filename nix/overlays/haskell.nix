@@ -31,15 +31,33 @@ let
       ];
     }));
 
+  cabal-fmt = args:
+    (super.haskell-nix.cabalProject (args // {
+      name = "cabal-fmt";
+      src = super.localLib.sources.cabal-fmt;
+      pkg-def-extras = [
+        (
+          hackage: {
+            binary = hackage.binary."0.8.8.0".revisions.default;
+            Cabal = hackage.Cabal."3.2.0.0".revisions.default;
+            parsec = hackage.parsec."3.1.14.0".revisions.default;
+            text = hackage.text."1.2.4.0".revisions.default;
+            time = hackage.time."1.9.3".revisions.default;
+          }
+        )
+      ];
+      modules = [
+        {
+          packages.ghc.flags.ghci = super.lib.mkForce true;
+          packages.ghci.flags.ghci = super.lib.mkForce true;
+        }
+      ];
+    }));
+
   extra-custom-tools = {
     hls.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server;
     hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
-  };
-
-  # cabal-fmt doesn't build properly with haskell.nix, so we override
-  # it with our own derivation.
-  cabal-fmt = import ../pkgs/cabal-fmt.nix {
-    inherit (super) pkgs haskell-nix localLib;
+    cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
@@ -89,12 +107,11 @@ let
       } // (args.tools or { });
 
       buildInputs = [
-        cabal-fmt
-
-        # These tools are GHC-independent, so we use GHC 8.8.4 to
-        # build them. (Using 8.8.4 is arbitrary.)
+        # These tools are GHC-independent, so we use whichever version
+        # of GHC works best.
         (super.haskell-nix.tool "ghc884" "brittany" "0.12.1.1")
         (super.haskell-nix.tool "ghc884" "cabal" "3.2.0.0")
+        (super.haskell-nix.tool "ghc8101" "cabal-fmt" "latest")
         (super.haskell-nix.tool "ghc884" "hlint" "3.1.6")
         (super.haskell-nix.tool "ghc884" "ormolu" "0.1.2.0")
 
