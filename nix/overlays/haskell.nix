@@ -9,15 +9,19 @@ let
       src = super.fetchFromGitHub {
         owner = "haskell";
         repo = "haskell-language-server";
-        rev = "a308151650097507627696cada20e9f7da8e8027";
-        sha256 = "0c1fh90c2ipwbnl4k786dwhsgy06820al1i17kfs4sz3z1dkkwf5";
+        rev = "baabffd8c03e43d92ef5852feae4be98135f01a3";
+        sha256 = "1cg3qzwjq07g5gh04jczgs718l0zn45k2ffdjsfyzxxhlpxvw6bg";
         fetchSubmodules = true;
+      };
+      sha256map = {
+        "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" = "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
       };
       projectFileName =
         if (args.compiler-nix-name == "ghc865") then "stack-8.6.5.yaml"
         else if (args.compiler-nix-name == "ghc883") then "stack-8.8.3.yaml"
         else if (args.compiler-nix-name == "ghc884") then "stack-8.8.4.yaml"
         else if (args.compiler-nix-name == "ghc8101") then "stack-8.10.1.yaml"
+        else if (args.compiler-nix-name == "ghc8102") then "stack-8.10.2.yaml"
         else abort "hls doesn't support this version of GHC yet";
       modules = [
         ({ config, ... }: {
@@ -87,6 +91,10 @@ let
               alex = hackage.alex."3.2.5".revisions.default;
             })
           ] else if compiler-nix-name == "ghc8101" then [
+            (hackage: {
+              alex = hackage.alex."3.2.5".revisions.default;
+            })
+          ] else if compiler-nix-name == "ghc8102" then [
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })

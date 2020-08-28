@@ -1,1 +1,1 @@
-(import ./default.nix { }).ghc8101.shell
+(import ./default.nix { }).ghc8102.shell

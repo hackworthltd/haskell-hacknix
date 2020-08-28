@@ -70,10 +70,19 @@ let
   ghc8101 = mkSet ghc8101Args;
   ghc8101-profiled = mkProfiledSet ghc8101Args;
 
+  ghc8102Args = {
+    compiler-nix-name = "ghc8102";
+    inherit src;
+    subdir = "hhp";
+  };
+  ghc8102 = mkSet ghc8102Args;
+  ghc8102-profiled = mkProfiledSet ghc8102Args;
+
 in
 {
   inherit ghc865 ghc865-profiled;
   inherit ghc883 ghc883-profiled;
   inherit ghc884 ghc884-profiled;
   inherit ghc8101 ghc8101-profiled;
+  inherit ghc8102 ghc8102-profiled;
 }
