@@ -9,9 +9,12 @@ let
       src = super.fetchFromGitHub {
         owner = "haskell";
         repo = "haskell-language-server";
-        rev = "37c7acdf2c8ebcf0b920983084744094071e1d1f";
-        sha256 = "1nkmw0147hl7310dmb8hvgfy1qk2q23wdrzin5qw9srg4bcslyk8";
+        rev = "baabffd8c03e43d92ef5852feae4be98135f01a3";
+        sha256 = "1cg3qzwjq07g5gh04jczgs718l0zn45k2ffdjsfyzxxhlpxvw6bg";
         fetchSubmodules = true;
+      };
+      sha256map = {
+        "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" = "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
       };
       projectFileName =
         if (args.compiler-nix-name == "ghc865") then "stack-8.6.5.yaml"
