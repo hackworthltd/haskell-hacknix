@@ -9,8 +9,8 @@ let
       src = super.fetchFromGitHub {
         owner = "haskell";
         repo = "haskell-language-server";
-        rev = "baabffd8c03e43d92ef5852feae4be98135f01a3";
-        sha256 = "1cg3qzwjq07g5gh04jczgs718l0zn45k2ffdjsfyzxxhlpxvw6bg";
+        rev = "0.4.0";
+        sha256 = "0b94l6bywa6jk20y2cswyq5ks4g515895k2apvr1mdfkfhngdb7b";
         fetchSubmodules = true;
       };
       sha256map = {
