@@ -46,6 +46,10 @@ let
     inherit overlays;
   });
 
+  # Make local niv available until the nixpkgs version is fixed to
+  # work with GitHub Actions.
+  niv = (import sources.niv { }).niv;
+
   self = lib // {
     inherit sources;
     inherit fixedHaskellNix haskellNix;
@@ -53,6 +57,7 @@ let
     inherit hacknix;
     inherit fixedNixpkgs nixpkgs;
     inherit pkgs;
+    inherit niv;
   };
 in
 self
