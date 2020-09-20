@@ -13,9 +13,7 @@ let
 
   roots = pkgs.recurseIntoAttrs {
     ghc865 = pkgs.haskell-nix.roots "ghc865";
-    ghc883 = pkgs.haskell-nix.roots "ghc883";
     ghc884 = pkgs.haskell-nix.roots "ghc884";
-    ghc8101 = pkgs.haskell-nix.roots "ghc8101";
     ghc8102 = pkgs.haskell-nix.roots "ghc8102";
   };
 
