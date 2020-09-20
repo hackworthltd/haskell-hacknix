@@ -46,14 +46,6 @@ let
   ghc865 = mkSet ghc865Args;
   ghc865-profiled = mkProfiledSet ghc865Args;
 
-  ghc883Args = {
-    compiler-nix-name = "ghc883";
-    inherit src;
-    subdir = "hhp";
-  };
-  ghc883 = mkSet ghc883Args;
-  ghc883-profiled = mkProfiledSet ghc883Args;
-
   ghc884Args = {
     compiler-nix-name = "ghc884";
     inherit src;
@@ -61,14 +53,6 @@ let
   };
   ghc884 = mkSet ghc884Args;
   ghc884-profiled = mkProfiledSet ghc884Args;
-
-  ghc8101Args = {
-    compiler-nix-name = "ghc8101";
-    inherit src;
-    subdir = "hhp";
-  };
-  ghc8101 = mkSet ghc8101Args;
-  ghc8101-profiled = mkProfiledSet ghc8101Args;
 
   ghc8102Args = {
     compiler-nix-name = "ghc8102";
@@ -81,8 +65,6 @@ let
 in
 {
   inherit ghc865 ghc865-profiled;
-  inherit ghc883 ghc883-profiled;
   inherit ghc884 ghc884-profiled;
-  inherit ghc8101 ghc8101-profiled;
   inherit ghc8102 ghc8102-profiled;
 }
