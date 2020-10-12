@@ -46,5 +46,17 @@
         "type": "tarball",
         "url": "https://github.com/nmattia/niv/archive/9d35b9e4837ab88517210b1701127612c260eccf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "purescript": {
+        "branch": "v0.13.8",
+        "description": "A strongly-typed language that compiles to JavaScript",
+        "homepage": "https://www.purescript.org",
+        "owner": "purescript",
+        "repo": "purescript",
+        "rev": "9cad73ed8ea7df3011032ddbd2f3de5a0c08629c",
+        "sha256": "0mlgww6j8nfdgy6x7l6z5in37r6qs11wnxf1cpgqaiyabadaik20",
+        "type": "tarball",
+        "url": "https://github.com/purescript/purescript/archive/9cad73ed8ea7df3011032ddbd2f3de5a0c08629c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
