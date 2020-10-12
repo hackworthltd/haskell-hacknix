@@ -58,10 +58,33 @@ let
       ];
     }));
 
+  # Note: only works with GHC 8.6.5 at the moment.
+  purescript = args:
+    (super.haskell-nix.project (args // {
+      name = "purescript";
+      src = super.localLib.sources.purescript;
+      projectFileName = "stack.yaml";
+      pkg-def-extras = [
+        (
+          hackage: {
+            hsc2hs = hackage.hsc2hs."0.68.7".revisions.default;
+          }
+        )
+      ];
+      modules = [
+        {
+          packages.purescript.flags.release = super.lib.mkForce true;
+          packages.ghc.flags.ghci = super.lib.mkForce true;
+          packages.ghci.flags.ghci = super.lib.mkForce true;
+        }
+      ];
+    }));
+
   extra-custom-tools = {
     hls.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server;
     hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
     cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
+    purescript.latest = args: (purescript args).purescript.components.exes.purs;
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
@@ -120,6 +143,7 @@ let
         (super.haskell-nix.tool "ghc884" "brittany" "0.12.1.1")
         (super.haskell-nix.tool "ghc884" "cabal" "3.2.0.0")
         (super.haskell-nix.tool "ghc8101" "cabal-fmt" "latest")
+        (super.haskell-nix.tool "ghc865" "purescript" "latest")
         (super.haskell-nix.tool "ghc884" "hlint" "3.1.6")
         (super.haskell-nix.tool "ghc884" "ormolu" "0.1.2.0")
         (super.haskell-nix.tool "ghc8101" "cabal-edit" "0.1.0.0")
