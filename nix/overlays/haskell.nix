@@ -80,11 +80,26 @@ let
       ];
     }));
 
+
   extra-custom-tools = {
     hls.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server;
     hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
     cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
     purescript.latest = args: (purescript args).purescript.components.exes.purs;
+  };
+
+
+  # Some useful tools. These are GHC-independent, so we just choose a
+  # mostly arbitrary version of GHC to build each tool. (GHC-dependent
+  # tools are build in the `shellFor` derivation; see below.)
+
+  haskell-tools = {
+    cabal = super.haskell-nix.tool "ghc884" "cabal" "3.2.0.0";
+    cabal-fmt = super.haskell-nix.tool "ghc8102" "cabal-fmt" "latest";
+    hlint = super.haskell-nix.tool "ghc884" "hlint" "3.2.1";
+    ormolu = super.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
+    cabal-edit = super.haskell-nix.tool "ghc8102" "cabal-edit" "0.1.0.0";
+    purescript = super.haskell-nix.tool "ghc865" "purescript" "latest";
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
@@ -137,26 +152,18 @@ let
         hls-wrapper = "latest";
       } // (args.tools or { });
 
-      buildInputs = [
-        # These tools are GHC-independent, so we use whichever version
-        # of GHC works best.
-        (super.haskell-nix.tool "ghc884" "cabal" "3.2.0.0")
-        (super.haskell-nix.tool "ghc8102" "cabal-fmt" "latest")
-        (super.haskell-nix.tool "ghc865" "purescript" "latest")
-        (super.haskell-nix.tool "ghc884" "hlint" "3.2.1")
-        (super.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0")
-        (super.haskell-nix.tool "ghc8102" "cabal-edit" "0.1.0.0")
-
-        # We could build this with haskell.nix, but it's not really
-        # updated anymore, so why bother? Also, doesn't work with
-        # `tools` because it needs haskell-src-exts 1.19 and it's not
-        # possible to override dependency versions with tools, as far
-        # as I know.
-        (
-          super.haskell.lib.justStaticExecutables
-            super.haskellPackages.structured-haskell-mode
-        )
-      ] ++ (args.buildInputs or [ ]);
+      buildInputs =
+        (super.lib.mapAttrsToList (_: tool: tool) haskell-tools) ++ [
+          # We could build this with haskell.nix, but it's not really
+          # updated anymore, so why bother? Also, doesn't work with
+          # `tools` because it needs haskell-src-exts 1.19 and it's not
+          # possible to override dependency versions with tools, as far
+          # as I know.
+          (
+            super.haskell.lib.justStaticExecutables
+              super.haskellPackages.structured-haskell-mode
+          )
+        ] ++ (args.buildInputs or [ ]);
 
       # Help haskell-language-server find our Hoogle database. See:
       # https://github.com/input-output-hk/haskell.nix/issues/529
@@ -212,6 +219,7 @@ in
   };
 
   haskell-hacknix = (super.haskell-hacknix or { }) // super.recurseIntoAttrs {
+    inherit haskell-tools;
     inherit cabalProject;
     inherit shellFor;
     inherit cache;
