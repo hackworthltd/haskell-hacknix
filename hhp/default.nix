@@ -24,7 +24,10 @@ let
 
   mkSet = args:
     let
-      haskellPackages = cabalProject (args // { name = "hhp"; });
+      haskellPackages = cabalProject (args // {
+        name = "hhp";
+        materialize = true;
+      });
       shell = shellFor haskellPackages args;
       cachedShell = cache shell;
       tests = collectTests isHhpPackage haskellPackages;

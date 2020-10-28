@@ -133,11 +133,12 @@ let
     { compiler-nix-name
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
+    , materialize ? false
     , ...
     }@args:
     super.haskell-nix.cabalProject (args // {
       inherit checkMaterialization;
-      materialized = materializedPath args.name args;
+      materialized = if materialize then (materializedPath args.name args) else null;
       modules = (args.modules or [ ]) ++ [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
