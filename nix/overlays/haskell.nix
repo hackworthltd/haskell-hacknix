@@ -1,8 +1,22 @@
+{ checkMaterialization ? false
+}:
+
 self: super:
 let
+  # Based on:
+  # https://github.com/input-output-hk/haskell.nix/blob/5f80ca910b0c34562f76aa4dcfc2464840b2d0ef/lib/call-cabal-project-to-nix.nix#L220
+  materializedPath = name: args:
+    let
+      ghc = super.haskell-nix.compiler."${args.compiler-nix-name}";
+    in
+    ../materialized + "/${ghc.targetPrefix}${ghc.name}-${super.stdenv.buildPlatform.system}/${name}";
+
   hls = args:
-    (super.haskell-nix.project (args // {
+    (super.haskell-nix.project (args // rec {
+      inherit checkMaterialization;
+
       name = "haskell-language-server";
+      materialized = materializedPath name args;
 
       # We need this until niv supports fetching git submodules, as
       # hls has its own ghcide submodule.
@@ -36,8 +50,16 @@ let
     }));
 
   cabal-fmt = args:
-    (super.haskell-nix.cabalProject (args // {
+    (super.haskell-nix.cabalProject (args // rec {
+      inherit checkMaterialization;
+
+      # Note: cabal-fmt doesn't provide its own index-state, so we
+      # choose one for it here.
+      index-state = "2020-10-28T00:00:00Z";
+
       name = "cabal-fmt";
+      materialized = materializedPath name args;
+
       src = super.localLib.sources.cabal-fmt;
       pkg-def-extras = [
         (
@@ -60,8 +82,10 @@ let
 
   # Note: only works with GHC 8.6.5 at the moment.
   purescript = args:
-    (super.haskell-nix.project (args // {
+    (super.haskell-nix.project (args // rec {
+      inherit checkMaterialization;
       name = "purescript";
+      materialized = materializedPath name args;
       src = super.localLib.sources.purescript;
       projectFileName = "stack.yaml";
       pkg-def-extras = [
@@ -112,6 +136,8 @@ let
     , ...
     }@args:
     super.haskell-nix.cabalProject (args // {
+      inherit checkMaterialization;
+      materialized = materializedPath args.name args;
       modules = (args.modules or [ ]) ++ [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
@@ -210,6 +236,10 @@ let
           };
       in
       cleanSource' (super.lib.sources.cleanSourceAllExtraneous src);
+
+    # A convenience function to extract a haskell.nix project's
+    # materialization update script.
+    updateMaterialized = project: project.plan-nix.passthru.updateMaterialized;
   };
 
 in

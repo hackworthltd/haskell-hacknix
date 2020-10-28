@@ -2,14 +2,17 @@
 , crossSystem ? null
 , config ? { }
 , sourcesOverride ? { }
+, checkMaterialization ? false
 , localLib ? (import ./nix/default.nix {
-    inherit system crossSystem config sourcesOverride;
+    inherit system crossSystem config sourcesOverride checkMaterialization;
   }
   )
 , pkgs ? localLib.pkgs
 }:
 let
-  hhp = pkgs.recurseIntoAttrs (import ./hhp/default.nix { inherit pkgs; });
+  hhp = pkgs.recurseIntoAttrs (import ./hhp/default.nix {
+    inherit pkgs checkMaterialization;
+  });
 
   roots = pkgs.recurseIntoAttrs {
     ghc865 = pkgs.haskell-nix.roots "ghc865";

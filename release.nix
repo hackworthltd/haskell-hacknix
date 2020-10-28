@@ -5,13 +5,17 @@
 , supportedSystems ? [ "x86_64-darwin" "x86_64-linux" ]
 , scrubJobs ? true
 , sourcesOverride ? { }
+  # Should be "true" on Hydra as we want to verify correctness, even
+  # though it slows things down a bit.
+, checkMaterialization ? true
 }:
 let
 
   localLib = import nix/default.nix { inherit sourcesOverride; };
 
 in
-with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
+with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix")
+{
   inherit supportedSystems scrubJobs;
   packageSet = import projectSrc;
   nixpkgsArgs = {

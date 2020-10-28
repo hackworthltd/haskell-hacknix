@@ -2,6 +2,7 @@
 , crossSystem ? null
 , config ? { }
 , sourcesOverride ? { }
+, checkMaterialization ? false
 }:
 let
   sources = import ./sources.nix // sourcesOverride;
@@ -35,7 +36,7 @@ let
   # Take care that these don't interfere with haskell.nix's cachix cache!
   overlays = haskellNix.overlays
     ++ [ (pkgs: _: { localLib = self; }) ]
-    ++ (map import [
+    ++ (map (overlay: import overlay { inherit checkMaterialization; }) [
     ./overlays/hacknix.nix
     ./overlays/haskell.nix
   ]

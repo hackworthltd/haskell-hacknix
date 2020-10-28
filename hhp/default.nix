@@ -5,8 +5,9 @@
     allowUnfree = true;
   }
 , sourcesOverride ? { }
+, checkMaterialization ? false
 , pkgs ? (import ../default.nix {
-    inherit system crossSystem config sourcesOverride;
+    inherit system crossSystem config sourcesOverride checkMaterialization;
   }
   ).pkgs
 }:
@@ -23,7 +24,7 @@ let
 
   mkSet = args:
     let
-      haskellPackages = cabalProject args;
+      haskellPackages = cabalProject (args // { name = "hhp"; });
       shell = shellFor haskellPackages args;
       cachedShell = cache shell;
       tests = collectTests isHhpPackage haskellPackages;
@@ -31,6 +32,9 @@ let
     in
     pkgs.recurseIntoAttrs {
       inherit haskellPackages shell cachedShell tests checks;
+      inherit checkMaterialization;
+
+      updateMaterialized = pkgs.haskell-hacknix.lib.updateMaterialized haskellPackages;
     };
 
   mkProfiledSet = args: mkSet (args // {
