@@ -11,7 +11,10 @@
 }:
 let
 
-  localLib = import nix/default.nix { inherit sourcesOverride; };
+  localLib = import nix/default.nix {
+    inherit sourcesOverride;
+    inherit checkMaterialization;
+  };
 
 in
 with import (localLib.fixedNixpkgs + "/pkgs/top-level/release-lib.nix")
