@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "a00b978e809629ddc848a572e6da362fbdaa296d",
-        "sha256": "01w7yzrg1f5ckhpsrr6zir6ysmz27zp7hbmnknk9sbixir10sqg3",
+        "rev": "b46cb227aac68dc50b6dba042b49e15100d8b266",
+        "sha256": "1dzld36jx5586camf1kbjhprahb207q5xl2whpwkpvkagn9w6wpc",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/a00b978e809629ddc848a572e6da362fbdaa296d.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/b46cb227aac68dc50b6dba042b49e15100d8b266.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
@@ -29,10 +29,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "1dbe814877992c3259b52fb5d6b6f7c5169c5a54",
-        "sha256": "1blr9n63wj1rk7yllh2nhqq4f48l90qq1dkd6cs8fkpaiqhzq3d3",
+        "rev": "945bb74d6d1c8e01d1c0066457292b42a28a4f6e",
+        "sha256": "0zg056hrqpakiixgl96j2lxmblhrbdki4fd8gsr6wd0mchh2km1q",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/1dbe814877992c3259b52fb5d6b6f7c5169c5a54.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/945bb74d6d1c8e01d1c0066457292b42a28a4f6e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -41,10 +41,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "9d35b9e4837ab88517210b1701127612c260eccf",
-        "sha256": "0q50xhnm8g2yfyakrh0nly4swyygxpi0a8cb9gp65wcakcgvzvdh",
+        "rev": "20c899271f288d33114760bc298838575fc6c7f9",
+        "sha256": "07zswk6dhlydihl9g6skmy52grjvqpra8r98f2dmbgwzc1yhjhxq",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/9d35b9e4837ab88517210b1701127612c260eccf.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/20c899271f288d33114760bc298838575fc6c7f9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "purescript": {
