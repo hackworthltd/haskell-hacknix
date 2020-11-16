@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "phadej",
         "repo": "cabal-fmt",
-        "rev": "dc1e63bb10ddafd6152fae8f7206c3b201b0f7ab",
-        "sha256": "14mbi96m4ci2pjxr8y998mjghbwpwz2c45wp1kn4j5b7pl7bqv21",
+        "rev": "7d11453366f98b5192b6b522b5a3b9754c7d397d",
+        "sha256": "0n4c70z92r3ldx5dvqckqlkq2iih1w3j254n25wspcshlfzwz59d",
         "type": "tarball",
-        "url": "https://github.com/phadej/cabal-fmt/archive/dc1e63bb10ddafd6152fae8f7206c3b201b0f7ab.tar.gz",
+        "url": "https://github.com/phadej/cabal-fmt/archive/7d11453366f98b5192b6b522b5a3b9754c7d397d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hacknix": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "467808d52ee97717d37e78983f7bd315fe1c0e5d",
-        "sha256": "0k9z2wj4fqssyds4qv1g23fin5yz5flllw4fgsizha84slnx9zq2",
+        "rev": "ec5a04473204247c56329d763b29a743354c40ff",
+        "sha256": "0mmws53cz3dbdlv5lkaw0idhdclwp744pjqixank7vx85c0ykb2m",
         "type": "tarball",
-        "url": "https://github.com/hackworthltd/hacknix/archive/467808d52ee97717d37e78983f7bd315fe1c0e5d.tar.gz",
+        "url": "https://github.com/hackworthltd/hacknix/archive/ec5a04473204247c56329d763b29a743354c40ff.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
@@ -29,10 +29,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "c00cc0cfedf03ee3f21de420882189adbb0801d8",
-        "sha256": "1qavxpv8dwwmsyxqjna2ss6fzd8c1agb2qc654b60rhfs53qr9im",
+        "rev": "01003480bdee1717b95ca99049d283168b405925",
+        "sha256": "06j381kix405k3x8yqlccwqckjrc3qrdqchbbd80cd6slf6ybg9c",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/c00cc0cfedf03ee3f21de420882189adbb0801d8.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/01003480bdee1717b95ca99049d283168b405925.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
