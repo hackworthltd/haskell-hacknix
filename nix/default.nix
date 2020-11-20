@@ -23,15 +23,21 @@ let
   };
   inherit (hacknix) lib;
 
-  fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell-nix" sources.haskell-nix;
-  haskellNix = import fixedHaskellNix { };
-
   # Here we can override the nixpkgs used with haskell.nix, if we
   # really want to. Note that this will override the haskell.nix
   # nixpkgs pin and most likely invalidate most of the haskell.nix
   # cachix cache.
-  fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" haskellNix.sources.nixpkgs;
+
+  # For Big Sur support, until upstream bumps their nixpkgs pin.
+  fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" lib.fetchers.fixedNixpkgs;
+  #fixedNixpkgs = lib.fetchers.fixedNixSrc "nixpkgs_override" haskellNix.sources.nixpkgs;
   nixpkgs = import fixedNixpkgs;
+
+  fixedHaskellNix = lib.fetchers.fixedNixSrc "haskell-nix" sources.haskell-nix;
+  haskellNix = import fixedHaskellNix {
+    # For Big Sur support, until upstream bumps their nixpkgs pin.
+    sourcesOverride = { nixpkgs = fixedNixpkgs; };
+  };
 
   # Take care that these don't interfere with haskell.nix's cachix cache!
   overlays = haskellNix.overlays
