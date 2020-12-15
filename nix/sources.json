@@ -24,15 +24,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-nix": {
-        "branch": "master",
+        "branch": "macos-x509-system",
         "description": "Alternative Haskell Infrastructure for Nixpkgs",
         "homepage": "https://input-output-hk.github.io/haskell.nix",
-        "owner": "input-output-hk",
+        "owner": "hackworthltd",
         "repo": "haskell.nix",
-        "rev": "97765314b0f7c2d65f1964dd48cb4028d6580e60",
-        "sha256": "0qk4dwnyd3d1qg8ri9cyy2npm7ynaa70g3riq4mybdhnzlgp1748",
+        "rev": "e248a581694e6045c83a11d3a08a8c159d4ce62a",
+        "sha256": "01zqhixyzilhpkqa82glkpd1j7h0n06r7asxqr174bbq50qijbzq",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/97765314b0f7c2d65f1964dd48cb4028d6580e60.tar.gz",
+        "url": "https://github.com/hackworthltd/haskell.nix/archive/e248a581694e6045c83a11d3a08a8c159d4ce62a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
