@@ -58,5 +58,17 @@
         "type": "tarball",
         "url": "https://github.com/purescript/purescript/archive/9cad73ed8ea7df3011032ddbd2f3de5a0c08629c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "spago": {
+        "branch": "master",
+        "description": "🍝 PureScript package manager and build tool powered by Dhall and package-sets",
+        "homepage": "",
+        "owner": "purescript",
+        "repo": "spago",
+        "rev": "f5c0fb6ac4ea9da7d19df91f8e828f0d6544b41b",
+        "sha256": "15yvklhr5mwnm9vyss6xfxy3887p0zp72jy31fjg24ghlndsgwmx",
+        "type": "tarball",
+        "url": "https://github.com/purescript/spago/archive/f5c0fb6ac4ea9da7d19df91f8e828f0d6544b41b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
