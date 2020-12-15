@@ -60,15 +60,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "spago": {
-        "branch": "master",
+        "branch": "no-download",
         "description": "🍝 PureScript package manager and build tool powered by Dhall and package-sets",
         "homepage": "",
-        "owner": "purescript",
+        "owner": "hackworthltd",
         "repo": "spago",
-        "rev": "f5c0fb6ac4ea9da7d19df91f8e828f0d6544b41b",
-        "sha256": "15yvklhr5mwnm9vyss6xfxy3887p0zp72jy31fjg24ghlndsgwmx",
+        "rev": "d17a0d8990fd7b5e1a6a7b1dd53bdfd57c3b4b72",
+        "sha256": "0ian3by91g2qwz7r9zbykxk44yk3v7s9ndl66wnkp0yw6yvmmkmz",
         "type": "tarball",
-        "url": "https://github.com/purescript/spago/archive/f5c0fb6ac4ea9da7d19df91f8e828f0d6544b41b.tar.gz",
+        "url": "https://github.com/hackworthltd/spago/archive/d17a0d8990fd7b5e1a6a7b1dd53bdfd57c3b4b72.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
