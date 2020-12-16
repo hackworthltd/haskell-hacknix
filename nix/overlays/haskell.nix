@@ -104,12 +104,23 @@ let
       ];
     }));
 
+  # We need the latest version.
+  spago = args: (super.haskell-nix.project (args // rec {
+    name = "spago";
+    src = super.localLib.sources.spago;
+    projectFileName = "stack.yaml";
+    ignorePackageYaml = true;
+    sha256map = {
+      "https://github.com/f-f/haskell-with-utf8.git"."8ae743ac6503a4c494ea3bd52f1fe7d72f9f125d" = "sha256-vxI9AmaFxLn9kgQjaDhFbti/4KUyHoRslBwMa6WXtYE=";
+    };
+  }));
 
   extra-custom-tools = {
     hls.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server;
     hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
     cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
     purescript.latest = args: (purescript args).purescript.components.exes.purs;
+    spago.latest = args: (spago args).spago.components.exes.spago;
   };
 
 
@@ -124,6 +135,7 @@ let
     ormolu = super.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
     cabal-edit = super.haskell-nix.tool "ghc8102" "cabal-edit" "0.1.0.0";
     purescript = super.haskell-nix.tool "ghc865" "purescript" "latest";
+    spago = super.haskell-nix.tool "ghc865" "spago" "latest";
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
