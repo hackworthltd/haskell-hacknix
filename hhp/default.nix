@@ -1,15 +1,4 @@
-{ system ? builtins.currentSystem
-, crossSystem ? null
-, config ? {
-    allowBroken = true;
-    allowUnfree = true;
-  }
-, sourcesOverride ? { }
-, checkMaterialization ? false
-, pkgs ? (import ../default.nix {
-    inherit system crossSystem config sourcesOverride checkMaterialization;
-  }
-  ).pkgs
+{ pkgs
 }:
 let
   inherit (pkgs.haskell-hacknix.lib)
@@ -35,7 +24,7 @@ let
     in
     pkgs.recurseIntoAttrs {
       inherit haskellPackages shell cachedShell tests checks;
-      inherit checkMaterialization;
+      inherit (pkgs.haskell-nix) checkMaterialization;
 
       updateMaterialized = pkgs.haskell-hacknix.lib.updateMaterialized haskellPackages;
     };

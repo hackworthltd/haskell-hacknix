@@ -1,26 +1,23 @@
-{ checkMaterialization ? false
-}:
-
-self: super:
+final: prev:
 let
   # Based on:
   # https://github.com/input-output-hk/haskell.nix/blob/5f80ca910b0c34562f76aa4dcfc2464840b2d0ef/lib/call-cabal-project-to-nix.nix#L220
   materializedPath = name: args:
     let
-      ghc = super.haskell-nix.compiler."${args.compiler-nix-name}";
+      ghc = final.haskell-nix.compiler."${args.compiler-nix-name}";
     in
-    ../materialized + "/${ghc.targetPrefix}${ghc.name}-${super.stdenv.buildPlatform.system}/${name}";
+    ../materialized + "/${ghc.targetPrefix}${ghc.name}-${final.stdenv.buildPlatform.system}/${name}";
 
   hls = args:
-    (super.haskell-nix.project (args // rec {
-      inherit checkMaterialization;
+    (final.haskell-nix.project (args // rec {
+      inherit (final.haskell-nix) checkMaterialization;
 
       name = "haskell-language-server";
       materialized = materializedPath name args;
 
       # We need this until niv supports fetching git submodules, as
       # hls has its own ghcide submodule.
-      src = super.fetchFromGitHub {
+      src = final.fetchFromGitHub {
         owner = "haskell";
         repo = "haskell-language-server";
         rev = "0.5.1";
@@ -39,19 +36,19 @@ let
         else abort "hls doesn't support this version of GHC yet";
       modules = [
         ({ config, ... }: {
-          packages.ghc.flags.ghci = super.lib.mkForce true;
-          packages.ghci.flags.ghci = super.lib.mkForce true;
+          packages.ghc.flags.ghci = final.lib.mkForce true;
+          packages.ghci.flags.ghci = final.lib.mkForce true;
           packages.ghcide.configureFlags = [ "--enable-executable-dynamic" ];
 
           # Haddock on haddock-api is broken :\
-          packages.haddock-api.components.library.doHaddock = super.lib.mkForce false;
+          packages.haddock-api.components.library.doHaddock = final.lib.mkForce false;
         })
       ];
     }));
 
   cabal-fmt = args:
-    (super.haskell-nix.cabalProject (args // rec {
-      inherit checkMaterialization;
+    (final.haskell-nix.cabalProject (args // rec {
+      inherit (final.haskell-nix) checkMaterialization;
 
       # Note: cabal-fmt doesn't provide its own index-state, so we
       # choose one for it here.
@@ -60,7 +57,7 @@ let
       name = "cabal-fmt";
       materialized = materializedPath name args;
 
-      src = super.localLib.sources.cabal-fmt;
+      src = final.lib.haskell-hacknix.flake.inputs.cabal-fmt;
       pkg-def-extras = [
         (
           hackage: {
@@ -74,19 +71,19 @@ let
       ];
       modules = [
         {
-          packages.ghc.flags.ghci = super.lib.mkForce true;
-          packages.ghci.flags.ghci = super.lib.mkForce true;
+          packages.ghc.flags.ghci = final.lib.mkForce true;
+          packages.ghci.flags.ghci = final.lib.mkForce true;
         }
       ];
     }));
 
   # Note: only works with GHC 8.6.5 at the moment.
   purescript = args:
-    (super.haskell-nix.project (args // rec {
-      inherit checkMaterialization;
+    (final.haskell-nix.project (args // rec {
+      inherit (final.haskell-nix) checkMaterialization;
       name = "purescript";
       materialized = materializedPath name args;
-      src = super.localLib.sources.purescript;
+      src = final.lib.haskell-hacknix.flake.inputs.purescript;
       projectFileName = "stack.yaml";
       pkg-def-extras = [
         (
@@ -97,17 +94,17 @@ let
       ];
       modules = [
         {
-          packages.purescript.flags.release = super.lib.mkForce true;
-          packages.ghc.flags.ghci = super.lib.mkForce true;
-          packages.ghci.flags.ghci = super.lib.mkForce true;
+          packages.purescript.flags.release = final.lib.mkForce true;
+          packages.ghc.flags.ghci = final.lib.mkForce true;
+          packages.ghci.flags.ghci = final.lib.mkForce true;
         }
       ];
     }));
 
   # We need the latest version.
-  spago = args: (super.haskell-nix.project (args // rec {
+  spago = args: (final.haskell-nix.project (args // rec {
     name = "spago";
-    src = super.localLib.sources.spago;
+    src = final.lib.haskell-hacknix.flake.inputs.spago;
     projectFileName = "stack.yaml";
     ignorePackageYaml = true;
     sha256map = {
@@ -129,13 +126,13 @@ let
   # tools are build in the `shellFor` derivation; see below.)
 
   haskell-tools = {
-    cabal = super.haskell-nix.tool "ghc884" "cabal" "3.2.0.0";
-    cabal-fmt = super.haskell-nix.tool "ghc8102" "cabal-fmt" "latest";
-    hlint = super.haskell-nix.tool "ghc884" "hlint" "3.2.1";
-    ormolu = super.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
-    cabal-edit = super.haskell-nix.tool "ghc8102" "cabal-edit" "0.1.0.0";
-    purescript = super.haskell-nix.tool "ghc865" "purescript" "latest";
-    spago = super.haskell-nix.tool "ghc865" "spago" "latest";
+    cabal = final.haskell-nix.tool "ghc884" "cabal" "3.2.0.0";
+    cabal-fmt = final.haskell-nix.tool "ghc8102" "cabal-fmt" "latest";
+    hlint = final.haskell-nix.tool "ghc884" "hlint" "3.2.1";
+    ormolu = final.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
+    cabal-edit = final.haskell-nix.tool "ghc8102" "cabal-edit" "0.1.0.0";
+    purescript = final.haskell-nix.tool "ghc865" "purescript" "latest";
+    spago = final.haskell-nix.tool "ghc865" "spago" "latest";
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
@@ -148,8 +145,8 @@ let
     , materialize ? false
     , ...
     }@args:
-    super.haskell-nix.cabalProject (args // {
-      inherit checkMaterialization;
+    final.haskell-nix.cabalProject (args // {
+      inherit (final.haskell-nix) checkMaterialization;
       materialized = if materialize then (materializedPath args.name args) else null;
       modules = (args.modules or [ ]) ++ [
         # Workaround for doctest. See:
@@ -192,41 +189,41 @@ let
       } // (args.tools or { });
 
       buildInputs =
-        (super.lib.mapAttrsToList (_: tool: tool) haskell-tools) ++ [
+        (final.lib.mapAttrsToList (_: tool: tool) haskell-tools) ++ [
           # We could build this with haskell.nix, but it's not really
           # updated anymore, so why bother? Also, doesn't work with
           # `tools` because it needs haskell-src-exts 1.19 and it's not
           # possible to override dependency versions with tools, as far
           # as I know.
           (
-            super.haskell.lib.justStaticExecutables
-              super.haskellPackages.structured-haskell-mode
+            final.haskell.lib.justStaticExecutables
+              final.haskellPackages.structured-haskell-mode
           )
         ] ++ (args.buildInputs or [ ]);
 
       # Help haskell-language-server find our Hoogle database. See:
       # https://github.com/input-output-hk/haskell.nix/issues/529
       shellHook = ''
-        export HIE_HOOGLE_DATABASE="$(cat $(${super.which}/bin/which hoogle) | sed -n -e 's|.*--database \(.*\.hoo\).*|\1|p')"
+        export HIE_HOOGLE_DATABASE="$(cat $(${final.which}/bin/which hoogle) | sed -n -e 's|.*--database \(.*\.hoo\).*|\1|p')"
       '' + (args.shellHook or "");
 
       # Make this buildable on Hydra.
-      meta.platforms = super.lib.platforms.unix;
+      meta.platforms = final.lib.platforms.unix;
     });
 
   # An alias for `withInputs` that describes what we use it for.
-  cache = super.haskell-nix.withInputs;
+  cache = final.haskell-nix.withInputs;
 
-  lib = super.recurseIntoAttrs {
+  lib = final.recurseIntoAttrs {
     collectTests = filter: hp:
-      super.haskell-nix.haskellLib.collectComponents' "tests"
-        (super.lib.filterAttrs filter hp);
+      final.haskell-nix.haskellLib.collectComponents' "tests"
+        (final.lib.filterAttrs filter hp);
     collectChecks = filter: hp:
-      super.recurseIntoAttrs (super.lib.mapAttrs (_: pkg: pkg.checks) (super.lib.filterAttrs filter hp));
+      final.recurseIntoAttrs (final.lib.mapAttrs (_: pkg: pkg.checks) (final.lib.filterAttrs filter hp));
 
     # Filters for collectTests and collectChecks.
     filterByPrefix = prefix: name: pkg:
-      (pkg.isHaskell or false) && super.lib.hasPrefix prefix name;
+      (pkg.isHaskell or false) && final.lib.hasPrefix prefix name;
     filterByName = pkgName: name: pkg:
       (pkg.isHaskell or false) && name == pkgName;
 
@@ -243,12 +240,12 @@ let
             !((type != "directory" && builtins.elem name excludeFiles)
               || (type == "directory" && builtins.elem name excludeDirs));
         cleanSource' = src':
-          super.lib.sources.cleanSourceWith {
+          final.lib.sources.cleanSourceWith {
             inherit filter;
             src = src';
           };
       in
-      cleanSource' (super.lib.sources.cleanSourceAllExtraneous src);
+      cleanSource' (final.lib.sources.cleanSourceAllExtraneous src);
 
     # A convenience function to extract a haskell.nix project's
     # materialization update script.
@@ -257,11 +254,11 @@ let
 
 in
 {
-  haskell-nix = super.haskell-nix // {
-    custom-tools = super.haskell-nix.custom-tools // extra-custom-tools;
+  haskell-nix = prev.haskell-nix // {
+    custom-tools = prev.haskell-nix.custom-tools // extra-custom-tools;
   };
 
-  haskell-hacknix = (super.haskell-hacknix or { }) // super.recurseIntoAttrs {
+  haskell-hacknix = (prev.haskell-hacknix or { }) // prev.recurseIntoAttrs {
     inherit haskell-tools;
     inherit cabalProject;
     inherit shellFor;
