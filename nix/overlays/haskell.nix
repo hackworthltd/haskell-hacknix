@@ -8,44 +8,6 @@ let
     in
     ../materialized + "/${ghc.targetPrefix}${ghc.name}-${final.stdenv.buildPlatform.system}/${name}";
 
-  hls = args:
-    (final.haskell-nix.project (args // rec {
-      inherit (final.haskell-nix) checkMaterialization;
-
-      name = "haskell-language-server";
-      materialized = materializedPath name args;
-
-      # We need this until niv supports fetching git submodules, as
-      # hls has its own ghcide submodule.
-      src = final.fetchFromGitHub {
-        owner = "haskell";
-        repo = "haskell-language-server";
-        rev = "0.5.1";
-        sha256 = "17nzgpiacmrvwsy2fjx6a6pcpkncqcwfhaijvajm16jpdgni8mik";
-        fetchSubmodules = true;
-      };
-      sha256map = {
-        "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" = "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
-      };
-      projectFileName =
-        if (args.compiler-nix-name == "ghc865") then "stack-8.6.5.yaml"
-        else if (args.compiler-nix-name == "ghc883") then "stack-8.8.3.yaml"
-        else if (args.compiler-nix-name == "ghc884") then "stack-8.8.4.yaml"
-        else if (args.compiler-nix-name == "ghc8101") then "stack-8.10.1.yaml"
-        else if (args.compiler-nix-name == "ghc8102") then "stack-8.10.2.yaml"
-        else abort "hls doesn't support this version of GHC yet";
-      modules = [
-        ({ config, ... }: {
-          packages.ghc.flags.ghci = final.lib.mkForce true;
-          packages.ghci.flags.ghci = final.lib.mkForce true;
-          packages.ghcide.configureFlags = [ "--enable-executable-dynamic" ];
-
-          # Haddock on haddock-api is broken :\
-          packages.haddock-api.components.library.doHaddock = final.lib.mkForce false;
-        })
-      ];
-    }));
-
   cabal-fmt = args:
     (final.haskell-nix.cabalProject (args // rec {
       inherit (final.haskell-nix) checkMaterialization;
@@ -113,8 +75,6 @@ let
   }));
 
   extra-custom-tools = {
-    hls.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server;
-    hls-wrapper.latest = args: (hls args).haskell-language-server.components.exes.haskell-language-server-wrapper;
     cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
     purescript.latest = args: (purescript args).purescript.components.exes.purs;
     spago.latest = args: (spago args).spago.components.exes.spago;
@@ -184,8 +144,7 @@ let
       # Tools that are GHC-specific.
       tools = {
         ghcid = "0.8.7";
-        hls = "latest";
-        hls-wrapper = "latest";
+        haskell-language-server = "0.8.0";
       } // (args.tools or { });
 
       buildInputs =
