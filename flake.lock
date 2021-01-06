@@ -245,16 +245,16 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1609720474,
-        "narHash": "sha256-iS0AlR9ereqxtoGr5wGOO9F1QNSVXsIWgUaim8yS02U=",
+        "lastModified": 1609925209,
+        "narHash": "sha256-DLAGs0mVNFo/9ccyBlH1LC3ZbdgaMFmIZePQTMBhYH4=",
         "owner": "hackworthltd",
         "repo": "haskell.nix",
-        "rev": "99cf39784d7e4e58073cb260fbafdececcd7f682",
+        "rev": "98c98d0ee1104a58c2fec2d6ceba320f07bdcfce",
         "type": "github"
       },
       "original": {
         "owner": "hackworthltd",
-        "ref": "flake-fixes",
+        "ref": "flakes-fixes-v2",
         "repo": "haskell.nix",
         "type": "github"
       }
