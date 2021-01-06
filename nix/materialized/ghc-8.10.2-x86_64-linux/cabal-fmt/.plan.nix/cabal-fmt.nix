@@ -11,7 +11,7 @@
     flags = {};
     package = {
       specVersion = "2.2";
-      identifier = { name = "cabal-fmt"; version = "0.1.5"; };
+      identifier = { name = "cabal-fmt"; version = "0.1.5.1"; };
       license = "GPL-3.0-or-later AND BSD-3-Clause";
       copyright = "";
       maintainer = "Oleg Grenrus <oleg.grenrus@iki.fi>";

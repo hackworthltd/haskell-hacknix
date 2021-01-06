@@ -11,12 +11,14 @@
         "rts".revision = (((hackage."rts")."1.0").revisions).default;
         "clock".revision = (((hackage."clock")."0.8").revisions).default;
         "clock".flags.llvm = false;
-        "tasty".revision = (((hackage."tasty")."1.4").revisions).default;
+        "tasty".revision = (((hackage."tasty")."1.4.0.2").revisions).default;
+        "tasty".flags.unix = true;
         "tasty".flags.clock = true;
         "deepseq".revision = (((hackage."deepseq")."1.4.4.0").revisions).default;
         "random".revision = (((hackage."random")."1.2.0").revisions).default;
         "temporary".revision = (((hackage."temporary")."1.3").revisions).default;
-        "optparse-applicative".revision = (((hackage."optparse-applicative")."0.16.0.0").revisions).default;
+        "optparse-applicative".revision = (((hackage."optparse-applicative")."0.16.1.0").revisions).default;
+        "optparse-applicative".flags.process = true;
         "splitmix".revision = (((hackage."splitmix")."0.1.0.3").revisions).default;
         "splitmix".flags.optimised-mixer = false;
         "async".revision = (((hackage."async")."2.2.2").revisions).default;
@@ -34,7 +36,7 @@
         "template-haskell".revision = (((hackage."template-haskell")."2.16.0.0").revisions).default;
         "ansi-terminal".revision = (((hackage."ansi-terminal")."0.11").revisions).default;
         "ansi-terminal".flags.example = false;
-        "tagged".revision = (((hackage."tagged")."0.8.6").revisions).default;
+        "tagged".revision = (((hackage."tagged")."0.8.6.1").revisions).default;
         "tagged".flags.transformers = true;
         "tagged".flags.deepseq = true;
         "containers".revision = (((hackage."containers")."0.6.2.1").revisions).default;
@@ -58,7 +60,7 @@
         "hashable".flags.examples = false;
         "colour".revision = (((hackage."colour")."2.3.5").revisions).default;
         "filepath".revision = (((hackage."filepath")."1.4.2.1").revisions).default;
-        "unbounded-delays".revision = (((hackage."unbounded-delays")."0.1.1.0").revisions).default;
+        "unbounded-delays".revision = (((hackage."unbounded-delays")."0.1.1.1").revisions).default;
         "unix-compat".revision = (((hackage."unix-compat")."0.5.2").revisions).default;
         "unix-compat".flags.old-time = false;
         "process".revision = (((hackage."process")."1.6.9.0").revisions).default;
