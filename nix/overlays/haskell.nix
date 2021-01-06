@@ -14,7 +14,7 @@ let
 
       # Note: cabal-fmt doesn't provide its own index-state, so we
       # choose one for it here.
-      index-state = "2020-10-28T00:00:00Z";
+      #index-state = "2021-01-06T00:00:00Z";
 
       name = "cabal-fmt";
       materialized = materializedPath name args;
