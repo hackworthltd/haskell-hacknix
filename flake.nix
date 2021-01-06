@@ -58,6 +58,13 @@
         }
       );
 
+      hhpFor = forAllSupportedSystems (system:
+        let
+          pkgs = pkgsFor.${system};
+        in
+        import ./hhp/default.nix { inherit pkgs; }
+      );
+
     in
     {
       lib = pkgsFor.x86_64-linux.lib;
@@ -90,11 +97,19 @@
                 ghc884 = pkgs.haskell-nix.roots "ghc884";
                 ghc8102 = pkgs.haskell-nix.roots "ghc8102";
               };
-            hhp = import ./hhp/default.nix { inherit pkgs; };
+            hhp = hhpFor.${system};
           in
           flake-utils.lib.flattenTree roots
           // flake-utils.lib.flattenTree pkgs.haskell-hacknix
           // flake-utils.lib.flattenTree hhp
+        );
+
+      devShell = forAllSupportedSystems
+        (system:
+          let
+            hhp = hhpFor.${system};
+          in
+          hhp.ghc8102.shell
         );
 
       hydraJobs = {
