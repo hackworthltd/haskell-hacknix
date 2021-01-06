@@ -2,8 +2,10 @@
   description = "Hackworth Ltd's haskell.nix overlay.";
 
   inputs = {
+    nixpkgs.url = github:hackworthltd/nixpkgs/big-sur-fixes-v4;
     hacknix.url = github:hackworthltd/hacknix;
     haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v2;
+    haskell-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = github:numtide/flake-utils;
 
@@ -19,7 +21,6 @@
     spago.url = github:hackworthltd/spago;
     spago.flake = false;
 
-    nixpkgs.url = github:hackworthltd/nixpkgs/big-sur-fixes-v4;
     hydra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
