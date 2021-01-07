@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = github:hackworthltd/nixpkgs/big-sur-fixes-v4;
-    hacknix.url = github:hackworthltd/hacknix;
+    hacknix-lib.url = github:hackworthltd/hacknix-lib;
     haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v2;
     haskell-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -20,13 +20,11 @@
 
     spago.url = github:hackworthltd/spago;
     spago.flake = false;
-
-    hydra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self
-    , hacknix
+    , hacknix-lib
     , haskell-nix
     , flake-utils
     , ...
@@ -36,12 +34,12 @@
         "x86_64-linux"
         "x86_64-darwin"
       ];
-      forAllSupportedSystems = hacknix.lib.flakes.forAllSystems supportedSystems;
+      forAllSupportedSystems = hacknix-lib.lib.flakes.forAllSystems supportedSystems;
 
       testSystems = [
         "x86_64-linux"
       ];
-      forAllTestSystems = hacknix.lib.flakes.forAllSystems testSystems;
+      forAllTestSystems = hacknix-lib.lib.flakes.forAllSystems testSystems;
 
       config = {
         allowUnfree = true;
@@ -72,9 +70,9 @@
 
       overlay =
         let
-          overlaysFromDir = hacknix.lib.overlays.combineFromDir ./nix/overlays;
+          overlaysFromDir = hacknix-lib.lib.overlays.combineFromDir ./nix/overlays;
         in
-        hacknix.lib.overlays.combine [
+        hacknix-lib.lib.overlays.combine [
           haskell-nix.overlay
           overlaysFromDir
           (final: prev: {
