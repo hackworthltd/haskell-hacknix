@@ -71,8 +71,6 @@
 
     in
     {
-      lib = pkgsFor.x86_64-linux.lib;
-
       overlay =
         let
           overlaysFromDir = hacknix-lib.lib.overlays.combineFromDir ./nix/overlays;
