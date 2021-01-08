@@ -116,6 +116,8 @@
 
       hydraJobs = {
         build = self.packages;
+
+        shell = self.devShell;
       };
     };
 }
