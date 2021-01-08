@@ -2,10 +2,17 @@
   description = "Hackworth Ltd's haskell.nix overlay.";
 
   inputs = {
-    nixpkgs.url = github:hackworthltd/nixpkgs/big-sur-fixes-v4;
-    hacknix-lib.url = github:hackworthltd/hacknix-lib;
     haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v2;
+    # Normally we follow haskell.nix's nixpkgs, for caching purposes,
+    # but at the moment, it doesn't work with macOS Big Sur, so we
+    # override it with our (temoprary) Big Sur nixpkgs fork.
+
+    # nixpkgs.follows = "haskell-nix/nixpkgs";
+    nixpkgs.url = github:hackworthltd/nixpkgs/big-sur-fixes-v4;
     haskell-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    hacknix-lib.url = github:hackworthltd/hacknix-lib;
+
 
     flake-utils.url = github:numtide/flake-utils;
 
@@ -24,6 +31,7 @@
 
   outputs =
     { self
+    , nixpkgs
     , hacknix-lib
     , haskell-nix
     , flake-utils
@@ -47,11 +55,8 @@
       };
 
       # Memoize nixpkgs for a given system.
-      #
-      # Note: we use the haskell.nix nixpkgs here, as we want to take
-      # advantage of their cachix cache.
       pkgsFor = forAllSupportedSystems (system:
-        import haskell-nix.inputs.nixpkgs {
+        import nixpkgs {
           inherit system config;
           overlays = [ self.overlay ];
         }
