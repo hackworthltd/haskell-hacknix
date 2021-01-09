@@ -2,16 +2,15 @@
 }:
 let
   inherit (pkgs.haskell-hacknix.lib)
-    collectTests filterByPrefix;
+    collectTests';
 
   inherit (pkgs.haskell-hacknix)
     cabalProject shellFor;
 
-  inherit (pkgs.haskell-nix.haskellLib) collectChecks isLocalPackage;
+  inherit (pkgs.haskell-nix.haskellLib)
+    collectChecks' selectLocalPackages;
 
   src = ../.;
-
-  isHhpPackage = filterByPrefix "hhp";
 
   mkSet = args:
     let
@@ -19,9 +18,10 @@ let
         name = "hhp";
         materialize = true;
       });
+      localPackages = selectLocalPackages haskellPackages;
+      tests = collectTests' localPackages;
+      checks = collectChecks' localPackages;
       shell = shellFor haskellPackages args;
-      tests = collectTests isHhpPackage haskellPackages;
-      checks = collectChecks isLocalPackage haskellPackages;
     in
     pkgs.recurseIntoAttrs {
       inherit haskellPackages shell tests checks;

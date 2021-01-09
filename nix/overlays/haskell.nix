@@ -171,15 +171,8 @@ let
     });
 
   lib = final.recurseIntoAttrs {
-    collectTests = filter: hp:
-      final.haskell-nix.haskellLib.collectComponents' "tests"
-        (final.lib.filterAttrs filter hp);
-
-    # Filters for collectTests and haskell.nix's collectChecks.
-    filterByPrefix = prefix: name: pkg:
-      (pkg.isHaskell or false) && final.lib.hasPrefix prefix name;
-    filterByName = pkgName: name: pkg:
-      (pkg.isHaskell or false) && name == pkgName;
+    collectTests = final.haskell-nix.haskellLib.collectComponents "tests";
+    collectTests' = final.haskell-nix.haskellLib.collectComponents' "tests";
 
     # A useful source cleaner for Haskell projects.
     #
