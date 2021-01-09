@@ -5,7 +5,7 @@ let
     collectTests collectChecks filterByPrefix;
 
   inherit (pkgs.haskell-hacknix)
-    cabalProject cache shellFor;
+    cabalProject shellFor;
 
   src = ../.;
 
@@ -18,12 +18,11 @@ let
         materialize = true;
       });
       shell = shellFor haskellPackages args;
-      cachedShell = cache shell;
       tests = collectTests isHhpPackage haskellPackages;
       checks = collectChecks isHhpPackage haskellPackages;
     in
     pkgs.recurseIntoAttrs {
-      inherit haskellPackages shell cachedShell tests checks;
+      inherit haskellPackages shell tests checks;
       inherit (pkgs.haskell-nix) checkMaterialization;
 
       updateMaterialized = pkgs.haskell-hacknix.lib.updateMaterialized haskellPackages;

@@ -170,9 +170,6 @@ let
       meta.platforms = final.lib.platforms.unix;
     });
 
-  # An alias for `withInputs` that describes what we use it for.
-  cache = final.haskell-nix.withInputs;
-
   lib = final.recurseIntoAttrs {
     collectTests = filter: hp:
       final.haskell-nix.haskellLib.collectComponents' "tests"
@@ -221,7 +218,6 @@ in
     inherit haskell-tools;
     inherit cabalProject;
     inherit shellFor;
-    inherit cache;
     inherit lib;
   };
 }
