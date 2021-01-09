@@ -174,10 +174,8 @@ let
     collectTests = filter: hp:
       final.haskell-nix.haskellLib.collectComponents' "tests"
         (final.lib.filterAttrs filter hp);
-    collectChecks = filter: hp:
-      final.recurseIntoAttrs (final.lib.mapAttrs (_: pkg: pkg.checks) (final.lib.filterAttrs filter hp));
 
-    # Filters for collectTests and collectChecks.
+    # Filters for collectTests and haskell.nix's collectChecks.
     filterByPrefix = prefix: name: pkg:
       (pkg.isHaskell or false) && final.lib.hasPrefix prefix name;
     filterByName = pkgName: name: pkg:
