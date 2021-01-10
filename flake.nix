@@ -59,12 +59,35 @@
         }
       );
 
-      hhpFor = forAllSupportedSystems (system:
-        let
-          pkgs = pkgsFor.${system};
-        in
-        import ./hhp/default.nix { inherit pkgs; }
-      );
+      hhpFor = forAllSupportedSystems
+        (system:
+          let
+            pkgs = pkgsFor.${system};
+          in
+          flake-utils.lib.flattenTree {
+            ghc865 = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc865";
+            };
+            ghc865-profiled = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc865";
+              profiled = true;
+            };
+            ghc884 = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc884";
+            };
+            ghc884-profiled = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc884";
+              profiled = true;
+            };
+            ghc8102 = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc8102";
+            };
+            ghc8102-profiled = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc8102";
+              profiled = true;
+            };
+          }
+        );
 
     in
     {
@@ -98,23 +121,14 @@
                 ghc884 = pkgs.haskell-nix.roots "ghc884";
                 ghc8102 = pkgs.haskell-nix.roots "ghc8102";
               };
-            hhp = hhpFor.${system};
           in
           flake-utils.lib.flattenTree roots
           // flake-utils.lib.flattenTree pkgs.haskell-hacknix
-          // flake-utils.lib.flattenTree hhp
-        );
-
-      devShell = forAllSupportedSystems
-        (system:
-          let
-            hhp = hhpFor.${system};
-          in
-          hhp.ghc8102.shell
         );
 
       hydraJobs = {
         build = self.packages;
+        hhp = hhpFor;
       };
     };
 }
