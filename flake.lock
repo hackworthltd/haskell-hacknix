@@ -145,11 +145,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1609935452,
-        "narHash": "sha256-McwA/tAnnS8LaAdEoONBsdKFHuOpHMxKqpMCU1wL7H4=",
+        "lastModified": 1610051610,
+        "narHash": "sha256-U9rPz/usA1/Aohhk7Cmc2gBrEEKRzcW4nwPWMPwja4Y=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "8088c6dbe86a7e6e6396c83e43020e8a1edb08d5",
+        "rev": "3982c9903e93927c2164caa727cd3f6a0e6d14cc",
         "type": "github"
       },
       "original": {
@@ -247,11 +247,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1609956500,
-        "narHash": "sha256-QejYJ7b4IS/DQdaMukGI4GBYSpEH+k1hpF70X2sFXqs=",
+        "lastModified": 1610363352,
+        "narHash": "sha256-+si4uq4LCjah3986qsvU4Eul+EQCI4Dgsu++7cHrZgY=",
         "owner": "hackworthltd",
         "repo": "haskell.nix",
-        "rev": "d384b5dff41c847d922a3a0c71b854eb4f0575b2",
+        "rev": "e6d944b042f3726f5639b615bc8b34f0b480c39d",
         "type": "github"
       },
       "original": {
@@ -474,11 +474,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1609634754,
-        "narHash": "sha256-7Wj3xJRuc8dyGx5U3N8Q6kPznIkgPxP64FXv/Ua9YDc=",
+        "lastModified": 1610195651,
+        "narHash": "sha256-IuLPq8e22i2VwMInDxKFoMft2mw+o5Xev9EkYC2n0Lk=",
         "owner": "hackworthltd",
         "repo": "nixpkgs",
-        "rev": "191e3dd47d208e7ca313f3596cc514c5372be998",
+        "rev": "f37cb78af72c2ff33cc7c3ce0ebd8a4c6ca4ce8f",
         "type": "github"
       },
       "original": {
