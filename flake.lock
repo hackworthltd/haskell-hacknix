@@ -247,11 +247,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1609956500,
-        "narHash": "sha256-QejYJ7b4IS/DQdaMukGI4GBYSpEH+k1hpF70X2sFXqs=",
+        "lastModified": 1610363352,
+        "narHash": "sha256-+si4uq4LCjah3986qsvU4Eul+EQCI4Dgsu++7cHrZgY=",
         "owner": "hackworthltd",
         "repo": "haskell.nix",
-        "rev": "d384b5dff41c847d922a3a0c71b854eb4f0575b2",
+        "rev": "e6d944b042f3726f5639b615bc8b34f0b480c39d",
         "type": "github"
       },
       "original": {
