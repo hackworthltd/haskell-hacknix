@@ -87,10 +87,10 @@ let
 
   haskell-tools = {
     cabal = final.haskell-nix.tool "ghc884" "cabal" "3.2.0.0";
-    cabal-fmt = final.haskell-nix.tool "ghc8102" "cabal-fmt" "latest";
+    cabal-fmt = final.haskell-nix.tool "ghc8103" "cabal-fmt" "latest";
     hlint = final.haskell-nix.tool "ghc884" "hlint" "3.2.1";
     ormolu = final.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
-    cabal-edit = final.haskell-nix.tool "ghc8102" "cabal-edit" "0.1.0.0";
+    cabal-edit = final.haskell-nix.tool "ghc8103" "cabal-edit" "0.1.0.0";
     purescript = final.haskell-nix.tool "ghc865" "purescript" "latest";
     spago = final.haskell-nix.tool "ghc865" "spago" "latest";
   };
@@ -128,7 +128,7 @@ let
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })
-          ] else if compiler-nix-name == "ghc8102" then [
+          ] else if compiler-nix-name == "ghc8103" then [
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })

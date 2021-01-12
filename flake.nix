@@ -79,11 +79,11 @@
               compiler-nix-name = "ghc884";
               profiled = true;
             };
-            ghc8102 = pkgs.callPackage ./hhp {
-              compiler-nix-name = "ghc8102";
+            ghc8103 = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc8103";
             };
-            ghc8102-profiled = pkgs.callPackage ./hhp {
-              compiler-nix-name = "ghc8102";
+            ghc8103-profiled = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc8103";
               profiled = true;
             };
           }
@@ -119,7 +119,7 @@
               {
                 ghc865 = pkgs.haskell-nix.roots "ghc865";
                 ghc884 = pkgs.haskell-nix.roots "ghc884";
-                ghc8102 = pkgs.haskell-nix.roots "ghc8102";
+                ghc8103 = pkgs.haskell-nix.roots "ghc8103";
               };
           in
           flake-utils.lib.flattenTree roots
