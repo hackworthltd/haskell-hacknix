@@ -207,11 +207,11 @@
         "traefik-forward-auth": "traefik-forward-auth"
       },
       "locked": {
-        "lastModified": 1610548537,
-        "narHash": "sha256-JdLyx9TXJQjDTJDhtXvQRmpOFs92MjBXYtOwaEeeW6g=",
+        "lastModified": 1610891748,
+        "narHash": "sha256-pQlVIPWYOo666t+OrGokJKH31iLCTDoicx8kA5WMT/k=",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "cb42f79fb689de2d7d72d6c8ec565764b82d9480",
+        "rev": "f5665283f3ce286ad0714fce03793164be063f20",
         "type": "github"
       },
       "original": {
