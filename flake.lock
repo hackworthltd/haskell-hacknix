@@ -207,11 +207,11 @@
         "traefik-forward-auth": "traefik-forward-auth"
       },
       "locked": {
-        "lastModified": 1611017045,
-        "narHash": "sha256-xyDyx463TMoM9ocDtOo4FZA1U5sjV0TbnyOm0SZdMYY=",
+        "lastModified": 1611022856,
+        "narHash": "sha256-NC3IMjTdrcB9d+XzMMCBw1f5BzRgAtiZ4E5anM65ir8=",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "091d2b501ed5c405779fe41efbd0dbb8f3ea57b8",
+        "rev": "e68c61cd12870c14f468b29d85300a51b03768a3",
         "type": "github"
       },
       "original": {
@@ -290,11 +290,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1609854711,
-        "narHash": "sha256-eJfmyZTDJMusHIeMxsfhQNEDH6sTIuqiOYoM9MJdvGc=",
+        "lastModified": 1610996504,
+        "narHash": "sha256-NAdablc0cWgttL/nKgAJITP4s8A4INqwwcyC157aS24=",
         "owner": "NixOS",
         "repo": "hydra",
-        "rev": "be0aa7eb8589dc0b6ca92caa06a243c8163a04bd",
+        "rev": "6bb876cb356e042eaf88007f0829d7970d9228ad",
         "type": "github"
       },
       "original": {
