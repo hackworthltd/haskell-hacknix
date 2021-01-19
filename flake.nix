@@ -90,6 +90,14 @@
           }
         );
 
+      devShell = forAllSupportedSystems
+        (system:
+          let
+            hhp = hhpFor.${system};
+          in
+          hhp."ghc8103/shell"
+        );
+
     in
     {
       lib = pkgsFor.x86_64-linux.lib;
@@ -126,6 +134,8 @@
           flake-utils.lib.flattenTree roots
           // flake-utils.lib.flattenTree pkgs.haskell-hacknix
         );
+
+      inherit devShell;
 
       hydraJobs = {
         build = self.packages;
