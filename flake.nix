@@ -2,8 +2,8 @@
   description = "Hackworth Ltd's haskell.nix overlay.";
 
   inputs = {
-    nixpkgs.url = github:hackworthltd/nixpkgs/big-sur-fixes-v4;
     hacknix.url = github:hackworthltd/hacknix;
+    nixpkgs.follows = "hacknix/nixpkgs";
     haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v2;
     haskell-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -26,6 +26,7 @@
 
   outputs =
     { self
+    , nixpkgs
     , hacknix
     , haskell-nix
     , flake-utils
@@ -53,7 +54,7 @@
       # Note: we use the haskell.nix nixpkgs here, as we want to take
       # advantage of their cachix cache.
       pkgsFor = forAllSupportedSystems (system:
-        import haskell-nix.inputs.nixpkgs {
+        import nixpkgs {
           inherit system config;
           overlays = [ self.overlay ];
         }
