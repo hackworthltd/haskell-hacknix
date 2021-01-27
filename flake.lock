@@ -501,24 +501,7 @@
           "hacknix",
           "nixpkgs"
         ],
-        "purescript": "purescript",
-        "spago": "spago"
-      }
-    },
-    "spago": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1608117863,
-        "narHash": "sha256-58aNphezSYfV11FRQ7nGmtHuBx/Nsz6M3qCZA0J8agY=",
-        "owner": "hackworthltd",
-        "repo": "spago",
-        "rev": "c3b9ea1f5da3e87c42811dd03832cebc3365781a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hackworthltd",
-        "repo": "spago",
-        "type": "github"
+        "purescript": "purescript"
       }
     },
     "spago2nix": {

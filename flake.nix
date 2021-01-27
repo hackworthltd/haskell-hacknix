@@ -18,9 +18,6 @@
     purescript.url = github:purescript/purescript/v0.13.8;
     purescript.flake = false;
 
-    spago.url = github:hackworthltd/spago;
-    spago.flake = false;
-
     hydra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
