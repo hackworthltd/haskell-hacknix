@@ -4,7 +4,7 @@
   inputs = {
     hacknix.url = github:hackworthltd/hacknix;
     nixpkgs.follows = "hacknix/nixpkgs";
-    haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v3;
+    haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v4;
     haskell-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = github:numtide/flake-utils;
