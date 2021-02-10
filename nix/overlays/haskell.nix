@@ -1,23 +1,12 @@
 final: prev:
 let
-  # Based on:
-  # https://github.com/input-output-hk/haskell.nix/blob/5f80ca910b0c34562f76aa4dcfc2464840b2d0ef/lib/call-cabal-project-to-nix.nix#L220
-  materializedPath = name: args:
-    let
-      ghc = final.haskell-nix.compiler."${args.compiler-nix-name}";
-    in
-    ../materialized + "/${ghc.targetPrefix}${ghc.name}-${final.stdenv.buildPlatform.system}/${name}";
-
   cabal-fmt = args:
     (final.haskell-nix.cabalProject (args // rec {
-      inherit (final.haskell-nix) checkMaterialization;
-
       # Note: cabal-fmt doesn't provide its own index-state, so we
       # choose one for it here.
       #index-state = "2021-01-06T00:00:00Z";
 
       name = "cabal-fmt";
-      materialized = materializedPath name args;
 
       src = final.lib.haskell-hacknix.flake.inputs.cabal-fmt;
       pkg-def-extras = [
@@ -42,9 +31,7 @@ let
   # Note: only works with GHC 8.6.5 at the moment.
   purescript = args:
     (final.haskell-nix.project (args // rec {
-      inherit (final.haskell-nix) checkMaterialization;
       name = "purescript";
-      materialized = materializedPath name args;
       src = final.lib.haskell-hacknix.flake.inputs.purescript;
       projectFileName = "stack.yaml";
       pkg-def-extras = [
@@ -89,12 +76,9 @@ let
     { compiler-nix-name
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
-    , materialize ? false
     , ...
     }@args:
     final.haskell-nix.cabalProject (args // {
-      inherit (final.haskell-nix) checkMaterialization;
-      materialized = if materialize then (materializedPath args.name args) else null;
       modules = (args.modules or [ ]) ++ [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
@@ -180,10 +164,6 @@ let
           };
       in
       cleanSource' (final.lib.sources.cleanSourceAllExtraneous src);
-
-    # A convenience function to extract a haskell.nix project's
-    # materialization update script.
-    updateMaterialized = project: project.plan-nix.passthru.updateMaterialized;
   };
 
 in

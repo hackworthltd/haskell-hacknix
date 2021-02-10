@@ -10,7 +10,6 @@ let
     src = ../.;
     subdir = "hhp";
     inherit compiler-nix-name;
-    materialize = true;
   } // (if profiled then {
     enableLibraryProfiling = true;
     enableExecutableProfiling = true;
