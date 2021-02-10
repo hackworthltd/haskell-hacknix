@@ -2,10 +2,10 @@
   description = "Hackworth Ltd's haskell.nix overlay.";
 
   inputs = {
-    hacknix.url = github:hackworthltd/hacknix;
-    nixpkgs.follows = "hacknix/nixpkgs";
     haskell-nix.url = github:hackworthltd/haskell.nix/flakes-fixes-v4;
-    haskell-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.follows = "haskell-nix/nixpkgs";
+    hacknix.url = github:hackworthltd/hacknix;
+    hacknix.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = github:numtide/flake-utils;
 
@@ -17,8 +17,6 @@
 
     purescript.url = github:purescript/purescript/v0.13.8;
     purescript.flake = false;
-
-    hydra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
