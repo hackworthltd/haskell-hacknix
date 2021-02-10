@@ -14,9 +14,6 @@
 
     cabal-fmt.url = github:phadej/cabal-fmt;
     cabal-fmt.flake = false;
-
-    purescript.url = github:purescript/purescript/v0.13.8;
-    purescript.flake = false;
   };
 
   outputs =

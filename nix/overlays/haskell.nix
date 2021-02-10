@@ -28,31 +28,8 @@ let
       ];
     }));
 
-  # Note: only works with GHC 8.6.5 at the moment.
-  purescript = args:
-    (final.haskell-nix.project (args // rec {
-      name = "purescript";
-      src = final.lib.haskell-hacknix.flake.inputs.purescript;
-      projectFileName = "stack.yaml";
-      pkg-def-extras = [
-        (
-          hackage: {
-            hsc2hs = hackage.hsc2hs."0.68.7".revisions.default;
-          }
-        )
-      ];
-      modules = [
-        {
-          packages.purescript.flags.release = final.lib.mkForce true;
-          packages.ghc.flags.ghci = final.lib.mkForce true;
-          packages.ghci.flags.ghci = final.lib.mkForce true;
-        }
-      ];
-    }));
-
   extra-custom-tools = {
     cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
-    purescript.latest = args: (purescript args).purescript.components.exes.purs;
   };
 
 
@@ -66,7 +43,6 @@ let
     hlint = final.haskell-nix.tool "ghc884" "hlint" "3.2.1";
     ormolu = final.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
     cabal-edit = final.haskell-nix.tool "ghc8104" "cabal-edit" "0.1.0.0";
-    purescript = final.haskell-nix.tool "ghc865" "purescript" "latest";
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.

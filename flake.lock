@@ -404,23 +404,6 @@
         "type": "github"
       }
     },
-    "purescript": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1590265783,
-        "narHash": "sha256-QMyomlrKR4XfZcF1y0PQ2OQzbCzf0NONf81ZJA3nj1Y=",
-        "owner": "purescript",
-        "repo": "purescript",
-        "rev": "9cad73ed8ea7df3011032ddbd2f3de5a0c08629c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "purescript",
-        "ref": "v0.13.8",
-        "repo": "purescript",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "cabal-fmt": "cabal-fmt",
@@ -431,8 +414,7 @@
         "nixpkgs": [
           "haskell-nix",
           "nixpkgs"
-        ],
-        "purescript": "purescript"
+        ]
       }
     },
     "sops-nix": {
