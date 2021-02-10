@@ -114,8 +114,8 @@ let
 
       # Tools that are GHC-specific.
       tools = {
-        ghcid = "0.8.7";
-        haskell-language-server = "0.8.0";
+        ghcid = "latest";
+        haskell-language-server = "latest";
       } // (args.tools or { });
 
       buildInputs =
