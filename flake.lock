@@ -248,11 +248,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1612907092,
-        "narHash": "sha256-Bd/gZuU4CeDClzphywbbwoYFdOOTdiZwf3PkfqCb9a4=",
+        "lastModified": 1613002203,
+        "narHash": "sha256-/GxzbBVo1pDaSI8F8iUlubGHsKNQPST3dBT5AJQJeFw=",
         "owner": "hackworthltd",
         "repo": "haskell.nix",
-        "rev": "1a2f4b1f00433589c5e8cf055610767f2e0b23a8",
+        "rev": "5ee4942c6f4baec97c199f6c4a95b041b1317763",
         "type": "github"
       },
       "original": {
