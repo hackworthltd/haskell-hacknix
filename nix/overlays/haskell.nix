@@ -1,23 +1,12 @@
 final: prev:
 let
-  # Based on:
-  # https://github.com/input-output-hk/haskell.nix/blob/5f80ca910b0c34562f76aa4dcfc2464840b2d0ef/lib/call-cabal-project-to-nix.nix#L220
-  materializedPath = name: args:
-    let
-      ghc = final.haskell-nix.compiler."${args.compiler-nix-name}";
-    in
-    ../materialized + "/${ghc.targetPrefix}${ghc.name}-${final.stdenv.buildPlatform.system}/${name}";
-
   cabal-fmt = args:
     (final.haskell-nix.cabalProject (args // rec {
-      inherit (final.haskell-nix) checkMaterialization;
-
       # Note: cabal-fmt doesn't provide its own index-state, so we
       # choose one for it here.
       #index-state = "2021-01-06T00:00:00Z";
 
       name = "cabal-fmt";
-      materialized = materializedPath name args;
 
       src = final.lib.haskell-hacknix.flake.inputs.cabal-fmt;
       pkg-def-extras = [
@@ -39,33 +28,8 @@ let
       ];
     }));
 
-  # Note: only works with GHC 8.6.5 at the moment.
-  purescript = args:
-    (final.haskell-nix.project (args // rec {
-      inherit (final.haskell-nix) checkMaterialization;
-      name = "purescript";
-      materialized = materializedPath name args;
-      src = final.lib.haskell-hacknix.flake.inputs.purescript;
-      projectFileName = "stack.yaml";
-      pkg-def-extras = [
-        (
-          hackage: {
-            hsc2hs = hackage.hsc2hs."0.68.7".revisions.default;
-          }
-        )
-      ];
-      modules = [
-        {
-          packages.purescript.flags.release = final.lib.mkForce true;
-          packages.ghc.flags.ghci = final.lib.mkForce true;
-          packages.ghci.flags.ghci = final.lib.mkForce true;
-        }
-      ];
-    }));
-
   extra-custom-tools = {
     cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
-    purescript.latest = args: (purescript args).purescript.components.exes.purs;
   };
 
 
@@ -75,11 +39,10 @@ let
 
   haskell-tools = {
     cabal = final.haskell-nix.tool "ghc884" "cabal" "3.2.0.0";
-    cabal-fmt = final.haskell-nix.tool "ghc8103" "cabal-fmt" "latest";
+    cabal-fmt = final.haskell-nix.tool "ghc8104" "cabal-fmt" "latest";
     hlint = final.haskell-nix.tool "ghc884" "hlint" "3.2.1";
     ormolu = final.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
-    cabal-edit = final.haskell-nix.tool "ghc8103" "cabal-edit" "0.1.0.0";
-    purescript = final.haskell-nix.tool "ghc865" "purescript" "latest";
+    cabal-edit = final.haskell-nix.tool "ghc8104" "cabal-edit" "0.1.0.0";
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
@@ -89,12 +52,9 @@ let
     { compiler-nix-name
     , enableLibraryProfiling ? false
     , enableExecutableProfiling ? false
-    , materialize ? false
     , ...
     }@args:
     final.haskell-nix.cabalProject (args // {
-      inherit (final.haskell-nix) checkMaterialization;
-      materialized = if materialize then (materializedPath args.name args) else null;
       modules = (args.modules or [ ]) ++ [
         # Workaround for doctest. See:
         # https://github.com/input-output-hk/haskell.nix/issues/221
@@ -115,7 +75,7 @@ let
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })
-          ] else if compiler-nix-name == "ghc8103" then [
+          ] else if compiler-nix-name == "ghc8104" then [
             (hackage: {
               alex = hackage.alex."3.2.5".revisions.default;
             })
@@ -130,8 +90,8 @@ let
 
       # Tools that are GHC-specific.
       tools = {
-        ghcid = "0.8.7";
-        haskell-language-server = "0.8.0";
+        ghcid = "latest";
+        haskell-language-server = "latest";
       } // (args.tools or { });
 
       buildInputs =
@@ -180,10 +140,6 @@ let
           };
       in
       cleanSource' (final.lib.sources.cleanSourceAllExtraneous src);
-
-    # A convenience function to extract a haskell.nix project's
-    # materialization update script.
-    updateMaterialized = project: project.plan-nix.passthru.updateMaterialized;
   };
 
 in
