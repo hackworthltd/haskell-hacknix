@@ -1,37 +1,5 @@
 {
   "nodes": {
-    "aws-export-credentials": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1610462124,
-        "narHash": "sha256-kuWL2EpcQKOGaj4idLA/JQNSKHqqa82P3xiKZdoqe9w=",
-        "owner": "benkehoe",
-        "repo": "aws-export-credentials",
-        "rev": "967c0e5bc4db27f08446e15a14fadd8feb5ad0e9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "benkehoe",
-        "repo": "aws-export-credentials",
-        "type": "github"
-      }
-    },
-    "aws-sso-credential-process": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1605057290,
-        "narHash": "sha256-uYdlk3LcdEJCZb0lQWh8ZzgnWhSNlFftwdds+uyQ5RA=",
-        "owner": "benkehoe",
-        "repo": "aws-sso-credential-process",
-        "rev": "3a59c030c820a6faa23adb1454c036fd3d929e8f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "benkehoe",
-        "repo": "aws-sso-credential-process",
-        "type": "github"
-      }
-    },
     "badhosts": {
       "flake": false,
       "locked": {
@@ -67,26 +35,27 @@
     "chamber": {
       "flake": false,
       "locked": {
-        "lastModified": 1602373352,
-        "narHash": "sha256-n1VmBFk9AY7LZXUsvHIQUScpHk52RtkIMi3cW4RKA8Y=",
+        "lastModified": 1613841193,
+        "narHash": "sha256-y/eiba730E6tSA3OxQAHNFaUVknP5sZxMsX2xj4TaOU=",
         "owner": "hackworthltd",
         "repo": "chamber",
-        "rev": "7c5297b63fe63fa49b7e70dd2de0c32adacb0de1",
+        "rev": "a07d4ab905659fc0080b751b8ccca7dce7c3bab7",
         "type": "github"
       },
       "original": {
         "owner": "hackworthltd",
+        "ref": "aws-sdk-go-v1.37.15",
         "repo": "chamber",
         "type": "github"
       }
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1613766403,
-        "narHash": "sha256-iVwP9+eqcTzzJdMnptv++f4QUHhm7MDg/nhFP9ZnaBw=",
+        "lastModified": 1613838016,
+        "narHash": "sha256-4jCxccHv0WF3ciBH5qXO/PWfCiWWpfgdESbiLwc1ooQ=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "772d8f391b9d691d167ea9cfdfb7f96558e4d6ee",
+        "rev": "063ee066b5095dd2f21f47c582b04024674974a8",
         "type": "github"
       },
       "original": {
@@ -191,8 +160,6 @@
     },
     "hacknix": {
       "inputs": {
-        "aws-export-credentials": "aws-export-credentials",
-        "aws-sso-credential-process": "aws-sso-credential-process",
         "badhosts": "badhosts",
         "chamber": "chamber",
         "emacs-overlay": "emacs-overlay",
@@ -210,11 +177,11 @@
         "traefik-forward-auth": "traefik-forward-auth"
       },
       "locked": {
-        "lastModified": 1613818208,
-        "narHash": "sha256-L2MG2TAm2fKhOGjEMRAtlzZGuDRYqDAzymapIcuJ59E=",
+        "lastModified": 1613869507,
+        "narHash": "sha256-8byE0UFRJoIB8NiAzFRsxAyIz0un79NO2QWVvkAPB58=",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "4db03d7ced29757c4c5d5b0173d298dbb9456017",
+        "rev": "9918568f416d327543698fe0c708c93b8001951b",
         "type": "github"
       },
       "original": {
@@ -248,16 +215,16 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1613825780,
-        "narHash": "sha256-nFTNer8AgVuPYNYoOrLc1jgvEzdwEDI/j0zQq4Vyrw0=",
+        "lastModified": 1613914012,
+        "narHash": "sha256-GLgkBaMXDq1RxxPGKqUsMnfrLN/X8p2PaqTlY8HaEsg=",
         "owner": "hackworthltd",
         "repo": "haskell.nix",
-        "rev": "95301b88c3e9419f529e531d52268e474018b13b",
+        "rev": "a11e14d2e03c9d4fe970c67a41ffc26bf503c590",
         "type": "github"
       },
       "original": {
         "owner": "hackworthltd",
-        "ref": "flake-fixes-v5",
+        "ref": "flake-fixes-v6",
         "repo": "haskell.nix",
         "type": "github"
       }
