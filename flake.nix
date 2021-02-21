@@ -121,5 +121,7 @@
         build = self.packages;
         hhp = hhpFor;
       };
+
+      ciJobs = hacknix.lib.flakes.recurseIntoHydraJobs self.hydraJobs;
     };
 }
