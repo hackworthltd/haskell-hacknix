@@ -39,11 +39,11 @@ let
   # tools are build in the `shellFor` derivation; see below.)
 
   haskell-tools = {
-    cabal = final.haskell-nix.tool "ghc884" "cabal" "3.2.0.0";
+    cabal = final.haskell-nix.tool "ghc8104" "cabal" "latest";
     cabal-fmt = final.haskell-nix.tool "ghc884" "cabal-fmt" "latest";
-    hlint = final.haskell-nix.tool "ghc884" "hlint" "3.2.1";
-    ormolu = final.haskell-nix.tool "ghc884" "ormolu" "0.1.3.0";
-    cabal-edit = final.haskell-nix.tool "ghc8104" "cabal-edit" "0.1.0.0";
+    hlint = final.haskell-nix.tool "ghc884" "hlint" "latest";
+    ormolu = final.haskell-nix.tool "ghc884" "ormolu" "latest";
+    cabal-edit = final.haskell-nix.tool "ghc8104" "cabal-edit" "latest";
   };
 
   ## Convenience wrappers for `haskell-nix.cabalProject`s.
