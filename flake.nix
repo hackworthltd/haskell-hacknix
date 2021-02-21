@@ -61,23 +61,11 @@
             ghc865 = pkgs.callPackage ./hhp {
               compiler-nix-name = "ghc865";
             };
-            ghc865-profiled = pkgs.callPackage ./hhp {
-              compiler-nix-name = "ghc865";
-              profiled = true;
-            };
             ghc884 = pkgs.callPackage ./hhp {
               compiler-nix-name = "ghc884";
             };
-            ghc884-profiled = pkgs.callPackage ./hhp {
-              compiler-nix-name = "ghc884";
-              profiled = true;
-            };
             ghc8104 = pkgs.callPackage ./hhp {
               compiler-nix-name = "ghc8104";
-            };
-            ghc8104-profiled = pkgs.callPackage ./hhp {
-              compiler-nix-name = "ghc8104";
-              profiled = true;
             };
           }
         );
