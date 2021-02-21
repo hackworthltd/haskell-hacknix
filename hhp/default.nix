@@ -2,18 +2,14 @@
 , haskell-nix
 , recurseIntoAttrs
 , compiler-nix-name
-, profiled ? false
 }:
 let
-  haskellPackages = haskell-hacknix.cabalProject ({
+  haskellPackages = haskell-nix.cabalProject {
     name = "hhp";
     src = ../.;
     subdir = "hhp";
     inherit compiler-nix-name;
-  } // (if profiled then {
-    enableLibraryProfiling = true;
-    enableExecutableProfiling = true;
-  } else { }));
+  };
 
   shell = haskell-hacknix.shellFor haskellPackages { };
 

@@ -46,44 +46,6 @@ let
     cabal-edit = final.haskell-nix.tool "ghc8104" "cabal-edit" "latest";
   };
 
-  ## Convenience wrappers for `haskell-nix.cabalProject`s.
-  #
-  # These include any fixes needed for various haskell.nix issues.
-  cabalProject =
-    { compiler-nix-name
-    , enableLibraryProfiling ? false
-    , enableExecutableProfiling ? false
-    , ...
-    }@args:
-    final.haskell-nix.cabalProject (args // {
-      modules = (args.modules or [ ]) ++ [
-        # Workaround for doctest. See:
-        # https://github.com/input-output-hk/haskell.nix/issues/221
-        { reinstallableLibGhc = true; }
-        { inherit enableLibraryProfiling enableExecutableProfiling; }
-      ];
-      pkg-def-extras = (args.pkg-def-extras or [ ]) ++
-        (
-          if compiler-nix-name == "ghc883" then [
-            (hackage: {
-              alex = hackage.alex."3.2.5".revisions.default;
-            })
-          ] else if compiler-nix-name == "ghc884" then [
-            (hackage: {
-              alex = hackage.alex."3.2.5".revisions.default;
-            })
-          ] else if compiler-nix-name == "ghc8101" then [
-            (hackage: {
-              alex = hackage.alex."3.2.5".revisions.default;
-            })
-          ] else if compiler-nix-name == "ghc8104" then [
-            (hackage: {
-              alex = hackage.alex."3.2.5".revisions.default;
-            })
-          ] else [ ]
-        );
-    });
-
   # Add some useful tools to a `shellFor`, and make it buildable on a
   # Hydra.
   shellFor = hp: { ... }@args:
@@ -151,7 +113,6 @@ in
 
   haskell-hacknix = (prev.haskell-hacknix or { }) // prev.recurseIntoAttrs {
     inherit haskell-tools;
-    inherit cabalProject;
     inherit shellFor;
     inherit lib;
   };
