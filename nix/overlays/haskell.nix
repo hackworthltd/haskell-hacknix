@@ -4,7 +4,7 @@ let
     (final.haskell-nix.cabalProject (args // rec {
       # Note: cabal-fmt doesn't provide its own index-state, so we
       # choose one for it here.
-      index-state = "2021-02-21T00:00:00Z";
+      index-state = "2021-02-22T00:00:00Z";
 
       name = "cabal-fmt";
 
