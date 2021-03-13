@@ -218,11 +218,11 @@
         "nixpkgs-unstable": "nixpkgs-unstable"
       },
       "locked": {
-        "lastModified": 1615425394,
-        "narHash": "sha256-MfDOUdjloZmGf+rSp7MunyQV0vcQbKomPeJFFAMTKx4=",
+        "lastModified": 1615511764,
+        "narHash": "sha256-XUMTaLpSeCa+CkPRmr99sb5RhZ6q/u/r1DFvP9WkAxI=",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "536327105e5f89b76890faf6047bc424367c4c0f",
+        "rev": "d890a8f652acdef0d38ff9d1e7baaed3083bc520",
         "type": "github"
       },
       "original": {
