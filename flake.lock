@@ -176,11 +176,11 @@
         "traefik-forward-auth": "traefik-forward-auth"
       },
       "locked": {
-        "lastModified": 1617265215,
-        "narHash": "sha256-y4rD8vspY9h8FcgtWYLvjsThj1crvrPKmEAB/DnOtck=",
+        "lastModified": 1617359369,
+        "narHash": "sha256-6SchIapI7NQVD2MZeQqTMOuFHcCYfriPQlDSF3uwvtw=",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "78c113d9169d8157d0ee5857b8dfd5ffc2563788",
+        "rev": "d20deae90e0f8a3002ad50ea17648700f50c4fa1",
         "type": "github"
       },
       "original": {
@@ -198,11 +198,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1616872294,
-        "narHash": "sha256-g4C0z5II8iJdMAnQJBrtVHf++Cx9pC9wlSQ8WT5n210=",
+        "lastModified": 1617358850,
+        "narHash": "sha256-amFZQB+XxnKa9dnfcpbJt54qz0w+ksRkFNqJVBnUszc=",
         "owner": "hackworthltd",
         "repo": "hacknix-lib",
-        "rev": "dd8ab59928d693d4d966aaca2366dd30dc4b4538",
+        "rev": "8b8ad401e6514e1f44361483eeaa9a8183720e4f",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
         "nixpkgs-unstable": "nixpkgs-unstable"
       },
       "locked": {
-        "lastModified": 1617325989,
-        "narHash": "sha256-Xz3zcERuDbGnPm5WxhTFvsoLZyNg2wl4+Iakb66hqoo=",
+        "lastModified": 1617412340,
+        "narHash": "sha256-VF8j4WIH2575/H/dXwkJdWqF+zTSQh+N/cB244WCbs0=",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "486de5bfd4e7a93d999dc09969cb1278b9a43f30",
+        "rev": "7f00f4427d8506abf247adaf0e33f7f8c3d0ba49",
         "type": "github"
       },
       "original": {
@@ -239,16 +239,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1616326109,
-        "narHash": "sha256-gThEFPXOzxmYvnBZwInkWGDvajpkQEzCqRc8GjQRTKo=",
+        "lastModified": 1617358317,
+        "narHash": "sha256-ZZZrANL5c+1rdneo3F7YTU6Z8Btgga2mH7Hxrp0lHo4=",
         "owner": "hackworthltd",
         "repo": "nix-darwin",
-        "rev": "da524db41135380ec76bb415038ee03a43a850f6",
+        "rev": "9807bb45b1b97a770cfcb3dc0ad9a392c981af6a",
         "type": "github"
       },
       "original": {
         "owner": "hackworthltd",
-        "ref": "fixes",
+        "ref": "fixes-v2",
         "repo": "nix-darwin",
         "type": "github"
       }
