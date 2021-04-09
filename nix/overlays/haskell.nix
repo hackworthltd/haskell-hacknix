@@ -1,38 +1,33 @@
 final: prev:
 let
-  cabal-fmt = args:
-    (final.haskell-nix.cabalProject (args // rec {
-      # Note: cabal-fmt doesn't provide its own index-state, so we
-      # choose one for it here.
-      index-state = "2021-02-22T00:00:00Z";
+  cabal-fmt = final.haskell-nix.cabalProject {
+    # Note: cabal-fmt doesn't provide its own index-state, so we
+    # choose one for it here.
+    index-state = "2021-04-08T21:41:19Z";
 
-      name = "cabal-fmt";
+    name = "cabal-fmt";
+    compiler-nix-name = "ghc884";
 
-      src = final.lib.haskell-hacknix.flake.inputs.cabal-fmt;
-      pkg-def-extras = [
-        (
-          hackage: {
-            binary = hackage.binary."0.8.8.0".revisions.default;
-            Cabal = hackage.Cabal."3.4.0.0".revisions.default;
-            parsec = hackage.parsec."3.1.14.0".revisions.default;
-            text = hackage.text."1.2.4.0".revisions.default;
-            time = hackage.time."1.9.3".revisions.default;
-          }
-        )
-      ];
-      modules = [
-        { reinstallableLibGhc = true; }
-        {
-          packages.ghc.flags.ghci = final.lib.mkForce true;
-          packages.ghci.flags.ghci = final.lib.mkForce true;
+    src = final.lib.haskell-hacknix.flake.inputs.cabal-fmt;
+    pkg-def-extras = [
+      (
+        hackage: {
+          binary = hackage.binary."0.8.8.0".revisions.default;
+          Cabal = hackage.Cabal."3.4.0.0".revisions.default;
+          parsec = hackage.parsec."3.1.14.0".revisions.default;
+          text = hackage.text."1.2.4.0".revisions.default;
+          time = hackage.time."1.9.3".revisions.default;
         }
-      ];
-    }));
-
-  extra-custom-tools = {
-    cabal-fmt.latest = args: (cabal-fmt args).cabal-fmt.components.exes.cabal-fmt;
+      )
+    ];
+    modules = [
+      { reinstallableLibGhc = true; }
+      {
+        packages.ghc.flags.ghci = final.lib.mkForce true;
+        packages.ghci.flags.ghci = final.lib.mkForce true;
+      }
+    ];
   };
-
 
   # Some useful tools. These are GHC-independent, so we just choose a
   # mostly arbitrary version of GHC to build each tool. (GHC-dependent
@@ -40,7 +35,6 @@ let
 
   haskell-tools = {
     cabal = final.haskell-nix.tool "ghc8104" "cabal" "latest";
-    cabal-fmt = final.haskell-nix.tool "ghc884" "cabal-fmt" "latest";
     hlint = final.haskell-nix.tool "ghc884" "hlint" "latest";
     ormolu = final.haskell-nix.tool "ghc884" "ormolu" "latest";
     cabal-edit = final.haskell-nix.tool "ghc8104" "cabal-edit" "latest";
@@ -68,6 +62,9 @@ let
             final.haskell.lib.justStaticExecutables
               final.haskellPackages.structured-haskell-mode
           )
+
+          # No longer builds with haskell-nix.tool, so just include it here.
+          cabal-fmt.cabal-fmt.components.exes.cabal-fmt
         ] ++ (args.buildInputs or [ ]);
 
       # Help haskell-language-server find our Hoogle database. See:
@@ -107,10 +104,6 @@ let
 
 in
 {
-  haskell-nix = prev.haskell-nix // {
-    custom-tools = prev.haskell-nix.custom-tools // extra-custom-tools;
-  };
-
   haskell-hacknix = (prev.haskell-hacknix or { }) // prev.recurseIntoAttrs {
     inherit haskell-tools;
     inherit shellFor;

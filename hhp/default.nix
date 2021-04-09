@@ -6,8 +6,10 @@
 let
   haskellPackages = haskell-nix.cabalProject {
     name = "hhp";
-    src = ../.;
-    subdir = "hhp";
+    src = haskell-nix.haskellLib.cleanGit {
+      src = ../.;
+      subDir = "hhp";
+    };
     inherit compiler-nix-name;
   };
 
