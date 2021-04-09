@@ -67,6 +67,10 @@
             ghc8104 = pkgs.callPackage ./hhp {
               compiler-nix-name = "ghc8104";
             };
+            ghcjs8104 = pkgs.callPackage ./hhp {
+              compiler-nix-name = "ghc8104";
+              haskell-nix = pkgs.pkgsCross.ghcjs.haskell-nix;
+            };
           }
         );
 
@@ -109,6 +113,7 @@
                 ghc865 = pkgs.haskell-nix.roots "ghc865";
                 ghc884 = pkgs.haskell-nix.roots "ghc884";
                 ghc8104 = pkgs.haskell-nix.roots "ghc8104";
+                ghcjs8104 = pkgs.haskell-nix.roots "ghcjs8104";
               };
           in
           flake-utils.lib.flattenTree roots
