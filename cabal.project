@@ -1,7 +1,7 @@
 -- Bump this to get newer package versions. In general, this should
 -- stay in sync with the latest package versions provided by upstream
 -- haskell.nix.
-index-state: 2021-04-08T21:41:19Z
+index-state: 2021-04-15T22:53:17Z
 
 packages:
   hhp/*.cabal
