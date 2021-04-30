@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "cabal-fmt": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1618982999,
-        "narHash": "sha256-dKJtzs1LEc2v+VWq716pK2swPovSmVeGZI83uvyfJq8=",
-        "owner": "phadej",
-        "repo": "cabal-fmt",
-        "rev": "a7ef55eaf5db2f9a623e7db39ad9bc38e7bc138f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "phadej",
-        "repo": "cabal-fmt",
-        "type": "github"
-      }
-    },
     "chamber": {
       "flake": false,
       "locked": {
@@ -51,11 +35,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1619636538,
-        "narHash": "sha256-fQXnzTb2rDr5zbfEppXEXI+FMHLPRI12EMf9Dof3R+k=",
+        "lastModified": 1619716978,
+        "narHash": "sha256-E3l4626vPT28TcquTtBt/c59+Jr0VqR9LNdlMnxCh+k=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "ed6650c5db42b331283341c85710f99a701fd03f",
+        "rev": "b539c9174b79abaa2c24bd773c855b170cfa6951",
         "type": "github"
       },
       "original": {
@@ -176,11 +160,11 @@
         "traefik-forward-auth": "traefik-forward-auth"
       },
       "locked": {
-        "lastModified": 1619654688,
-        "narHash": "sha256-YB9DGumimCNPxUMqKmlC89nuFYN5qVhK+84dwvsuqWo=",
+        "lastModified": 1619774614,
+        "narHash": "sha256-YvI+PTupBtGxXsrTq1nhaeGt7kzI21mgftTKJT3p9/4=",
         "owner": "hackworthltd",
         "repo": "hacknix",
-        "rev": "05cfcf51ed4b5be0f4a103af50a147dc7da5ff01",
+        "rev": "e9a3b08a073f9d6ac0be25a6b7d187b8afd3d661",
         "type": "github"
       },
       "original": {
@@ -198,11 +182,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1619390733,
-        "narHash": "sha256-gngQRXaIOJMaglSpXZnzLThT+cjh/KwJlnWzddvMVn8=",
+        "lastModified": 1619654669,
+        "narHash": "sha256-NrB+RCfKJOOjfefs5EEUdVhO97zGlrT3hYvQuieMGmo=",
         "owner": "hackworthltd",
         "repo": "hacknix-lib",
-        "rev": "ff1add808250eebdfbfcdd6b8646b4fc1fd643e5",
+        "rev": "a366c20ad80dd9b6ced9e951b0d12fa76521f386",
         "type": "github"
       },
       "original": {
@@ -335,7 +319,6 @@
     },
     "root": {
       "inputs": {
-        "cabal-fmt": "cabal-fmt",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "hacknix": "hacknix",

@@ -11,9 +11,6 @@
 
     flake-compat.url = github:edolstra/flake-compat;
     flake-compat.flake = false;
-
-    cabal-fmt.url = github:phadej/cabal-fmt;
-    cabal-fmt.flake = false;
   };
 
   outputs =
