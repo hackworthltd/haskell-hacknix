@@ -2,7 +2,7 @@
   description = "Hackworth Ltd's haskell.nix overlay.";
 
   inputs = {
-    haskell-nix.url = github:input-output-hk/haskell.nix;
+    haskell-nix.url = github:input-output-hk/haskell.nix/542670ef5551d5c28f156646c161bca242c4fee2;
     nixpkgs.follows = "haskell-nix/nixpkgs-unstable";
     hacknix.url = github:hackworthltd/hacknix;
     hacknix.inputs.nixpkgs.follows = "nixpkgs";
